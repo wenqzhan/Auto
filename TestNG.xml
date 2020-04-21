@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default Suite" parallel="methods" thread-count="1">
+  <test name="webdriver">
+    <classes>
+        <class name="com.steps.orgCustSerachTest.RunOrgCustListTest"/>
+        <!--<class name="com.demostration.OpenBrowserDemo"/>-->
+    <!--<class name="com.demostration.RunCucumberDemo"/> -->
+  </classes>
+</test> <!-- webdriver_demo -->
+  <listeners>
+          <listener class-name="com.utils.testng.RetryListener"/>
+          <listener class-name="com.utils.testng.TestResultListener"/>
+  </listeners>
+</suite> <!-- Default Suite -->
