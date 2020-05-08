@@ -21,7 +21,7 @@ public class LoginAction extends $ {
             if (counter==0){
                 throw new Exception("这是第一次登陆,请无视这个异常");
             }else if (counter > 0) {
-                jsonObject = TopNavigator.getJson(TopNavigator.d2);
+                jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
                 $.findElement(jsonObject, 5);
             }
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class LoginAction extends $ {
         jsonObject = LoginPage.getJson(LoginPage.d1);
         $.findElement(jsonObject);
         //$.clear();
-        $.sendKeys("999999");
+        $.sendKeys("029527");
 
         jsonObject = LoginPage.getJson(LoginPage.d2);
         $.findElement(jsonObject);
@@ -55,7 +55,7 @@ public class LoginAction extends $ {
         $.findElement(jsonObject);
         $.click();
 
-        jsonObject = TopNavigator.getJson(TopNavigator.d2);
+        jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
         $.findElement(jsonObject);
 
     }

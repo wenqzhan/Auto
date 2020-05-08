@@ -1,8 +1,10 @@
 package com.unitTest;
 
+import com.demostration.AC;
 import com.pageObject.matrix.orgCust.customerRelationshipFundAccount.DetailsPage;
 import com.utils.list.ListMisc;
 import com.utils.num.IntMisc;
+import com.utils.random.RandomInfo;
 import com.utils.random.Randoms;
 import com.utils.string.StringMisc;
 import org.testng.annotations.Test;
@@ -11,6 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringTest {
+
+
+    @Test
+    private static void sdfsdf(){
+        System.out.println();
+
+    }
 
     @Test
     private static void demo1() {

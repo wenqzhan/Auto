@@ -127,7 +127,7 @@ public class JDBC {
             List<String> strings = new ArrayList<>();
             for (int i = 1; i <= colCount; i++) {
                 String str = rsmd.getColumnName(i);
-                if (i == 1) {
+                if (i == 1&&colCount>1) {
                     str = "No.";
                 }
                 System.out.print(str + "\t");
@@ -195,9 +195,9 @@ public class JDBC {
 
         list = JDBC.getResultToList(sql);
 
-
-        str = list.get(1).get(0);
-
+        if(list.size()>1) {
+            str = list.get(1).get(0);
+        }
         return str;
     }
 

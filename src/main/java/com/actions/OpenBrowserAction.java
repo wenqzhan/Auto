@@ -1,15 +1,13 @@
 package com.actions;
 
 import com.driver.$;
-import com.driver.LogEventListener;
 import com.utils.log.LoggerController;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.util.HashMap;
 
@@ -29,6 +27,15 @@ public class OpenBrowserAction extends $ {
             driver.manage().window().maximize();
             action = new Actions(driver);
         }
+    }
+
+    public static void open(String browser,Class<?> T){
+        WebDriver driver1;
+        initialise(browser);
+        driver.manage().window().maximize();
+        action = new Actions(driver);
+        driver1 = driver;
+        map.put(T.getName(),driver1);
     }
 
 

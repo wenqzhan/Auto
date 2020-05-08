@@ -5,8 +5,8 @@ import com.utils.json.JsonObject;
 
 public class LoginPage extends JsonObject {
 
-    public static String matrixLoginUrl = "http://10.187.144.60:8080/user/login";
-    public static String matrix = "http://10.187.144.60:8080/";
+    public static String matrixLoginUrl = "http://10.187.144.60:8081/user/login";
+    public static String matrix = "http://10.187.144.60:8081/";
 
     public final static String d1="新matrix登录页面用户名输入框";
     private final static String i1="username";

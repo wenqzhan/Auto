@@ -1,31 +1,64 @@
 package com.pageObject.commonObject;
 
-public class EmpSelection {
+import com.alibaba.fastjson.JSONObject;
+import com.utils.json.JsonObject;
 
-    private final static String prefix = "//div[1=1 and contains(@class,'ant-modal-content')]";
+public class EmpSelection extends JsonObject {
+    public EmpSelection() {
 
-    private final static String append1 = "/following-sibling::span[1]";
+    }
 
-    //private final static String append1 = "/../../following-sibling::*";
+    public EmpSelection(String name) {
+        setPrefix(name);
+        changePrefix(name);
+    }
 
-    //private final static String append2 = "/following-sibling::div/div";
+    private void setPrefix(String name) {
+        this.prefix = "//div[1=1 and contains(text(),\"" + name + "\")]/../..";
+    }
 
 
-    public final static String dES32 = "通用-员工查询-左侧部门查询框-input";
-    private final static String xES32 = prefix + CommonObject.getXpath(CommonObject.d32);
-    //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]
+    private void changePrefix(String name) {
+        xES32 = xES32.replaceFirst("客户经理", name);
+        xES33 = xES33.replaceFirst("客户经理", name);
+        xES33_1 = xES33_1.replaceFirst("客户经理", name);
+        xES10 = xES10.replaceFirst("客户经理", name);
+        xES30 = xES30.replaceFirst("客户经理", name);
+        xES29 = xES29.replaceFirst("客户经理", name);
+    }
 
 
-    public final static String dES33 = "通用-员工查询-右侧用户名查询-input";
-    private final static String xES33 = prefix + CommonObject.getXpath(CommonObject.d33);
-    //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入用户名')]
+    private String prefix = "//div[1=1 and contains(text(),\"客户经理\")]/../..";
 
-    public final static String dES33_1 = "通用-员工查询-右侧用户名查询-input_旁边的查询按钮-span";
-    private final static String xES33_1 = prefix + CommonObject.getXpath(CommonObject.d33);
+    private final String append1 = "/following-sibling::span[1]";
 
-    public final static String dES10 = "通用-员工查询-表格表体rows-tr";
-    private final static String xES10 = prefix + CommonObject.getXpath(CommonObject.d10);
-    //div[1=1 and contains(@class,'ant-modal-content')]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]
+
+    public final String dES32 = "通用-员工查询popped-左侧部门查询框-input";
+    private String xES32 = prefix + CommonObject.getXpath(CommonObject.d32);
+    //div[1=1 and contains(text(),"客户经理1")]/../..//input[1=1 and contains(@placeholder,'输入查询')]
+
+
+    public final String dES33 = "通用-员工查询popped-右侧用户名查询-input";
+    private String xES33 = prefix + CommonObject.getXpath(CommonObject.d33);
+    //div[1=1 and contains(text(),"客户经理1")]/../..//input[1=1 and contains(@placeholder,'输入用户名')]
+
+    public final String dES33_1 = "通用-员工查询popped-右侧用户名查询-input_旁边的查询按钮-span";
+    private String xES33_1 = prefix + CommonObject.getXpath(CommonObject.d33) + append1;
+    //div[1=1 and contains(text(),"客户经理1")]/../..//input[1=1 and contains(@placeholder,'输入用户名')]/following-sibling::span[1]
+
+
+    public final String dES10 = "通用-员工查询popped-表格表体rows-tr";
+    private String xES10 = prefix + CommonObject.getXpath(CommonObject.d10);
+    //div[1=1 and contains(text(),"客户经理1")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]
+
+
+    public final String dES30 = "通用-员工查询popped-关闭按钮-span";
+    private String xES30 = prefix + CommonObject.getXpath(CommonObject.d30);
+    //div[1=1 and contains(text(),"业务条线")]/../..//span[1=1 and contains(text(),"关 闭")]
+
+    public final String dES29 = "通用-员工查询popped-确定按钮-span";
+    private String xES29 = prefix + CommonObject.getXpath(CommonObject.d29);
+    //div[1=1 and contains(text(),"业务条线")]/../..//span[1=1 and contains(text(),"确 定")]
 
 
     /**
@@ -33,7 +66,9 @@ public class EmpSelection {
      *
      * @param num 第N行,如果最后一行传入-1
      */
-    public static String get$xES10(int num) {
+    public String get$XES10Sibling(int num) {
+        //div[1=1 and contains(text(),"客户经理1")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key][1]
+
         String xpath;
         if (num > 0) {
             xpath = xES10 + "[" + num + "]";
@@ -51,7 +86,9 @@ public class EmpSelection {
      *
      * @param num 第N行,如果最后一行传入-1
      */
-    public static String get$dES10(int num) {
+    public String get$DES10Sibling(int num) {
+        //通用-员工查询-表格表体rows-第1-tr
+
         String a;
         String des;
         if (num > 0) {
@@ -71,10 +108,12 @@ public class EmpSelection {
      *
      * @param userName 员工姓名
      */
-    public static String get$xES10(String userName) {
+    private String get$XES10SiblingByUserName(String userName) {
+        //div[1=1 and contains(text(),"客户经理1")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]/td[text()='王明明']
+
         String xpath;
 
-        xpath = xES10 + "/td[text()='" + userName + "']";
+        xpath = xES10 + "/td[text()='" + userName + "']/..";
 
         return xpath;
     }
@@ -84,12 +123,47 @@ public class EmpSelection {
      *
      * @param userName 员工姓名
      */
-    public static String get$dES10(String userName) {
+    private String get$DES10SiblingByUserName(String userName) {
+        //通用-员工查询-表格表体rows王明明-tr
 
         String des;
 
         des = dES10.replace("-tr", userName + "-tr");
         return des;
+    }
+
+    public JSONObject get$JsonES10SiblingByUserName(String userName) {
+        JsonObject.setJsonObject(get$DES10SiblingByUserName(userName),
+                get$XES10SiblingByUserName(userName));
+        return jsonObject;
+    }
+
+    public JSONObject getJson(String description) {
+        String str = "";
+        switch (description) {
+            case dES32:
+                JsonObject.setJsonObject(dES32, xES32);
+                break;
+            case dES33:
+                JsonObject.setJsonObject(dES33, xES33);
+                break;
+            case dES33_1:
+                JsonObject.setJsonObject(dES33_1, xES33_1);
+                break;
+            case dES10:
+                JsonObject.setJsonObject(dES10, xES10);
+                break;
+            case dES30:
+                JsonObject.setJsonObject(dES30, xES30);
+                break;
+            case dES29:
+                JsonObject.setJsonObject(dES29, xES29);
+                break;
+
+        }
+
+        return jsonObject;
+
     }
 
 

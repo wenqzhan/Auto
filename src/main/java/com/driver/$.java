@@ -20,6 +20,11 @@ import java.util.Set;
  * @Modifydate 2020/04/02
  */
 public class $ extends Driver {
+
+
+
+
+
     private final static LoggerController log = LoggerController.getLogger($.class);
 
 
@@ -51,7 +56,7 @@ public class $ extends Driver {
 
         try {
             str = element.getAttribute(attribute);
-            log.info("标签内的attribute:" +attribute + "是" + str);
+            log.info("标签内的attribute:" + attribute + "是" + str);
         } catch (Exception e) {
             log.error("获取标签属性失败");
             //hasException = true;
@@ -64,12 +69,9 @@ public class $ extends Driver {
     }
 
 
-
-
-    public static boolean isNotDisplayed(JSONObject jsonObject){
-        return isNotDisplayed(jsonObject,60);
+    public static boolean isNotDisplayed(JSONObject jsonObject) {
+        return isNotDisplayed(jsonObject, 60);
     }
-
 
 
     /**
@@ -84,7 +86,7 @@ public class $ extends Driver {
                 long endTime = System.currentTimeMillis(); //获取结束时间
                 long dif = endTime - startTime;
                 if (dif > timeInSeconds * 1000) {//1分钟超时
-                    log.info("已超过设定的时间:"+timeInSeconds+"秒,不再继续查找.元素一直找得到");
+                    log.info("已超过设定的时间:" + timeInSeconds + "秒,不再继续查找.元素一直找得到");
                     break;
                 }
             } catch (Exception e) {
@@ -102,19 +104,21 @@ public class $ extends Driver {
      * eg: 输入框中有内容,调用此方法后清除
      */
     public static void clear() {
-        log.info("开始clear");
-        try {
-            element.clear();
-            String a = getInputValue();
-            if(!a.equals("")){
-                log.info("selenium原生的clear没用,尝试用javascript来clear");
-                ((JavascriptExecutor) driver).executeScript("arguments[0].value=''", element);
+        if (!getInputValue().equals("")) {
+            log.info("开始clear");
+            try {
+                element.clear();
+                String a = getInputValue();
+                if (!a.equals("")) {
+                    log.info("selenium原生的clear没用,尝试用javascript来clear");
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].value=''", element);
+                }
+                log.info("clear 成功");
+            } catch (Exception e) {
+                log.error("clear 失败");
+                //hasException = true;
+                throw e;
             }
-            log.info("clear 成功");
-        } catch (Exception e) {
-            log.error("clear 失败");
-            //hasException = true;
-            throw e;
         }
     }
 
@@ -150,6 +154,7 @@ public class $ extends Driver {
     public static WebElement findElement(JSONObject jsonObject, int timeOutInSeconds, boolean flag) {
         WebElement element = null;
         recordFlag = flag;
+        System.out.println(jsonObject);
         try {
             element = findElement(jsonObject, timeOutInSeconds);
         } catch (NoSuchElementException | TimeoutException | StaleElementReferenceException e) {
@@ -165,6 +170,37 @@ public class $ extends Driver {
 
         return element;
     }
+
+    public static WebElement findElement(JSONObject jsonObject1,JSONObject jsonObject2, int timeOutInSeconds, boolean flag ){
+        WebElement element = null;
+        long startTime = System.currentTimeMillis();   //获取开始时间
+        while(true){
+            try {
+                //System.out.println("!111");
+                element = findElement(jsonObject1,timeOutInSeconds,flag);
+                break;
+            }catch (NoSuchElementException | TimeoutException | StaleElementReferenceException e1){
+                try{
+                    element = findElement(jsonObject2,timeOutInSeconds,flag);
+                    break;
+                }catch (NoSuchElementException | TimeoutException | StaleElementReferenceException e2){
+
+                    long endTime = System.currentTimeMillis(); //获取结束时间
+                    long dif = endTime - startTime;
+                    if (dif > timeOutInSeconds * 1000) {//10s超时
+                        log.error("两个元素在"+timeOutInSeconds+"秒里都找不到");
+                        throw e2;
+                    }
+                    continue;
+                }
+            }
+        }
+
+
+        return element;
+    }
+
+
 
     /**
      * 定位单个element,并返回一个网页元素
@@ -551,16 +587,20 @@ public class $ extends Driver {
      * 使用Javascript将元素滚动到可见的位置
      */
     public static void scrollIntoView() {
+
         try {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
-        } catch (StaleElementReferenceException e1){
-            log.info("报了StaleElementReferenceException,应该是元素已经消失");
-        }catch (Exception e2) {
-            //hasException = true;
-            log.info("scrollIntoView error");
-            throw e2;
+            moveMouseToView();
+        } catch (Exception e) {
+            try {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
+            } catch (StaleElementReferenceException e1) {
+                log.info("报了StaleElementReferenceException,应该是元素已经消失");
+            } catch (Exception e2) {
+                //hasException = true;
+                log.error("scrollIntoView error");
+                throw e2;
+            }
         }
-        moveMouseToView();
     }
 
     /**
@@ -572,7 +612,7 @@ public class $ extends Driver {
         } catch (Exception e) {
             ////hasException = true;
             log.info("moveMouseToView error");
-            //throw e;
+            throw e;
         }
         //log.info("鼠标悬停");
     }
@@ -724,8 +764,9 @@ public class $ extends Driver {
     /**
      * 先找到表头的elements,然后获取表头里的文字,放到strsInTable中
      */
-    public static void getTableHeader() {
+    public static List<String> getTableHeader() {
         tableContent.clear();
+        strsInHeader.clear();
         List<String> strings = new ArrayList<>();
 //        WebElement tableHeaderRow= element;
 //        ListMisc<WebElement> rows = tableHeaderRow.findElements(By.tagName("tr"));
@@ -743,12 +784,14 @@ public class $ extends Driver {
         for (WebElement cell : elements) {
             String a = cell.getText();
             System.out.print(a + "\t");
-            strsInTable.add(a);
+            strsInHeader.add(a);
         }
         System.out.println();
-        strings.addAll(strsInTable);
-        tableContent.add(strings);
-        strsInTable.clear();
+        strings.addAll(strsInHeader);
+        //tableContent.add(strings);
+        tableContent.add(0,strings);
+
+        return strsInHeader;
 
     }
 
@@ -761,7 +804,7 @@ public class $ extends Driver {
     /**
      * 先找到表体的elements,然后获取表体里的文字,放到strsInTable中
      */
-    public static void getTableBody() {
+    public static List<List<String>> getTableBody() {
 
         //WebElement table= element;
         //System.out.println(element);
@@ -774,7 +817,8 @@ public class $ extends Driver {
             for (WebElement cell : col) {
                 //System.out.println(cell);
                 String classAttribute = cell.getAttribute("class");
-                if (!classAttribute.equals("ant-table-selection-column")) {//多选框不爬取
+                if (!(classAttribute.equals("ant-table-selection-column") ||
+                        classAttribute.equals("ant-table-fixed-columns-in-body"))) {//多选框不爬取,编辑/详情不爬取
                     String a = cell.getText();
                     String b = "";
                     String c = "";
@@ -801,6 +845,7 @@ public class $ extends Driver {
             strsInTable.clear();
             System.out.println();
         }
+        return tableContent;
     }
 
     /**
@@ -811,11 +856,12 @@ public class $ extends Driver {
         String value = "";
         try {
             value = javaScriptExecutor.executeScript("return arguments[0].value", element).toString();
-
+            log.info("input里的文本是:" + value);
         } catch (Exception e) {
             log.error("获取input中的string失败");
             throw e;
         }
+        text = value;
         return value;
     }
 
@@ -835,7 +881,6 @@ public class $ extends Driver {
         }
         return value;
     }
-
 
 
 //    public static WebElement  findElement(String description){

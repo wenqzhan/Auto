@@ -7,7 +7,7 @@ import com.utils.json.JsonObject;
 public class DetailsPage extends JsonObject { //客户关系资金账号详细页面
 
     public static String matrixCustomerRelationshipFundAccountDetailsPage =
-            "http://10.187.144.60:8080/orgcust/customerRelationshipFundAccount/detailsPage";
+            "http://10.187.144.60:8081/orgcust/customerRelationshipFundAccount/detailsPage";
 
     public final static String d1 = "客户关系资金账号-详细页-柜台客户代码输入框";
     private final static String x1 = getXpath("input", "柜台客户代码");

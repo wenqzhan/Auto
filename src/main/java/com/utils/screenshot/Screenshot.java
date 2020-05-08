@@ -1,6 +1,6 @@
 package com.utils.screenshot;
 import com.driver.$;
-import com.utils.date.DateFormat;
+import com.utils.date.DateMisc;
 import com.utils.file.MyFile;
 import com.utils.log.LoggerController;
 import org.apache.commons.io.FileUtils;
@@ -28,9 +28,9 @@ public class Screenshot extends $ {
         WebDriver augmentedDriver = new Augmenter().augment(driver);
         File file = ((TakesScreenshot)augmentedDriver).getScreenshotAs(OutputType.FILE);
         try {
-            MyFile.createFolder(path + DateFormat.format(DateFormat.CHECK_LOG_FORMAT));
+            MyFile.createFolder(path + DateMisc.format(DateMisc.CHECK_LOG_FORMAT));
             //log.info(DateFormat.format(DateFormat.ZH_DATE_FORMAT));
-            FileUtils.copyFile(file,new File(path + DateFormat.format(DateFormat.CHECK_LOG_FORMAT) + "/" + name +DateFormat.format(DateFormat.REPORT_CSV_FORMAT)+"_"+ DateFormat.time() + ".jpg"));
+            FileUtils.copyFile(file,new File(path + DateMisc.format(DateMisc.CHECK_LOG_FORMAT) + "/" + name + DateMisc.format(DateMisc.REPORT_CSV_FORMAT)+"_"+ DateMisc.time() + ".jpg"));
 
         } catch (IOException e) {
             log.error("截图失败！！");

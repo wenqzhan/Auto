@@ -7,7 +7,7 @@ import com.utils.json.JsonObject;
 public class CustRelationshipBrokerage extends JsonObject { //客户关系经纪业务
 
     public static String custRelationshipBrokerage =
-            "http://10.187.144.60:8080/orgcust/custRelationshipBrokerage";
+            "http://10.187.144.60:8081/orgcust/custRelationshipBrokerage";
 
     public final static String d1 = "客户关系经纪业务-查询按钮";
     private final static String x1 = CommonObject.getXpath(CommonObject.d3);
@@ -168,11 +168,11 @@ public class CustRelationshipBrokerage extends JsonObject { //客户关系经纪
 
 
     private static String get$D1(String num) {
-        return CommonObject.get$D1(num).replace("通用", "客户关系经纪业务");
+        return CommonObject.get$D10Sibling(num).replace("通用", "客户关系经纪业务");
     }
 
     private static String get$X1(String num) {
-        return CommonObject.get$X1(num);
+        return CommonObject.get$X10Sibling(num);
     }
 
     public static JSONObject get$Json(String num) {

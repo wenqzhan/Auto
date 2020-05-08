@@ -23,7 +23,7 @@ public class OpenBrowserDemo1 extends $ {
     public void openTest() throws InterruptedException {
         LoginAction.login();
         //LoginAction.login2();
-        $.get("http://10.187.144.60:8080/orgcust/customerRelationshipFundAccount");
+        $.get("http://10.187.144.60:8081/orgcust/customerRelationshipFundAccount");
 
         CustomerRelationshipFundAccountAction.getTable();//获取第一页表格内容
         jsonObject = CustomerRelationshipFundAccount.getJson(CustomerRelationshipFundAccount.d11);
@@ -60,7 +60,7 @@ public class OpenBrowserDemo1 extends $ {
 
         String path = "D:\\ChromeDownload\\"+s+".xls";
         System.out.println(path);
-        String pwd = "999999";
+        String pwd = "029527";
 
 
         List<List<String>> list3 = new ArrayList<>();
@@ -133,7 +133,7 @@ public class OpenBrowserDemo1 extends $ {
       //MyAssert.assertTrue(false);
 
 
-        $.get("http://10.187.144.60:8080/orgcust/customerRelationshipFundAccount");
+        $.get("http://10.187.144.60:8081/orgcust/customerRelationshipFundAccount");
 
         //$.getWindowHandles(10);
 

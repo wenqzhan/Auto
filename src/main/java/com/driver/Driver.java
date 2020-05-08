@@ -7,7 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 静态化多个变量以方便继承类直接调用静态方法
@@ -15,7 +17,10 @@ import java.util.List;
  * @date 2020/03/17
  * */
 public class Driver {
+    public static Map<String,WebDriver> map = new HashMap<>();
+
     public static WebDriver driver;
+
     public static WebElement element;
     public static List<WebElement> elements;
     //public static ListMisc<WebElement> elements1;
@@ -27,6 +32,7 @@ public class Driver {
     public static String text; //一般用在获取input,textarea中的文字,或者其他标签内的文字
 //    public static boolean hasException = false;
     public static List<String> strsInTable = new ArrayList<>();
+    public static List<String> strsInHeader = new ArrayList<>();
     public static List<List<String>> tableContent = new ArrayList<>();  //第0个是表头,第1个.....是表体
     public static boolean recordFlag = true;//用于findElement, 如果flag是false,则找不到元素时记录info而不是error
     public static int randomPageNum; //随机第....页
@@ -34,6 +40,14 @@ public class Driver {
     public static int maxPageNum; //最大的页数,一般是最后页
     public static int randomPerPageNum; //随机的每页....行
     public static String string; //通用的string,用来存string
-    public static String attributeValue;
+    public static String attributeValue;//通过getAttribute()获得
+    public static List<Integer> nums = new ArrayList<>();//通用的list,用来存放int
+    public static List<String> strings1 = new ArrayList<>();//通用的list,用来存放诸如 XXXX,XXXX,XXXX的数据
+    public static List<String> strings2 = new ArrayList<>();//通用的list,用来存放诸如 XXXX,XXXX,XXXX的数据
+
+    public static String getAttributeValue() {
+        return attributeValue;
+    }
+
 
 }

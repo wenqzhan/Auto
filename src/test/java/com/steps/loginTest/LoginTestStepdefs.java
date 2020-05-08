@@ -25,7 +25,7 @@ public class LoginTestStepdefs extends $ {
             }
         }
         if (website.equals("新matrix")) {
-            $.get("http://10.187.144.60:8080/user/login");
+            $.get("http://10.187.144.60:8081/user/login");
         } else if (website.equals("百度")) {
             $.get("https://www.baidu.com");
         }
@@ -64,18 +64,18 @@ public class LoginTestStepdefs extends $ {
 
     @当("^成功登录$")
     public void longinSucessfully() {
-        jsonObject = TopNavigator.getJson(TopNavigator.d2);
+        jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
         $.findElement(jsonObject);
         //可以看到登录后才能看到的东西,那么登录成功
-        //$.get("http://10.187.144.60:8080/user/login");
-        jsonObject = TopNavigator.getJson(TopNavigator.d2);
+        //$.get("http://10.187.144.60:8081/user/login");
+        jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
         $.findElement(jsonObject);
 
-        jsonObject = TopNavigator.getJson(TopNavigator.d4);
+        jsonObject = TopNavigator.getJson(TopNavigator.dTNLogOut);
         $.findElement(jsonObject);
         $.click();
 
-        jsonObject = TopNavigator.getJson(TopNavigator.d6);
+        jsonObject = TopNavigator.getJson(TopNavigator.dTNLogOutConfirm);
         $.findElement(jsonObject);
         $.click();
 

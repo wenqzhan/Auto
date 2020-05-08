@@ -611,7 +611,7 @@ public class AC extends $ {
         sql4 = "select 部门\n" +
                 "  from (select DEPTNAME as 部门\n" +
                 "          from JE_CORE_DEPARTMENT\n" +
-                "         where deptname is not null and deptname in ('高级管理人员','党委办公室','总部','上海证券')\n" +
+                "         where deptname is not null and status = '1'\n" +
                 "         order by dbms_random.value)\n" +
                 " where rownum = 1\n";
 
@@ -725,6 +725,7 @@ public class AC extends $ {
 
 
     public static void getRandomPageRandomLine(){
+        findElement(AssignCust.getJson(AssignCust.d10));//可能电脑太快,d14里可能1的时候就读出来,所以先查表格
         findElement(AssignCust.getJson(AssignCust.d14));
         getText();//获取第几页,保存到text里
         randomPageNum = IntMisc.getRandomPageNum(text);

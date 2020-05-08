@@ -1,6 +1,9 @@
 package com.pageObject.commonObject;
 
-public class DeptSelection {
+import com.alibaba.fastjson.JSONObject;
+import com.utils.json.JsonObject;
+
+public class DeptSelection extends JsonObject {
     private final static String prefix = "//div[1=1 and contains(@class,'ant-modal-content')]";
 
     private final static String append1 = "/../../following-sibling::*";
@@ -30,7 +33,8 @@ public class DeptSelection {
      * 获取候选项里第N个元素的xpath,支持最后一个
      * @param num 第N行,如果最后一行传入-1
      */
-    public static String get$xDS32_1(int num){
+    public static String get$XDS32_1(int num){
+        //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]/following-sibling::div/div[1]
         String xpath;
         if(num>0){
             xpath = xDS32_1 + "[" + num + "]";
@@ -47,7 +51,8 @@ public class DeptSelection {
      * 获取候选项里第N个元素的描述,支持最后一个
      * @param num 第N行,如果最后一行传入-1
      */
-    public static String get$dDS32_1(int num){
+    public static String get$DDS32_1(int num){
+        //通用-部门选择-查询框-input_候选项-第1-div
         String a;
         String des;
         if(num>0){
@@ -66,7 +71,8 @@ public class DeptSelection {
      * 用部门名定位候选项,返回元素的xpath
      * @param dept 部门名称
      */
-    public static String get$xDS32_1(String dept){
+    public static String get$XDS32_1(String dept){
+        //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]/following-sibling::div/div[@title='国泰君安证券']
         String xpath;
 
             xpath = xDS32_1 + "[@title='" + dept + "']";
@@ -78,7 +84,8 @@ public class DeptSelection {
      * 用部门名定位候选项,返回元素的描述
      * @param dept 部门名称
      */
-    public static String get$dDS32_1(String dept){
+    public static String get$DDS32_1(String dept){
+        //通用-部门选择-查询框-input_候选项国泰君安证券-div
 
         String des;
 
@@ -86,6 +93,27 @@ public class DeptSelection {
         return des;
     }
 
+
+    public static JSONObject getJson(String description) {
+        switch (description) {
+            case dDS32:
+                JsonObject.setJsonObject(dDS32, xDS32);
+                break;
+            case dDS29:
+                JsonObject.setJsonObject(dDS29, xDS29);
+                break;
+            case dDS30:
+                JsonObject.setJsonObject(dDS30, xDS30);
+                break;
+            case dDS32_1:
+                JsonObject.setJsonObject(dDS32_1, xDS32_1);
+                break;
+
+        }
+
+        return jsonObject;
+
+    }
 
 
 

@@ -2,13 +2,14 @@ package com.pageObject.matrix.orgCust;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pageObject.commonObject.CommonObject;
+import com.pageObject.commonObject.CommonObjectPopped;
 import com.utils.json.JsonObject;
 
 public class AssignCust extends JsonObject { //客户维护分配
 
 
     public static String assignCust =
-            "http://10.187.144.60:8080/orgcust/assigncust";
+            "http://10.187.144.60:8081/orgcust/assigncust";
 
 
     public final static String d1 = "客户维护分配-OA账号查询框-input";
@@ -101,65 +102,65 @@ public class AssignCust extends JsonObject { //客户维护分配
 
 
     public final static String dd2Pd9t = "客户维护分配-客户维护历史-表格-table";
-    private final static String dd2Px9t = CommonObject.getXpath(CommonObject.d9P);
+    private final static String dd2Px9t = CommonObjectPopped.getXpath(CommonObjectPopped.d9P);
 
     public final static String dd2Pd10t = "客户维护分配-客户维护历史-表格表体rows-tr";
-    private final static String dd2Px10t = CommonObject.getXpath(CommonObject.d10P);
+    private final static String dd2Px10t = CommonObjectPopped.getXpath(CommonObjectPopped.d10P);
 
     public final static String dd2Pd10tSelected = "客户维护分配-客户维护历史-表格表体rows-selected";
-    private final static String dd2Px10tSelected = CommonObject.getXpath(CommonObject.d10PSelected);
+    private final static String dd2Px10tSelected = CommonObjectPopped.getXpath(CommonObjectPopped.d10PSelected);
 
     public final static String dd2Pd10tNotSelected = "客户维护分配-客户维护历史-表格表体rows-not selected";
-    private final static String dd2Px10tNotSelected = CommonObject.getXpath(CommonObject.d10PNotSelected);
+    private final static String dd2Px10tNotSelected = CommonObjectPopped.getXpath(CommonObjectPopped.d10PNotSelected);
 
 
     public final static String dd2Pd11t = "客户维护分配-客户维护历史-表格表头row下的th col-th";
-    private final static String dd2Px11t = CommonObject.getXpath(CommonObject.d11P);
+    private final static String dd2Px11t = CommonObjectPopped.getXpath(CommonObjectPopped.d11P);
 
     public final static String dd2Pd31t = "客户维护分配-客户维护历史-表格表头-多选框";
-    private final static String dd2Px31t = CommonObject.getXpath(CommonObject.d31P);
+    private final static String dd2Px31t = CommonObjectPopped.getXpath(CommonObjectPopped.d31P);
 
     public final static String dd2Pd12t = "客户维护分配-客户维护历史-表格下方翻页按钮-上一页-li";
-    private final static String dd2Px12t = CommonObject.getXpath(CommonObject.d12P);
+    private final static String dd2Px12t = CommonObjectPopped.getXpath(CommonObjectPopped.d12P);
 
     public final static String dd2Pd13t = "客户维护分配-客户维护历史-表格下方翻页按钮-下一页-li";
-    private final static String dd2Px13t = CommonObject.getXpath(CommonObject.d13P);
+    private final static String dd2Px13t = CommonObjectPopped.getXpath(CommonObjectPopped.d13P);
 
     public final static String dd2Pd14t = "客户维护分配-客户维护历史-表格下方翻页按钮-下一页前的按钮,可以看出共多少页-a";
-    private final static String dd2Px14t = CommonObject.getXpath(CommonObject.d14P);
+    private final static String dd2Px14t = CommonObjectPopped.getXpath(CommonObjectPopped.d14P);
 
     public final static String dd2Pd15t = "客户维护分配-客户维护历史-表格下方跳页输入框-input";
-    private final static String dd2Px15t = CommonObject.getXpath(CommonObject.d15P);
+    private final static String dd2Px15t = CommonObjectPopped.getXpath(CommonObjectPopped.d15P);
 
     public final static String dd2Pd16t = "客户维护分配-客户维护历史-表格下方跳页输入框左边的跳至两个字-div";
-    private final static String dd2Px16t = CommonObject.getXpath(CommonObject.d16P);
+    private final static String dd2Px16t = CommonObjectPopped.getXpath(CommonObjectPopped.d16P);
 
     public final static String dd2Pd18t = "客户维护分配-客户维护历史-条/页-div";
-    private final static String dd2Px18t = CommonObject.getXpath(CommonObject.d18P);
+    private final static String dd2Px18t = CommonObjectPopped.getXpath(CommonObjectPopped.d18P);
 
     public final static String dd2Pd18tl5 = "客户维护分配-客户维护历史-条/页-5 条/页-li";
-    private final static String dd2Px18tl5 = CommonObject.getXpath(CommonObject.d18Pl5);
+    private final static String dd2Px18tl5 = CommonObjectPopped.getXpath(CommonObjectPopped.d18Pl5);
 
     public final static String dd2Pd18tl10 = "客户维护分配-客户维护历史-条/页-10 条/页-li";
-    private final static String dd2Px18tl10 = CommonObject.getXpath(CommonObject.d18Pl10);
+    private final static String dd2Px18tl10 = CommonObjectPopped.getXpath(CommonObjectPopped.d18Pl10);
 
     public final static String dd2Pd18tl20 = "客户维护分配-客户维护历史-条/页-20 条/页-li";
-    private final static String dd2Px18tl20 = CommonObject.getXpath(CommonObject.d18Pl20);
+    private final static String dd2Px18tl20 = CommonObjectPopped.getXpath(CommonObjectPopped.d18Pl20);
 
     public final static String dd2Pd18tl30 = "客户维护分配-客户维护历史-条/页-30 条/页-li";
-    private final static String dd2Px18tl30 = CommonObject.getXpath(CommonObject.d18Pl30);
+    private final static String dd2Px18tl30 = CommonObjectPopped.getXpath(CommonObjectPopped.d18Pl30);
 
 
     public final static String dd2Pd28t = "客户维护分配-客户维护历史-表头多选框-input";
-    private final static String dd2Px28t = CommonObject.getXpath(CommonObject.d28P);
+    private final static String dd2Px28t = CommonObjectPopped.getXpath(CommonObjectPopped.d28P);
 
-    private final static String t = CommonObject.getStringP();
+    private final static String t = CommonObjectPopped.getStringP();
 
     public final static String dd1Pdd1 = "客户维护分配-客户分配-客户名称-textarea";
-    private final static String xx1Pxx1 = t + CommonObject.get$X3("客户名称") + "//textarea";
+    private final static String xx1Pxx1 = t + CommonObject.get$XQuerySelectDiv("客户名称") + "//textarea";
 
     public final static String dd1Pdd2 = "客户维护分配-客户分配-维护类型-div";
-    private final static String xx1Pxx2 = t + CommonObject.get$X3("维护类型");
+    private final static String xx1Pxx2 = t + CommonObject.get$XQuerySelectDiv("维护类型");
 
 
     public final static String dd1Pdd2i1 = "客户维护分配-客户分配-维护类型-×-i";
@@ -179,7 +180,7 @@ public class AssignCust extends JsonObject { //客户维护分配
     //div[@tabindex]//label[1=1 and contains(text(),"维护类型")]/../following-sibling::div[1]//i[1=1 and contains(@class,'close-circle')]
     //i[1=1 and contains(@class,'close-circle')]
     public final static String dd1Pdd3 = "客户维护分配-客户分配-客户所属部门-input";
-    private final static String xx1Pxx3 = t + CommonObject.get$X2("客户所属部门");
+    private final static String xx1Pxx3 = t + CommonObject.get$XQueryInput("客户所属部门");
 
     public final static String dd1Pdd3i1 = "客户维护分配-客户分配-客户所属部门-input后的×-i";
     private final static String xx1Pxx3i1 = xx1Pxx3+ "/following-sibling::*//i[1=1 and contains(@class,'close-circle')]";
@@ -209,11 +210,11 @@ public class AssignCust extends JsonObject { //客户维护分配
 
 
     public final static String dd1Pdd4 = "客户维护分配-客户分配-原因-textarea";
-    private final static String xx1Pxx4 = t + CommonObject.get$X3("原因") + "//textarea";
+    private final static String xx1Pxx4 = t + CommonObject.get$XQuerySelectDiv("原因") + "//textarea";
 
 
     public final static String dd1Pdd5 = "客户维护分配-客户分配-客户维护经理-input";
-    private final static String xx1Pxx5 = t + CommonObject.get$X2("客户维护经理");
+    private final static String xx1Pxx5 = t + CommonObject.get$XQueryInput("客户维护经理");
 
     public final static String dd1Pdd5Pdd1 = "客户维护分配-客户分配-客户维护经理-员工选择界面-用户名查询框-input";
     private final static String xx1Pxx5Pxx1 = "//input[1=1 and contains(@placeholder,'输入用户名查询...')]";
@@ -224,7 +225,7 @@ public class AssignCust extends JsonObject { //客户维护分配
     //input[1=1 and contains(@placeholder,'输入用户名查询...')]/following-sibling::span[1]
 
     public final static String dd1Pdd5Pdd3 = "客户维护分配-客户分配-客户维护经理-员工选择-表格表体rows-tr";
-    private final static String xx1Pxx5Pxx3 = CommonObject.getXpath(CommonObject.d10P);
+    private final static String xx1Pxx5Pxx3 = CommonObjectPopped.getXpath(CommonObjectPopped.d10P);
 
     //CommonObject.getXpath(CommonObject.d10P);
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]
@@ -238,7 +239,7 @@ public class AssignCust extends JsonObject { //客户维护分配
     private final static String xx1Pxx5s1 = xx1Pxx5 + "/following-sibling::span[1]";
 
     public final static String dd1Pdd6 = "客户维护分配-客户分配-团队名称-input";
-    private final static String xx1Pxx6 = t + CommonObject.get$X2("团队名称");
+    private final static String xx1Pxx6 = t + CommonObject.get$XQueryInput("团队名称");
 
 
     public final static String dd1Pdd6i1 = "客户维护分配-客户分配-团队名称input-输入框后的一个<按钮";
@@ -316,34 +317,34 @@ public class AssignCust extends JsonObject { //客户维护分配
 
     private static String get$D4(String num) { //获取选择框(有钩子的那个)的描述
 
-        return CommonObject.get$D4(num).replace("通用", "客户维护分配");
+        return CommonObject.get$DCheckbox(num).replace("通用", "客户维护分配");
     }
 
     private static String get$X4(String num) {//获取选择框(有钩子的那个)的xpath
 
-        return CommonObject.get$X4(num);
+        return CommonObject.get$XCheckbox(num);
     }
 
 
     private static String get$D1(String num) { //表格表体-第num行的描述
 
-        return CommonObject.get$D1(num).replace("通用", "客户维护分配");
+        return CommonObject.get$D10Sibling(num).replace("通用", "客户维护分配");
     }
 
     private static String get$X1(String num) {//表格表体-第num行的xpath
 
-        return CommonObject.get$X1(num);
+        return CommonObject.get$X10Sibling(num);
     }
 
 
     private static String get$D1P(String num) { //表格表体-第num行的描述
 
-        return CommonObject.get$D1P(num).replace("通用", "客户维护分配");
+        return CommonObjectPopped.get$D10PSibling(num).replace("通用", "客户维护分配");
     }
 
     private static String get$X1P(String num) {//表格表体-第num行的xpath
 
-        return CommonObject.get$X1P(num);
+        return CommonObjectPopped.get$X10PSibling(num);
     }
 
     public static JSONObject get$Json1(String num) { //表格表体-第num行的json

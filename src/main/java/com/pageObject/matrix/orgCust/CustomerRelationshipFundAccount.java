@@ -6,7 +6,7 @@ import com.utils.json.JsonObject;
 
 public class CustomerRelationshipFundAccount extends JsonObject {
 
-    public static String matrixCustomerRelationshipFundAccount = "http://10.187.144.60:8080/orgcust/customerRelationshipFundAccount";
+    public static String matrixCustomerRelationshipFundAccount = "http://10.187.144.60:8081/orgcust/customerRelationshipFundAccount";
 
     public final static String d1 = "客户关系资金账号-OA账号查询框";
     private final static String x1 = CommonObject.getXpath(CommonObject.d1);
@@ -60,11 +60,11 @@ public class CustomerRelationshipFundAccount extends JsonObject {
     private final static String x16 = CommonObject.getXpath(CommonObject.d18);
 
     private static String get$D1(String num){
-        return CommonObject.get$D1(num).replace("通用","客户关系资金账号");
+        return CommonObject.get$D10Sibling(num).replace("通用","客户关系资金账号");
     }
 
     private static String get$X1(String num){
-        return CommonObject.get$X1(num);
+        return CommonObject.get$X10Sibling(num);
     }
 
     public static JSONObject  get$Json(String num){
