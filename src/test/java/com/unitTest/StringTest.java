@@ -57,8 +57,8 @@ public class StringTest {
 
     @Test
     public static void ttttats(){
-        String a =DetailsPage.getXpath("li","开户日期");
-        System.out.println(a);
+//        String a =DetailsPage.getXpath("li","开户日期");
+//        System.out.println(a);
     }
 
     @Test

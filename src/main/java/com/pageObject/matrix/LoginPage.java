@@ -8,52 +8,51 @@ public class LoginPage extends JsonObject {
     public static String matrixLoginUrl = "http://10.187.144.60:8081/user/login";
     public static String matrix = "http://10.187.144.60:8081/";
 
-    public final static String d1="新matrix登录页面用户名输入框";
-    private final static String i1="username";
+    public final static String dLPUserNameInput = "新matrix登录页面用户名输入框";
+    private final static String iLPUserNameInput = "username";
 
-    public final static String d2="新matrix登录页面密码输入框";
-    private final static String i2="password";
+    public final static String dLPPWDInput = "新matrix登录页面密码输入框";
+    private final static String iLPPWDInput = "password";
 
-    public final static String d3="新matrix登录页面登录失败提示";
-    private final static String x3="//div[@class='ant-notification-notice-message']";
+    public final static String dLPLoginFailPromot = "新matrix登录页面登录失败提示";
+    private final static String xLPLoginFailPromot = "//div[@class='ant-notification-notice-message']";
 
-    public final static String d4="新matrix登录页面登录按钮";
-    private final static String x4="//button[@type='submit']";
+    public final static String dLPLoginButton = "新matrix登录页面登录按钮";
+    private final static String x4LPLoginButton = "//button[@type='submit']";
 
-    public final static String d5="新matrix登录页面登录失败详细说明";
-    private final static String x5="//div[@class='ant-notification-notice-description']";
+    public final static String dLPLoginFailDetails = "新matrix登录页面登录失败详细说明";
+    private final static String xLPLoginFailDetails = "//div[@class='ant-notification-notice-description']";
 
     //public final static String d5="ddddddd";
     //private final static String x5="//*[name()=\"svg\" and @data-icon='caret-down']";
 
     //*[name()="svg" and @data-icon='caret-down']
 
-    public static JSONObject getJson(String description){
-        switch (description){
-            case d1:
-                JsonObject.setJsonObject(d1,"id",i1);
+    public static JSONObject getJson(String description) {
+        switch (description) {
+            case dLPUserNameInput:
+                JsonObject.setJsonObject(dLPUserNameInput, "id", iLPUserNameInput);
                 break;
-            case d2:
-                JsonObject.setJsonObject(d2,"id",i2);
+            case dLPPWDInput:
+                JsonObject.setJsonObject(dLPPWDInput, "id", iLPPWDInput);
                 break;
-            case d3:
-                JsonObject.setJsonObject(d3,x3);
+            case dLPLoginFailPromot:
+                JsonObject.setJsonObject(dLPLoginFailPromot, xLPLoginFailPromot);
                 break;
-            case d4:
-                JsonObject.setJsonObject(d4,x4);
+            case dLPLoginButton:
+                JsonObject.setJsonObject(dLPLoginButton, x4LPLoginButton);
                 break;
-            case d5:
-                JsonObject.setJsonObject(d5,x5);
+            case dLPLoginFailDetails:
+                JsonObject.setJsonObject(dLPLoginFailDetails, xLPLoginFailDetails);
                 break;
             //case d5:
-                //JsonObject.setJsonObject(d5,x5);
-                //break;
+            //JsonObject.setJsonObject(d5,x5);
+            //break;
         }
 
 
-        return jsonObject;
+        return JsonObject.getJsonObject();
     }
-
 
 
 }

@@ -3,19 +3,23 @@ package com.actions.matrix;
 import com.driver.$;
 import com.pageObject.commonObject.YMDSelection;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class YMDSelectionAction extends $ {
+    private static String text;
 
     public static void selectYMD(String ymd) {
 
         YMDSelection ymdSelection = new YMDSelection();
         selectYMD(ymdSelection, ymd);
+//        ymdSelection.getObjAttr();
     }
 
 
     public static void selectYMD(String label, String ymd) {
 
         YMDSelection ymdSelection = new YMDSelection(label);
+//        ymdSelection.getObjAttr();
         selectYMD(ymdSelection, ymd);
 
     }
@@ -36,21 +40,24 @@ public class YMDSelectionAction extends $ {
             day = Integer.parseInt(tmp[2]);
         }
 
+        System.out.println("++++++++++++");
+        System.out.println(ymdSelection.getJsonObject(ymdSelection.getDYMDSelectMonth()));
 
-        findElement(ymdSelection.getJson(ymdSelection.dYMDSelectMonth));
-        click();//点击月份选择
+        System.out.println("++++++++++++");
+        WebElement element = findElement(ymdSelection.getJsonObject(ymdSelection.getDYMDSelectMonth()));
+        click(element);//点击月份选择
 
-        findElement(ymdSelection.getJson(ymdSelection.dYMDSelectYearMP));
-        click();//点击月份里面的年份选择
+        element = findElement(ymdSelection.getJsonObject(ymdSelection.getDYMDSelectYearMP()));
+        click(element);//点击月份里面的年份选择
 
-        findElement(ymdSelection.getJson(ymdSelection.dYMDSelectDecade));
-        click();//点击年代选择
+        element = findElement(ymdSelection.getJsonObject(ymdSelection.getDYMDSelectDecade()));
+        click(element);//点击年代选择
 
         while (true) {
             int boundary1;
             int boundary2;
-            findElement(ymdSelection.getJson(ymdSelection.dYMDCenturyBetweenLastAndNext));
-            getText();
+            element = findElement(ymdSelection.getJsonObject(ymdSelection.getDYMDCenturyBetweenLastAndNext()));
+            text = getText(element);
             boundary1 = Integer.parseInt(text.split("-")[0]);
             boundary2 = Integer.parseInt(text.split("-")[1]);
             System.out.println(boundary1 + ":b1");
@@ -58,13 +65,13 @@ public class YMDSelectionAction extends $ {
             System.out.println(year + ":year");
 
             if (year < boundary1) {
-                findElement(ymdSelection.getJson(ymdSelection.dYMDLastCentury));
-                click();
+                element = findElement(ymdSelection.getJsonObject(ymdSelection.getDYMDLastCentury()));
+                click(element);
             } else if (year >= boundary1 && year <= boundary2) {
                 break;
             } else if (year > boundary2) {
-                findElement(ymdSelection.getJson(ymdSelection.dYMDNextCentury));
-                click();
+                element = findElement(ymdSelection.getJsonObject(ymdSelection.getDYMDNextCentury()));
+                click(element);
             }
 
         }
@@ -72,12 +79,12 @@ public class YMDSelectionAction extends $ {
         String tmp = String.valueOf(year).substring(0, 3);
         String yearYear = tmp + "0-" + tmp + "9";
 
-        findElement(ymdSelection.get$DecadeByTextJson(yearYear));
+        element = findElement(ymdSelection.get$DecadeByTextJson(yearYear));
 
-        click();
+        click(element);
 
-        findElement(ymdSelection.get$YearByTextJson(String.valueOf(year)));
-        click();
+        element = findElement(ymdSelection.get$YearByTextJson(String.valueOf(year)));
+        click(element);
 
         String m = "";
 
@@ -121,13 +128,13 @@ public class YMDSelectionAction extends $ {
         }
 
 
-        findElement(ymdSelection.get$MonthByTextJson(m));
+        element = findElement(ymdSelection.get$MonthByTextJson(m));
 
-        click();
+        click(element);
 
-        findElement(ymdSelection.get$DayByTextJson(String.valueOf(day)));
+        element = findElement(ymdSelection.get$DayByTextJson(String.valueOf(day)));
 
-        click();
+        click(element);
     }
 
 

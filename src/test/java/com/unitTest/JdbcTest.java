@@ -14,6 +14,7 @@ import com.utils.print.PrintList;
 
 public class JdbcTest
 {
+    private OrgCustListAction orgCustListAction = new OrgCustListAction();
     static String driverClass="oracle.jdbc.driver.OracleDriver"; //oracle的驱动
     static String url="jdbc:oracle:thin:@10.189.101.32:1521:JEPLUSDB";  //连接oracle路径方式 “”gfs“”是要建立连接的数据库名 1521端口
     static String user="g_matrix";   //user是数据库的用户名
@@ -40,7 +41,7 @@ public class JdbcTest
     @Test
     public void sdfsdf(){
         String sql = "select cust_name from (select * from cust_info order by dbms_random.value) where rownum=1";
-        System.out.println(OrgCustListAction.getSqlResultStr(sql));
+//        System.out.println(orgCustListAction.getSqlResultStr(sql));
     }
 
 
@@ -327,18 +328,18 @@ public class JdbcTest
     @Test
     public void teststst(){
         String sql = "select cust_name from (select * from cust_info order by dbms_random.value) where rownum=1";
-        String a = OrgCustListAction.getSqlResultStr(sql);
-        System.out.println();
-        System.out.println(a);
-        System.out.println("______________");
-        a = OrgCustListAction.getSqlResultStr(sql);
-        System.out.println();
-        System.out.println(a);
-        System.out.println("______________");
-        a = OrgCustListAction.getSqlResultStr(sql);
-        System.out.println();
-        System.out.println(a);
-        System.out.println("______________");
+////        String a = orgCustListAction.getSqlResultStr(sql);
+//        System.out.println();
+//        System.out.println(a);
+//        System.out.println("______________");
+////        a = orgCustListAction.getSqlResultStr(sql);
+//        System.out.println();
+//        System.out.println(a);
+//        System.out.println("______________");
+////        a = orgCustListAction.getSqlResultStr(sql);
+//        System.out.println();
+//        System.out.println(a);
+//        System.out.println("______________");
     }
 
 

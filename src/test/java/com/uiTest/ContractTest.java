@@ -3,17 +3,14 @@ package com.uiTest;
 import com.actions.OpenBrowserAction;
 import com.actions.matrix.LoginAction;
 import com.actions.matrix.YMDSelectionAction;
-import com.actions.matrix.navigate.TopNavigatorAction;
-import com.actions.matrix.orgCust.ClientAction;
 import com.actions.matrix.orgCust.ContractAction;
 import com.driver.$;
+import com.pageObject.commonObject.*;
 import com.pageObject.matrix.orgCust.Client;
 import com.pageObject.matrix.orgCust.Contract;
 import com.utils.date.DateMisc;
-import com.utils.json.JsonObject;
 import com.utils.list.ListMisc;
-import com.utils.random.Randoms;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -27,93 +24,107 @@ public class ContractTest extends $ {
     String date;
     String amount;
     String bizOpportunity;
+    private ContractAction contractAction = new ContractAction();
+    private Contract contract = new Contract();
 
-
-    @Test
+//    @Test
     public void clickUploadMaterial() {
 
-        ContractAction.clickUploadMaterial();
-        flag = ContractAction.isElementAppeared(Contract.getJson(Contract.d30P));
+        contractAction.clickUploadMaterial();
+        flag = contractAction.isElementAppeared(contract.getJsonObject(contract.getD30P()));
         Assert.assertTrue(flag);
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial"})
+//    @Test(dependsOnMethods = {"clickUploadMaterial"})
     public void inputMaterialTitle() {
-        custName = ContractAction.getRandomCustName();
-        materialTitle = ContractAction.getMaterialTitle(custName);
-        ContractAction.inputMaterialTitle(materialTitle);
-        flag = ContractAction.isStringEqualsText(materialTitle);
+        custName = contractAction.getRandomCustName();
+        materialTitle = contractAction.getMaterialTitle(custName);
+        WebElement element = contractAction.inputMaterialTitle(materialTitle);
+        flag = contractAction.isStringEqualsText(element, materialTitle);
         Assert.assertTrue(flag);
     }
 
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle"})
     public void inputCustName() {
-        ContractAction.inputCustName(custName);
-        flag = ContractAction.isStringEqualsText(custName);
+        WebElement element = contractAction.inputCustName(custName);
+        flag = contractAction.isStringEqualsText(element, custName);
         Assert.assertTrue(flag);
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName"})
     public void selectBizOpportunity() {
-        bizOpportunity = ContractAction.selectBizOpportunity();
-        flag = ContractAction.isStringEqualsText_div(bizOpportunity);
+        bizOpportunity = contractAction.selectBizOpportunity();
+        flag = contractAction.isStringEqualsText_div(bizOpportunity);
         Assert.assertTrue(flag);
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity"})
     public void selectMaterialType() {
-        type = ContractAction.selectMaterialType();
-        flag = ContractAction.isStringEqualsAttribute(type);
+        type = contractAction.selectMaterialType();
+        WebElement element = findElement(contract.getJsonObject(contract.getD50PSpan()));
+        flag = contractAction.isStringEqualsAttribute(element, type);
         Assert.assertTrue(flag);
 
 
     }
 
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType"})
     public void selectSignDate() {
         date = DateMisc.getRandomYMD();
-        ContractAction.clickAssignDate();
+        contractAction.clickAssignDate();
         YMDSelectionAction.selectYMD("签署日期", date);
-        findElement(Contract.getJson(Contract.d54P));
-        flag = ContractAction.isStringEqualsText(date);
+        WebElement element = findElement(contract.getJsonObject(contract.getD54P()));
+        flag = contractAction.isStringEqualsText(element, date);
         Assert.assertTrue(flag);
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate"})
     public void inputContractAmount() {
-        amount = ContractAction.inputContractAmount();
-        flag = ContractAction.isStringEqualsText(amount);
+        amount = contractAction.inputContractAmount();
+        WebElement element = findElement(contract.getJsonObject(contract.getD55P()));
+        flag = contractAction.isStringEqualsText(element, amount);
         Assert.assertTrue(flag);
 
     }
 
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount"})
     public void uploadAttachment() {
-        ContractAction.upload("flv");
-        flag = ContractAction.isUploadSuccess();
+
+
+        try {
+            WebElement element = findElement(contract.getJsonObject(contract.getDUploadPUploadDoneCorss()),
+                    contract.getJsonObject(contract.getDUploadPUploadingCorss()), 4, false);
+            click(element);
+        } catch (Exception e) {
+            //do nothing
+        }
+
+
+        contractAction.upload("flv");
+        flag = contractAction.isUploadSuccess();
         Assert.assertTrue(flag);
 
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment"})
     public void clickConfirmButton() {
-        List<List<String>> list1 = ContractAction.getNewContractInfo();
+        List<List<String>> list1 = contractAction.getNewContractInfo();
 
-        ContractAction.clickConfirmButton();
+        contractAction.clickConfirmButton();
 
-        ContractAction.getInfo(1);
 
-        List<List<String>> list2 = tableContent;
+        List<List<String>> list2 = contractAction.getInfo(1);
+        ;
 
         flag = ListMisc.isEqual(list1, list2);
 
@@ -123,89 +134,99 @@ public class ContractTest extends $ {
     }
 
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton"})
     public void clickEdit() {
-        findElement(Contract.get$D10_action_editSiblingJson(1));
-        click();
-        flag = ContractAction.isElementAppeared(Contract.getJson(Contract.d30P));
+        WebElement element = findElement(contract.get$10ActionEditSiblingJson(1));
+        click(element);
+        flag = contractAction.isElementAppeared(contract.getJsonObject(contract.getD30P()));
         Assert.assertTrue(flag);
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit"})
     public void editMaterialTitle() {
         inputMaterialTitle();
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit", "editMaterialTitle"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit", "editMaterialTitle"})
     public void editCustName() {
         inputCustName();
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit", "editMaterialTitle", "editCustName"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit", "editMaterialTitle", "editCustName"})
     public void editBizOpportunity() {
         selectBizOpportunity();
     }
 
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit", "editMaterialTitle", "editCustName",
-            "editBizOpportunity"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit", "editMaterialTitle", "editCustName",
+//            "editBizOpportunity"})
     public void editMaterialType() {
         selectMaterialType();
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit", "editMaterialTitle", "editCustName",
-            "editBizOpportunity", "editMaterialType"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit", "editMaterialTitle", "editCustName",
+//            "editBizOpportunity", "editMaterialType"})
     public void editSignDate() {
         selectSignDate();
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit", "editMaterialTitle", "editCustName",
-            "editBizOpportunity", "editMaterialType", "editSignDate"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit", "editMaterialTitle", "editCustName",
+//            "editBizOpportunity", "editMaterialType", "editSignDate"})
     public void editContractAmount() {
         inputContractAmount();
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit", "editMaterialTitle", "editCustName",
-            "editBizOpportunity", "editMaterialType", "editSignDate",
-            "editContractAmount"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit", "editMaterialTitle", "editCustName",
+//            "editBizOpportunity", "editMaterialType", "editSignDate",
+//            "editContractAmount"})
     public void editAttachment() {
-        findElement(Contract.getJson(Contract.dUploadP_uploadDone_corss));
-        click();
-        ContractAction.upload("mp4");
-        flag = ContractAction.isUploadSuccess();
+
+        try {
+            WebElement element = findElement(contract.getJsonObject(contract.getDUploadPUploadDoneCorss()),
+                    contract.getJsonObject(contract.getDUploadPUploadingCorss()), 4, false);
+            click(element);
+        } catch (Exception e) {
+            //do nothing
+        }
+
+
+        WebElement element = findElement(contract.getJsonObject(contract.getDUploadPUploadDoneCorss()));
+        click(element);
+        contractAction.upload("mp4");
+        flag = contractAction.isUploadSuccess();
         Assert.assertTrue(flag);
 
     }
 
-    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
-            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
-            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
-            "clickEdit", "editMaterialTitle", "editCustName",
-            "editBizOpportunity", "editMaterialType", "editSignDate",
-            "editContractAmount","editAttachment"})
+    //    @Test(dependsOnMethods = {"clickUploadMaterial", "inputMaterialTitle", "inputCustName",
+//            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
+//            "inputContractAmount", "uploadAttachment", "clickConfirmButton",
+//            "clickEdit", "editMaterialTitle", "editCustName",
+//            "editBizOpportunity", "editMaterialType", "editSignDate",
+//            "editContractAmount","editAttachment"})
     public void clickConfirmButtonAfterEdit() {
         clickConfirmButton();
     }
@@ -215,33 +236,72 @@ public class ContractTest extends $ {
 //    public void tetet() {
 //
 //
-//        String a = ContractAction.getRandomCustName();
-//        System.out.println(ContractAction.getMaterialTitle(a));
+//        String a = contractAction.getRandomCustName();
+//        System.out.println(contractAction.getMaterialTitle(a));
 //        YMDSelectionAction.selectYMD("2020-05-21");
 //    }
 
 
-    @BeforeMethod()
-    public void beforeMethod(){
-        String name = this.getClass().getName();
-        WebDriver driver1 = map.get(name);
-        driver = driver1;
+//    @BeforeMethod()
+//    public void beforeMethod(){
+//        String name = this.getClass().getName();
+//        WebDriver driver1 = map.get(name);
+//        driver = driver1;
+//
+//    }
+
+    @Test
+    public void createNewContractMaterial() {
+        clickUploadMaterial();
+        inputMaterialTitle();
+        inputCustName();
+        selectBizOpportunity();
+        selectMaterialType();
+        selectSignDate();
+        inputContractAmount();
+        uploadAttachment();
+        clickConfirmButton();
+
 
     }
 
+    @Test(dependsOnMethods = {"createNewContractMaterial"})
+    public void editContractMaterial() {
+        clickEdit();
+        editMaterialTitle();
+        editCustName();
+        editBizOpportunity();
+        editMaterialType();
+        editSignDate();
+        editContractAmount();
+        editAttachment();
+        clickConfirmButtonAfterEdit();
+    }
 
     @BeforeClass
-    public void beforeTest01() {
-        OpenBrowserAction.open("chrome",this.getClass());
+    public void beforeClass01() {
+        OpenBrowserAction.open("chrome", this.getClass());
         LoginAction.login();
-        get(Contract.contract);
+        get(contract.getContract());
         //get(Client.client);//登录后跳转客户维护分配页面
+
+
+
+
+
+        Contract contract = new Contract();
+
+
+
+
+        contract.getObjAttr();
+
 
 
     }
 
     @AfterClass
-    public void afterTest01() throws InterruptedException {
+    public void afterClass01() throws InterruptedException {
 
         Thread.sleep(5000);
         $.quit();

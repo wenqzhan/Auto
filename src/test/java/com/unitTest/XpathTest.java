@@ -3,6 +3,7 @@ package com.unitTest;
 import com.alibaba.fastjson.JSONObject;
 import com.driver.Xpath;
 import com.pageObject.commonObject.*;
+import com.pageObject.matrix.orgCust.Client;
 import com.pageObject.matrix.orgCust.Contract;
 import com.utils.date.DateMisc;
 import com.utils.json.XpathJson;
@@ -12,14 +13,59 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 public class XpathTest {
 
+
+
+    @Test
+    public void sdffsd(){
+//        YMDSelection ymdSelection = new YMDSelection("签署日期");
+//        System.out.println("___________________________");
+//        System.out.println(ymdSelection.getdYMDLastYear());
+//        System.out.println("___________________________");
+//        ymdSelection.getObjAttr("签署日期");
+//        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+//        commonObjectPopped.getObjAttr();
+//        System.out.println(commonObjectPopped.getJsonObject(commonObjectPopped.getD34P()));
+        System.out.println("[[[[[[[[[[[[[]]]]]]]]]]]]]]]");
+        CustSelection test = new CustSelection("国君服务联系人");
+        test.getObjAttr();
+//        empSelection.getObjAttr();
+//        System.out.println("1111111111111111111111111");
+//        System.out.println(empSelection.getPrefix());
+//        System.out.println("1111111111111111111111111");
+//        //System.out.println(ymdSelection.getJsonObject(ymdSelection.getDYMDLastYear()));
+//        System.out.println("2222222222222222222222222");
+//        System.out.println(empSelection.get$JsonES10SiblingByUserName("拜拜拜拜不"));
+//        System.out.println("2222222222222222222222222");
+
+        System.out.println("1111111111111111");
+        System.out.println(test.getPrefix());
+        System.out.println("1111111111111111");
+
+
+
+        System.out.println("1111111111111111");
+        System.out.println((test.get$CS10SiblingByCustNameJson("KKKKK")));
+        System.out.println("1111111111111111");
+
+
+        System.out.println("11111qqq11111111111");
+//        System.out.println(test.get$XPQuerySelect("QQQQ"));
+        System.out.println("11111qqq11111111111");
+
+        System.out.println("11111qqq11111bbb111111");
+//        System.out.println(test.get$X10PSibling(1));
+        System.out.println("11111qqq1111bbb1111111");
+    }
+
+
+    @Test
+    public void dfsdf(){
+        System.out.println(this.getClass().getName());
+    }
 
     @Test
     public void fsfsdf(){

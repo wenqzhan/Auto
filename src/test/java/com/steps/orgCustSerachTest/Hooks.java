@@ -10,13 +10,13 @@ import io.cucumber.java.Before;
 public class Hooks extends $ {
     private final static LoggerController log = LoggerController.getLogger(Hooks.class);
 
-    @Before("@Automation")
-    public void initialise() {
-        OpenBrowserAction.open("chrome");
-
-        LoginAction.login();
-        $.get(OrgCustList.matrixOrgCustList);
-    }
+//    @Before("@Automation")
+//    public void initialise() {
+//        OpenBrowserAction.open("chrome");
+//
+//        LoginAction.login();
+//        $.get(OrgCustList.matrixOrgCustList);
+//    }
 
 }
 

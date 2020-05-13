@@ -5,15 +5,14 @@ import com.actions.matrix.navigate.TopNavigatorAction;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.driver.$;
-import com.pageObject.matrix.orgCust.Client;
 import com.pageObject.matrix.orgCust.Contract;
 import com.sql.matrix.orgCust.ContractSql;
 import com.utils.date.DateMisc;
 import com.utils.jdbc.JDBC;
+import com.utils.json.Attr;
 import com.utils.log.LoggerController;
 import com.utils.num.IntMisc;
 import com.utils.random.Randoms;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
@@ -21,55 +20,75 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContractAction extends $ {
-    private final static LoggerController log = LoggerController.getLogger(ContractAction.class);
+    private final LoggerController log = LoggerController.getLogger(ContractAction.class);
+    private String attributeValue;//通过getAttribute()获得
+    private int perPageNum;
+    private String text; //一般用在获取input,textarea中的文字,或者其他标签内的文字
+    private JSONObject jsonObject;
+    private Contract contract = new Contract();
 
-    public static void getTable() {
-        jsonObject = Contract.getJson(Contract.d11);
-        $.findElements(jsonObject);
-        $.getTableHeader();
-        //定位表头,获取表头中的所有文字,存到tableContent中
-        if (isNotDisplayed(Contract.getJson(Contract.d17))) {//如果数据加载的那个菊花不显示了,说明已经加载好
-            jsonObject = Contract.getJson(Contract.d10);
+    public ContractAction() {
+//        contract.getObjAttr();
+    }
+
+    public List<List<String>> getTable() {
+        List<String> strsInHeader = new ArrayList<>();
+        List<List<String>> tableContent = new ArrayList<>();
+
+
+        if (isNotDisplayed(contract.getJsonObject(contract.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
+            jsonObject = contract.getJsonObject(contract.getD10());
             try {
                 findElement(jsonObject, 2, false);
-                findElements(jsonObject);
-                getTableBody();
+                List<WebElement> elements = findElements(jsonObject);
+                tableContent = getTableBody(elements);
             } catch (Exception e) {
                 log.info("表格表体应该是空的");
             }
         }
+        jsonObject = contract.getJsonObject(contract.getD11());
+        List<WebElement> elements = $.findElements(jsonObject);
+        strsInHeader = $.getTableHeader(elements);
+        //定位表头,获取表头中的所有文字,存到tableContent中
+        tableContent.add(0, strsInHeader);
+        return tableContent;
+
     }
 
 
-    public static void getInfo(int num) {
-        jsonObject = Contract.getJson(Contract.d11);
-        $.findElements(jsonObject);
-        $.getTableHeader();
-        //定位表头,获取表头中的所有文字,存到tableContent中
+    public List<List<String>> getInfo(int num) {
+        List<String> strsInHeader = new ArrayList<>();
+        List<List<String>> tableContent = new ArrayList<>();
 
-        if (isNotDisplayed(Contract.getJson(Contract.d17))) {//如果数据加载的那个菊花不显示了,说明已经加载好
-            jsonObject = Contract.get$D10SiblingJson(num);
-            $.findElements(jsonObject);
-            $.getTableBody();
+        if (isNotDisplayed(contract.getJsonObject(contract.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
+            jsonObject = contract.get$10SiblingJson(num);
+            List<WebElement> elements = $.findElements(jsonObject);
+            tableContent = $.getTableBody(elements);
         }
 
+        jsonObject = contract.getJsonObject(contract.getD11());
+        List<WebElement> elements = $.findElements(jsonObject);
+        strsInHeader = $.getTableHeader(elements);
+        //定位表头,获取表头中的所有文字,存到tableContent中
+        tableContent.add(0, strsInHeader);
+        return tableContent;
     }
 
-    public static boolean isElementAppeared(JSONObject jsonObject) {
+    public boolean isElementAppeared(JSONObject jsonObject) {
         boolean flag = true;
         try {
             findElement(jsonObject);
         } catch (Exception e) {
             flag = false;
         } finally {
-            $.jsonObject = null;
+            //$.jsonObject = null;
         }
         log.info("isElementAppeared:" + flag);
         return flag;
     }
 
 
-    public static boolean isElementAppeared() {
+    public boolean isElementAppeared() {
         boolean flag = true;
         try {
             findElement(jsonObject);
@@ -82,18 +101,19 @@ public class ContractAction extends $ {
         return flag;
     }
 
-    public static boolean isStringEqualsText(String string) {
+    public boolean isStringEqualsText(WebElement element, String string) {
         boolean flag = true;
-        getInputValue();
+        text = getInputValue(element);
         flag = string.equals(text);
         text = "";
         log.info("isStringEqualsText:" + flag);
         return flag;
     }
 
-    public static boolean isStringEqualsText_div(String string) {
+    public boolean isStringEqualsText_div(String string) {
         boolean flag = true;
-        getText();
+        WebElement element = findElement(contract.getJsonObject(contract.getD56PDiv3()));
+        text = getText(element);
         flag = string.equals(text);
         text = "";
         log.info("isStringEqualsText_div:" + flag);
@@ -101,18 +121,18 @@ public class ContractAction extends $ {
     }
 
 
-    public static boolean isStringEqualsAttribute(String string) {
+    public boolean isStringEqualsAttribute(WebElement element, String string) {
         boolean flag = true;
-        getAttribute("title");
+        attributeValue = getAttribute(element, "title");
         flag = string.equals(attributeValue);
         attributeValue = "";
         log.info("isStringEqualsAttribute:" + flag);
         return flag;
     }
 
-    public static boolean isSelected() {
+    public boolean isSelected(WebElement element) {
         boolean flag = true;
-        getAttribute("class");
+        attributeValue = getAttribute(element, "class");
         flag = (attributeValue.contains("selected") || attributeValue.contains("checked"));
         attributeValue = "";
         log.info("isSelected:" + flag);
@@ -120,13 +140,14 @@ public class ContractAction extends $ {
     }
 
 
-    public static void getPerPageNum() {
-        findElement(Contract.getJson(Contract.d18));//定位 条/页
-        getText();//获取 条/页 里的文本
+    public int getPerPageNum() {
+        WebElement element = findElement(contract.getJsonObject(contract.getD18()));//定位 条/页
+        text = getText(element);//获取 条/页 里的文本
         perPageNum = IntMisc.getPerPageNum(text);
+        return perPageNum;
     }
 
-    public static String getMaterialTitle(String custName) {
+    public String getMaterialTitle(String custName) {
         String martialName;
 
         martialName = custName + "证明材料" + DateMisc.getTimeStamp();
@@ -135,7 +156,7 @@ public class ContractAction extends $ {
 
     }
 
-    public static String getRandomCustName() {
+    public String getRandomCustName() {
         String custName;
         String userID = TopNavigatorAction.getUserID();
         String sql = ContractSql.getSql1(userID);
@@ -144,70 +165,71 @@ public class ContractAction extends $ {
         return custName;
     }
 
-    public static void inputCustName(String custName) {
-        findElement(Contract.getJson(Contract.d2P));
-        click();
+    public WebElement inputCustName(String custName) {
+        WebElement element = findElement(contract.getJsonObject(contract.getD2P()));
+        click(element);
         CustSelectionAction custSelectionAction = new CustSelectionAction("操作");
         custSelectionAction.selectCustName(custName);
-        findElement(Contract.getJson(Contract.d2P));
+        findElement(contract.getJsonObject(contract.getD2P()));
+        return element;
     }
 
-    public static void clickUploadMaterial() {
-        findElement(Contract.getJson(Contract.d52));
-        click();
-
-    }
-
-    public static void inputMaterialTitle(String title) {
-        findChildElement(Contract.getJson(Contract.d49P));
-        sendKeys(title);
+    public void clickUploadMaterial() {
+        WebElement element = findElement(contract.getJsonObject(contract.getD52()));
+        click(element);
 
     }
 
-    public static String selectMaterialType() {
+    public WebElement inputMaterialTitle(String title) {
+        WebElement element = findElement(contract.getJsonObject(contract.getD49P()));
+        sendKeys(element, title);
+        return element;
+    }
+
+    public String selectMaterialType() {
         int random = Randoms.getRandomNum(1, 3);
         String type = "";
-        findElement(Contract.getJson(Contract.d50P));
-        click();
+        WebElement element = findElement(contract.getJsonObject(contract.getD50P()));
+        click(element);
         switch (random) {
             case 1:
-                findElement(Contract.getJson(Contract.d50Pl1));
+                element = findElement(contract.getJsonObject(contract.getD50PL1()));
                 type = "专项战略合作协议";
-                click();
+                click(element);
                 break;
             case 2:
-                findElement(Contract.getJson(Contract.d50Pl2));
+                element = findElement(contract.getJsonObject(contract.getD50PL2()));
                 type = "全面战略合作协议";
-                click();
+                click(element);
                 break;
             case 3:
-                findElement(Contract.getJson(Contract.d50Pl3));
+                element = findElement(contract.getJsonObject(contract.getD50PL3()));
                 type = "业务协议";
-                click();
+                click(element);
                 break;
 
         }
-        findElement(Contract.getJson(Contract.d50P_span));
+
 
         return type;
     }
 
 
-    public static void clickAssignDate() {
-        findElement(Contract.getJson(Contract.d54P));
-        click();
+    public void clickAssignDate() {
+        WebElement element = findElement(contract.getJsonObject(contract.getD54P()));
+        click(element);
     }
 
-    public static String inputContractAmount() {
+    public String inputContractAmount() {
         String amount = "" + Randoms.getRandomNum(0, 999999);
-        findElement(Contract.getJson(Contract.d55P));
-        sendKeys(amount);
+        WebElement element = findElement(contract.getJsonObject(contract.getD55P()));
+        sendKeys(element, amount);
         return amount;
     }
 
-    public static void upload(String fileNme) {
-        findElement(Contract.getJson(Contract.dUploadP));
-        click();
+    public void upload(String fileNme) {
+        WebElement element = findElement(contract.getJsonObject(contract.getDUploadP()));
+        click(element);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -215,9 +237,9 @@ public class ContractAction extends $ {
         }
         try {
             System.out.println("开始上传文件");
-            if(fileNme.equals("flv")) {
+            if (fileNme.equals("flv")) {
                 Runtime.getRuntime().exec("D:\\AutoIT\\uploadfile_flv.exe");
-            }else if(fileNme.equals("mp4")){
+            } else if (fileNme.equals("mp4")) {
                 Runtime.getRuntime().exec("D:\\AutoIT\\uploadfile_mp4.exe");
             }
         } catch (IOException e) {
@@ -226,24 +248,24 @@ public class ContractAction extends $ {
     }
 
     //只能用于一个附件上传的场景
-    public static boolean isUploadSuccess() {
+    public boolean isUploadSuccess() {
         boolean flag;
         boolean f;
         int timeOutInSeconds = 4;
         try {
 
-            findElement(Contract.getJson(Contract.dUploadP_uploading), timeOutInSeconds, false);
-            f = isNotDisplayed(Contract.getJson(Contract.dUploadP_uploading), 100);
+            findElement(contract.getJsonObject(contract.getDUploadPUploading()), timeOutInSeconds, false);
+            f = isNotDisplayed(contract.getJsonObject(contract.getDUploadPUploading()), 300);
         } catch (Exception e) {
             f = true;
             log.info(timeOutInSeconds + "秒内没有找到转菊花,可能早就上传成功了");
         }
         if (f) {
-            JSONObject jsonObject1 = JSON.parseObject(String.valueOf(Contract.getJson(Contract.dUploadP_uploadDone)));
-            JSONObject jsonObject2 = JSON.parseObject(String.valueOf(Contract.getJson(Contract.dUploadP_uploadError)));
+            JSONObject jsonObject1 = JSON.parseObject(String.valueOf(contract.getJsonObject(contract.getDUploadPUploadDone())));
+            JSONObject jsonObject2 = JSON.parseObject(String.valueOf(contract.getJsonObject(contract.getDUploadPUploadError())));
 
-            findElement(jsonObject1, jsonObject2, 10, false);
-            getAttribute("class");
+            WebElement element = findElement(jsonObject1, jsonObject2, 10, false);
+            attributeValue = getAttribute(element, "class");
             if (attributeValue.contains("done")) {
                 flag = true;
                 log.info("应该是上传成功了");
@@ -264,32 +286,37 @@ public class ContractAction extends $ {
 
     }
 
-    public static String selectBizOpportunity() {
-        Contract.setI56P_div2();
+    public String selectBizOpportunity() {
+        contract.setI56PDiv2();
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!");
+//        System.out.println(contract.getI56PDiv2());
+//        System.out.println(Attr.getAttr().get("i56PDiv2"));
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!");
 
-        boolean nd = isNotDisplayed(Contract.getJson(Contract.d56P_div3), 4);
+        boolean nd = isNotDisplayed(contract.getJsonObject(contract.getD56PDiv3()), 4);
         if (!nd) {
-            getText();
+            WebElement element = findElement(contract.getJsonObject(contract.getD56PDiv3()));
+            text = getText(element);
         }
 
         if (!text.equals("")) {
-            findElement(Contract.getJson(Contract.d56P_div1_cross));
-            click();
+            WebElement element = findElement(contract.getJsonObject(contract.getD56PDiv1Cross()));
+            click(element);
         }
-        findElement(Contract.getJson(Contract.d56P));
-        click();
-        findElements(Contract.get$d56_div2_liJson(0));
+        WebElement element = findElement(contract.getJsonObject(contract.getD56P()));
+        click(element);
+        List<WebElement> elements = findElements(contract.get$56Div2LiJson(0));
         int size = elements.size();
         int random = Randoms.getRandomNum(1, size);
-        findElement(Contract.get$d56_div2_liJson(random));
-        String text = getText();
-        click();
-        findElement(Contract.getJson(Contract.d56P_div3));
+        element = findElement(contract.get$56Div2LiJson(random));
+        String text = getText(element);
+        click(element);
+
         return text;
     }
 
 
-    public static List<List<String>> getNewContractInfo() {
+    public List<List<String>> getNewContractInfo() {
         List<List<String>> list1 = new ArrayList<>();
         List<String> list2 = new ArrayList<>();
         List<String> list3 = new ArrayList<>();
@@ -303,40 +330,40 @@ public class ContractAction extends $ {
         list2.add("支持文件");
         list2.add("签署日期");
 
-        findElement(Contract.getJson(Contract.d49P));
-        getInputValue();
+        WebElement element = findElement(contract.getJsonObject(contract.getD49P()));
+        text = getInputValue(element);
         String s1 = text;
         list3.add(s1);
 
-        findElement(Contract.getJson(Contract.d2P));
-        getInputValue();
+        element = findElement(contract.getJsonObject(contract.getD2P()));
+        text = getInputValue(element);
         String s2 = text;
         list3.add(s2);
 
-        findElement(Contract.getJson(Contract.d53P));
-        getInputValue();
+        element = findElement(contract.getJsonObject(contract.getD53P()));
+        text = getInputValue(element);
         String s3 = text;
         list3.add(s3);
 
-        findElement(Contract.getJson(Contract.d50P_span));
-        getText();
+        element = findElement(contract.getJsonObject(contract.getD50PSpan()));
+        text = getText(element);
         String s4 = text;
         list3.add(s4);
 
 
-        findElement(Contract.getJson(Contract.d56P_div3));
-        getText();
+        element = findElement(contract.getJsonObject(contract.getD56PDiv3()));
+        text = getText(element);
         String s5 = text;
         list3.add(s5);
 
 
-        findElement(Contract.getJson(Contract.dUploadP_uploadDone_file));
-        getText();
+        element = findElement(contract.getJsonObject(contract.getDUploadPUploadDoneFile()));
+        text = getText(element);
         String s6 = text;
         list3.add(s6);
 
-        findElement(Contract.getJson(Contract.d54P));
-        getInputValue();
+        element = findElement(contract.getJsonObject(contract.getD54P()));
+        text = getInputValue(element);
         String s7 = text;
         list3.add(s7);
 
@@ -349,10 +376,10 @@ public class ContractAction extends $ {
     }
 
 
-    public static void clickConfirmButton() {
-        findElement(Contract.getJson(Contract.d29P));
-        click();
-        findElement(Contract.getJson(Contract.d48));
+    public void clickConfirmButton() {
+        WebElement element = findElement(contract.getJsonObject(contract.getD29P()));
+        click(element);
+        findElement(contract.getJsonObject(contract.getD48()));
     }
 
 

@@ -19,33 +19,41 @@ import org.testng.TestListenerAdapter;
  */
 public class TestResultListener extends TestListenerAdapter {
 
-	private static LoggerController logger = LoggerController.getLogger(TestResultListener.class);
+	private static LoggerController log = LoggerController.getLogger(TestResultListener.class);
 
 	@Override
 	public void onTestFailure(ITestResult tr) {
 		super.onTestFailure(tr);
 		//自动截图
-		Screenshot.screenshot("failure");
-		logger.info(tr.getName() + " Failure");
+		System.out.println("________________----------------");
+		Screenshot.screenshot("failure",tr.getTestClass().getName());
+		System.out.println("________________----------------");
+		log.info(tr.getName() + " Failure");
+		System.out.println("________________----------------");
+
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult tr) {
 		super.onTestSkipped(tr);
-		Screenshot.screenshot("skipped");
-		logger.info(tr.getName() + " Skipped");
+		System.out.println("________________----------------");
+		Screenshot.screenshot("skipped",tr.getTestClass().getName());
+		System.out.println(tr.getTestClass().getName());
+		System.out.println("________________----------------");
+		log.info(tr.getName() + " Skipped");
+		System.out.println("________________----------------");
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult tr) {
 		super.onTestSuccess(tr);
-		logger.info(tr.getName() + " Success");
+		log.info(tr.getName() + " Success");
 	}
 
 	@Override
 	public void onTestStart(ITestResult tr) {
 		super.onTestStart(tr);
-		logger.info(tr.getName() + " Start");
+		log.info(tr.getName() + " Start");
 	}
 
 	@Override
@@ -57,14 +65,14 @@ public class TestResultListener extends TestListenerAdapter {
 		// collect all id's from passed test
 		Set<Integer> passedTestIds = new HashSet<Integer>();
 		for (ITestResult passedTest : testContext.getPassedTests().getAllResults()) {
-			logger.info("PassedTests = " + passedTest.getName());
+			log.info("PassedTests = " + passedTest.getName());
 			passedTestIds.add(getId(passedTest));
 		}
 
 		// Eliminate the repeat methods
 		Set<Integer> skipTestIds = new HashSet<Integer>();
 		for (ITestResult skipTest : testContext.getSkippedTests().getAllResults()) {
-			logger.info("skipTest = " + skipTest.getName());
+			log.info("skipTest = " + skipTest.getName());
 			// id = class + method + dataprovider
 			int skipTestId = getId(skipTest);
 
@@ -78,7 +86,7 @@ public class TestResultListener extends TestListenerAdapter {
 		// Eliminate the repeat failed methods
 		Set<Integer> failedTestIds = new HashSet<Integer>();
 		for (ITestResult failedTest : testContext.getFailedTests().getAllResults()) {
-			logger.info("failedTest = " + failedTest.getName());
+			log.info("failedTest = " + failedTest.getName());
 			// id = class + method + dataprovider
 			int failedTestId = getId(failedTest);
 
@@ -101,7 +109,7 @@ public class TestResultListener extends TestListenerAdapter {
 		for (Iterator<ITestResult> iterator = testContext.getFailedTests().getAllResults().iterator(); iterator.hasNext();) {
 			ITestResult testResult = iterator.next();
 			if (testsToBeRemoved.contains(testResult)) {
-				logger.info("Remove repeat Fail Test: " + testResult.getName());
+				log.info("Remove repeat Fail Test: " + testResult.getName());
 				iterator.remove();
 			}
 		}

@@ -49,7 +49,7 @@ public class OldLoginPage extends JsonObject {
         }
 
 
-        return jsonObject;
+        return JsonObject.getJsonObject();
     }
 
 

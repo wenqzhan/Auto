@@ -57,7 +57,7 @@ public class TopNavigator extends JsonObject {
                 JsonObject.setJsonObject(dTNUserCode, xTNUserCode);
                 break;
         }
-        return jsonObject;
+        return JsonObject.getJsonObject();
     }
 
 

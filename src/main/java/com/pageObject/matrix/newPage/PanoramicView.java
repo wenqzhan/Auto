@@ -15,7 +15,7 @@ public class PanoramicView extends JsonObject {
                 JsonObject.setJsonObject(d1,x1);
                 break;
         }
-        return jsonObject;
+        return JsonObject.getJsonObject();
     }
 
 }

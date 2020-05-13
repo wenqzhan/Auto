@@ -3,6 +3,7 @@ package com.utils.log;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.openqa.selenium.interactions.Actions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class LoggerController {
     public static String getT() {
         StringBuilder stringBuilder = new StringBuilder();
         //String s = String.valueOf(Thread.currentThread().getStackTrace()[3]);
-        for (int i =0; i <Thread.currentThread().getStackTrace().length; i++) {
+        for (int i = 0; i < Thread.currentThread().getStackTrace().length; i++) {
             stringBuilder.append("\n" + "\t" + Thread.currentThread().getStackTrace()[i]);
 //            if (!String.valueOf(Thread.currentThread().getStackTrace()[i]).contains("")) {
 //                stringBuilder.append("\n" + "\t" + Thread.currentThread().getStackTrace()[i]);
@@ -57,20 +58,45 @@ public class LoggerController {
     }
 
 
+    public static String getClazzName() {
+        String clazzName;
+        int i = 1;
+        while (true) {
+            try {
+                clazzName = Thread.currentThread().getStackTrace()[i].getClassName();
+                i++;
+                if (clazzName.contains("uiTest")) {
+                    break;
+                }
+            } catch (Exception e) {
+                clazzName = "";
+                break;
+            }
+
+        }
+
+        return clazzName;
+    }
+
+   // getClazzName().equals("com.uiTest.ContractTest"
     public void info(String msg) {
-        logger.info(msg );
+        if (true) {
+            logger.info(getClazzName() + "->" + msg);
+        }
     }
 
     public void debug(String msg) {
-        logger.debug(msg );
+        logger.debug(getClazzName() + "->" + msg);
     }
 
     public void warn(String msg) {
-        logger.warn(msg );
+        logger.warn(msg);
     }
 
     public void error(String msg) {
-        logger.error(msg + "|" + getT());
+        if (true) {
+            logger.error(getClazzName() + "->" + msg + "|" + getT());
+        }
     }
 
 }

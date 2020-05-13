@@ -22,20 +22,25 @@ public class OpenBrowserAction extends $ {
 
 
     public static void open(String browser) {
+        WebDriver driver = getDriver();
+        Actions action;
         if (driver == null) {
-            initialise(browser);
+            driver = initialise(browser);
             driver.manage().window().maximize();
             action = new Actions(driver);
         }
     }
 
-    public static void open(String browser,Class<?> T){
+    public static void open(String browser, Class<?> T) {
+        WebDriver driver;
+        Actions action;
         WebDriver driver1;
-        initialise(browser);
+        driver = initialise(browser);
         driver.manage().window().maximize();
         action = new Actions(driver);
         driver1 = driver;
-        map.put(T.getName(),driver1);
+        drivers.put(T.getName(), driver1);
+        actions.put(T.getName(), action);
     }
 
 
@@ -44,8 +49,8 @@ public class OpenBrowserAction extends $ {
      *
      * @param browser 浏览器名称
      */
-    public static void initialise(String browser) {
-
+    public static WebDriver initialise(String browser) {
+        WebDriver driver = null;
         String path = System.getProperty("user.dir");
         if (browser.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", path + "\\drivers\\chromedriver.exe");
@@ -75,7 +80,7 @@ public class OpenBrowserAction extends $ {
         } else
             //System.err.print("Wrong browser name:" + browser);
             log.error("错误的浏览器名称:" + browser);
-        //return  driver;
+        return driver;
     }
 
 }
