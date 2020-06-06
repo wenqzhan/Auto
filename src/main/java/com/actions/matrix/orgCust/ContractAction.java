@@ -9,7 +9,6 @@ import com.pageObject.matrix.orgCust.Contract;
 import com.sql.matrix.orgCust.ContractSql;
 import com.utils.date.DateMisc;
 import com.utils.jdbc.JDBC;
-import com.utils.json.Attr;
 import com.utils.log.LoggerController;
 import com.utils.num.IntMisc;
 import com.utils.random.Randoms;
@@ -26,6 +25,7 @@ public class ContractAction extends $ {
     private String text; //一般用在获取input,textarea中的文字,或者其他标签内的文字
     private JSONObject jsonObject;
     private Contract contract = new Contract();
+    private TopNavigatorAction topNavigatorAction = new TopNavigatorAction();
 
     public ContractAction() {
 //        contract.getObjAttr();
@@ -46,7 +46,7 @@ public class ContractAction extends $ {
                 log.info("表格表体应该是空的");
             }
         }
-        jsonObject = contract.getJsonObject(contract.getD11());
+        jsonObject = contract.getJsonObject(contract.getD11Tr1());
         List<WebElement> elements = $.findElements(jsonObject);
         strsInHeader = $.getTableHeader(elements);
         //定位表头,获取表头中的所有文字,存到tableContent中
@@ -66,7 +66,7 @@ public class ContractAction extends $ {
             tableContent = $.getTableBody(elements);
         }
 
-        jsonObject = contract.getJsonObject(contract.getD11());
+        jsonObject = contract.getJsonObject(contract.getD11Tr1());
         List<WebElement> elements = $.findElements(jsonObject);
         strsInHeader = $.getTableHeader(elements);
         //定位表头,获取表头中的所有文字,存到tableContent中
@@ -74,18 +74,18 @@ public class ContractAction extends $ {
         return tableContent;
     }
 
-    public boolean isElementAppeared(JSONObject jsonObject) {
-        boolean flag = true;
-        try {
-            findElement(jsonObject);
-        } catch (Exception e) {
-            flag = false;
-        } finally {
-            //$.jsonObject = null;
-        }
-        log.info("isElementAppeared:" + flag);
-        return flag;
-    }
+//    public boolean isElementAppeared(JSONObject jsonObject) {
+//        boolean flag = true;
+//        try {
+//            findElement(jsonObject);
+//        } catch (Exception e) {
+//            flag = false;
+//        } finally {
+//            //$.jsonObject = null;
+//        }
+//        log.info("isElementAppeared:" + flag);
+//        return flag;
+//    }
 
 
     public boolean isElementAppeared() {
@@ -158,7 +158,7 @@ public class ContractAction extends $ {
 
     public String getRandomCustName() {
         String custName;
-        String userID = TopNavigatorAction.getUserID();
+        String userID = topNavigatorAction.getUserID();
         String sql = ContractSql.getSql1(userID);
         custName = JDBC.getSqlResultStr(sql);
 
@@ -169,6 +169,7 @@ public class ContractAction extends $ {
         WebElement element = findElement(contract.getJsonObject(contract.getD2P()));
         click(element);
         CustSelectionAction custSelectionAction = new CustSelectionAction("操作");
+
         custSelectionAction.selectCustName(custName);
         findElement(contract.getJsonObject(contract.getD2P()));
         return element;
@@ -379,7 +380,7 @@ public class ContractAction extends $ {
     public void clickConfirmButton() {
         WebElement element = findElement(contract.getJsonObject(contract.getD29P()));
         click(element);
-        findElement(contract.getJsonObject(contract.getD48()));
+        findElement(contract.getJsonObject(contract.getD81Final()));
     }
 
 

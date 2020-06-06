@@ -4,8 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.driver.$;
 import com.pageObject.commonObject.CommonObject;
 import com.pageObject.commonObject.CommonObjectPopped;
-import com.pageObject.commonObject.CustSelection;
-import com.pageObject.commonObject.YMDSelection;
+import com.pageObject.matrix.CustSelection;
 import com.utils.json.Attr;
 import com.utils.json.JsonObject;
 import lombok.Data;
@@ -17,18 +16,18 @@ public class Contract extends JsonObject {//证明材料
         CommonObject commonObject = new CommonObject();
         CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
         CustSelection custSelection = new CustSelection();
-        YMDSelection ymdSelection = new YMDSelection("签署日期");
-        commonObject.getObjAttr();
-        commonObjectPopped.getObjAttr();
+//        YMDSelection ymdSelection = new YMDSelection("签署日期");
+//        commonObject.getObjAttr();
+//        commonObjectPopped.getObjAttr();
         custSelection.getObjAttr();
-        ymdSelection.getObjAttr();
+//        ymdSelection.getObjAttr();
     }
 
     private CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
     private CommonObject commonObject = new CommonObject();
     
     private  String contract =
-            "http://10.187.144.60:8081/orgcust/contract";
+            "http://10.187.144.60:8080/orgcust/contract";
 
     private final  String d52 = "证明材料-上传证明材料-span";
     private final  String x52 = commonObject.getX52();
@@ -95,8 +94,8 @@ public class Contract extends JsonObject {//证明材料
     private final  String x10NotSelected = commonObject.getX10NotSelected();
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(contains(@class,'selected'))]
 
-    private final  String d11 = "证明材料-表格表头row下的th col-th";
-    private final  String x11 = commonObject.getX11();
+    private final  String d11Tr1 = "证明材料-表格表头row下的tr[1]/th col-th";
+    private final  String x11Tr1 = commonObject.getX11Tr1();
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[not(@key='selection-column')]
 
     private final  String d31 = "证明材料-表格表头-多选框-th";
@@ -260,9 +259,9 @@ public class Contract extends JsonObject {//证明材料
     private final  String xUploadPUploadError = "//div[contains(@class,\"item-error\")]";
 
 
-    private final  String d48 = "证明材料-添加/修改-成功系统提示信息";
-    private final  String x48 = commonObject.getX48();
-    //div[@class='ant-message-notice-content']
+    private final  String d81Final = "证明材料-添加/修改-成功系统提示信息";
+    private final  String x81Final = commonObject.getX81Final();
+    //div[@class='ant-message-success']
 
 
     private  String getBizOpportunityID() {

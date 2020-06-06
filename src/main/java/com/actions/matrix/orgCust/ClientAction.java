@@ -3,7 +3,7 @@ package com.actions.matrix.orgCust;
 import com.alibaba.fastjson.JSONObject;
 import com.driver.$;
 
-import com.pageObject.commonObject.BizLineSelection;
+import com.pageObject.matrix.BizLineSelection;
 import com.pageObject.matrix.navigate.TopNavigator;
 import com.pageObject.matrix.orgCust.Client;
 import com.sql.matrix.orgCust.ClientSql;
@@ -13,7 +13,6 @@ import com.utils.log.LoggerController;
 import com.utils.num.IntMisc;
 import com.utils.random.RandomInfo;
 import com.utils.random.Randoms;
-import lombok.Data;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -33,6 +32,7 @@ public class ClientAction extends $ {
     private JSONObject jsonObject;
     private BizLineSelection bizLineSelection = new BizLineSelection();
     private Client client = new Client();
+    private TopNavigator topNavigator = new TopNavigator();
 
     public void getAttr() {
 //        bizLineSelection.getObjAttr();
@@ -42,8 +42,6 @@ public class ClientAction extends $ {
     public List<List<String>> getTable() {
         List<String> strsInHeader = new ArrayList<>();
         List<List<String>> tableContent = new ArrayList<>();
-
-
         if (isNotDisplayed(client.getJsonObject(client.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
             jsonObject = client.getJsonObject(client.getD10());
             try {
@@ -54,7 +52,7 @@ public class ClientAction extends $ {
                 log.info("表格表体应该是空的");
             }
         }
-        jsonObject = client.getJsonObject(client.getD11());
+        jsonObject = client.getJsonObject(client.getD11Tr1());
         List<WebElement> elements = $.findElements(jsonObject);
         strsInHeader = $.getTableHeader(elements);
         //定位表头,获取表头中的所有文字,存到tableContent中
@@ -70,11 +68,11 @@ public class ClientAction extends $ {
 
 
         if (isNotDisplayed(client.getJsonObject(client.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
-            jsonObject = client.get$D10SiblingJson(num);
+            jsonObject = client.get$10SiblingJson(num);
             List<WebElement> elements = $.findElements(jsonObject);
             tableContent = $.getTableBody(elements);
         }
-        jsonObject = client.getJsonObject(client.getD11());
+        jsonObject = client.getJsonObject(client.getD11Tr1());
         List<WebElement> elements = $.findElements(jsonObject);
         //$.getTableHeader();
         //定位表头,获取表头中的所有文字,存到tableContent中
@@ -95,18 +93,18 @@ public class ClientAction extends $ {
         return tableContent;
     }
 
-    public boolean isElementAppeared(JSONObject jsonObject) {
-        boolean flag = true;
-        try {
-            findElement(jsonObject);
-        } catch (Exception e) {
-            flag = false;
-        } finally {
-            //$.jsonObject = null;
-        }
-        log.info("isElementAppeared:" + flag);
-        return flag;
-    }
+//    public boolean isElementAppeared(JSONObject jsonObject) {
+//        boolean flag = true;
+//        try {
+//            findElement(jsonObject);
+//        } catch (Exception e) {
+//            flag = false;
+//        } finally {
+//            //$.jsonObject = null;
+//        }
+//        log.info("isElementAppeared:" + flag);
+//        return flag;
+//    }
 
 
     public boolean isElementAppeared() {
@@ -233,7 +231,7 @@ public class ClientAction extends $ {
                 text = getInputValue(element);
                 flag = text.equals(body);
             } else if (head.equals("创建人")) {
-                WebElement element = findElement(TopNavigator.getJson(TopNavigator.dTNUserName));
+                WebElement element = findElement(topNavigator.getJsonObject(topNavigator.getDTNUserName()));
                 text = getText(element);
                 String userName = text.trim();
                 flag = userName.equals(body);
@@ -272,7 +270,7 @@ public class ClientAction extends $ {
                 String inputValue = getInputValue(element);
                 webInfo.add(inputValue);
             } else if (head.equals("创建人")) {
-                WebElement element = findElement(TopNavigator.getJson(TopNavigator.dTNUserName));
+                WebElement element = findElement(topNavigator.getJsonObject(topNavigator.getDTNUserName()));
                 text = getText(element);
                 String userName = text.trim();
                 webInfo.add(userName);

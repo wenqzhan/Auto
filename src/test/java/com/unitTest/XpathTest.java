@@ -3,24 +3,282 @@ package com.unitTest;
 import com.alibaba.fastjson.JSONObject;
 import com.driver.Xpath;
 import com.pageObject.commonObject.*;
-import com.pageObject.matrix.orgCust.Client;
-import com.pageObject.matrix.orgCust.Contract;
+import com.pageObject.matrix.*;
+import com.pageObject.matrix.learn.xxfb.Edit;
+import com.pageObject.matrix.learn.xxfb.XxfbList;
 import com.utils.date.DateMisc;
+import com.utils.file.MyFile;
 import com.utils.json.XpathJson;
+import com.utils.random.Randoms;
+import org.apache.commons.codec.binary.Base64OutputStream;
+import org.apache.commons.compress.utils.IOUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
+import java.io.*;
+import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 
 public class XpathTest {
 
 
+    @Test
+    public void sdfsdfsdfsd(){
+        TableContent tableContent = new TableContent("poppd tabbed");
+        tableContent = (TableContent) tableContent.getObjAttr("poped tabbed");
+        System.out.println(tableContent.getJsonObject(tableContent.getD10ActionMore()));
+
+
+
+
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        dfsssdfsdf();
+    }
+
+    public static void dfsssdfsdf() throws IOException {
+        String oldFilePath = "D:/upload/abc.mp3";
+        String newFilePath = "D:/upload/NewFilePath/abc.mp3";
+        File fileOld = new File(oldFilePath);
+        File fileNew = new File(newFilePath);
+        encode(fileOld,new FileOutputStream(newFilePath));
+    }
+
+
+    public static void encode(File file, OutputStream base64OutputStream) throws IOException {
+        InputStream is = new FileInputStream(file);
+        OutputStream out = new Base64OutputStream(base64OutputStream);
+        IOUtils.copy(is, out);
+        is.close();
+        out.close();
+    }
+
 
     @Test
-    public void sdffsd(){
+    public void dfasdfsdfsdfas(){
+
+        String oldFilePath = "D:/upload/abc.mp3";
+        String newFilePath = "D:/upload/NewFilePath/abc.mp3";
+        File fileOld = new File(oldFilePath);
+        File fileNew = new File(newFilePath);
+        fileNew.deleteOnExit();
+        try {
+            FileInputStream inputStream = new FileInputStream(fileOld);
+            ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+            byte[] by ;
+            byte[] array = new byte[1024];
+            int ch=0;
+            while ((ch=inputStream.read()) != -1) {
+                arrayOutputStream.write(array, 0, ch);
+            }
+            by = arrayOutputStream.toByteArray();
+
+            BASE64Encoder encoder = new BASE64Encoder();
+            String str = encoder.encode(by);
+            BASE64Decoder decoder = new BASE64Decoder();
+            byte[] newBy = decoder.decodeBuffer(str);
+            FileOutputStream outputStream = new FileOutputStream(newFilePath);
+            BufferedOutputStream bos = new BufferedOutputStream(outputStream);
+            bos.write(newBy);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void sdfsadfasf(){
+        String[] dfsdf = DateMisc.getRandomYMDToYMD();
+        System.out.println(dfsdf[0]);
+        System.out.println(dfsdf[1]);
+    }
+
+
+    @Test
+    public void sdfsadfsadf(){
+//        YMDSelection ymdSelection = new YMDSelection("调研时间");
+//        ymdSelection = (YMDSelection) ymdSelection.getObjAttr();
+//        System.out.println(ymdSelection.getPrefix());
+
+        YMDToYMDRightSelection YMDToYMDRightSelection = new YMDToYMDRightSelection("调研时间");
+        YMDToYMDRightSelection = (YMDToYMDRightSelection) YMDToYMDRightSelection.getObjAttr("调研时间");
+        System.out.println(YMDToYMDRightSelection.getPrefix());
+        System.out.println(YMDToYMDRightSelection.getXLastYear());
+//        System.out.println(ymdymdRightSelection.getJsonObject(ymdymdRightSelection.getDLastYear()));
+
+    }
+
+    @Test
+    public void sdfsdfsadf() {
+        CommonObject commonObject = new CommonObject();
+        commonObject.getObjAttr();
+        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+        commonObjectPopped =(CommonObjectPopped) commonObjectPopped.getObjAttr();
+        System.out.println("FSDFSDFSADFSDFFDFFSDFSDF");
+        System.out.println(commonObjectPopped.getDUploadP());
+        System.out.println(commonObjectPopped.getXUploadP());
+        System.out.println("FSDFSDFSADFSDFFDFFSDFSDF");
+        System.out.println(commonObjectPopped.getJsonObject(commonObjectPopped.getDUploadP()));
+
+
+    }
+
+
+    @Test
+    public void sdfdaa() {
+        CommonObject commonObject = new CommonObject();
+        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+        commonObject.getObjAttr();
+        commonObjectPopped.getObjAttr();
+        XxfbList xxfbList = new XxfbList();
+        xxfbList = (XxfbList) xxfbList.getObjAttr();
+        System.out.println(xxfbList.getJsonObject(xxfbList.getD10ActionMore()));
+        System.out.println(xxfbList.getJsonObject(xxfbList.getD10ActionDetails()));
+
+
+    }
+
+
+    @Test
+    public void sdfsdfsdf() {
+//        Object o = XxfbListTest.getPrivateConst("testCount");
+//        System.out.println(o);
+    }
+
+
+    @Test
+    public void sdfsdfddd() {
+        AttachmentUpload attachmentUpload = new AttachmentUpload("附件");
+        attachmentUpload = (AttachmentUpload) attachmentUpload.getObjAttr("附件");
+        System.out.println(attachmentUpload.getJsonObject(attachmentUpload.getDUploadPUploadDoneFile()));
+        System.out.println(attachmentUpload.getJsonObject(attachmentUpload.getD48Final()));
+    }
+
+    @Test
+    public void sdfsdfs() {
+        String path = System.getProperty("user.dir");
+        path = path + "\\files";
+        List<String> files = MyFile.getFiles(path);
+        int random = Randoms.getRandomNum(0, files.size() - 1);
+        String file = files.get(random);
+        System.out.println(file);
+        String name = MyFile.getFileName(file);
+        System.out.println(name);
+
+
+    }
+
+
+    @Test
+    public void dfsdfsdf() {
+        YMDSelection ymdSelection = new YMDSelection("签署日期");
+        ymdSelection = (YMDSelection) ymdSelection.getObjAttr("签署日期");
+        System.out.println(ymdSelection.getPrefix());
+//        System.out.println(ymdSelection.getLabel());
+        System.out.println(ymdSelection.get$DecadeByTextJson("2030-2040"));
+
+    }
+
+
+    @Test
+    public void sdfsdf1() {
+        String name = "操作";
+        CustSelection custSelection = new CustSelection(name);
+        custSelection = (CustSelection) custSelection.getObjAttr();
+        System.out.println(custSelection.getJsonObject(custSelection.getDCS2()));
+        System.out.println();
+
+    }
+
+
+    @Test
+    public void YMDATest() {
+        YMDSelection ymdSelection = new YMDSelection("签署日期");
+        ymdSelection = (YMDSelection) ymdSelection.getObjAttr();
+
+        Field[] fields2 = ymdSelection.getClass().getDeclaredFields();
+        for (Field field : fields2) {
+            boolean access = field.isAccessible();
+            if (!access) field.setAccessible(true);
+            System.out.println("!!!!!1oooo1111!!!!");
+            Object caaa = null;
+            try {
+                caaa = field.get(ymdSelection);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            System.out.println(field.getName() + ":" + caaa);
+            System.out.println("@@@@@@11oooo1111@@@");
+        }
+
+        System.out.println(ymdSelection.getDLastCentury());
+        System.out.println(ymdSelection.getXLastCentury());
+
+        System.out.println(ymdSelection.getJsonObject(ymdSelection.getDLastCentury()));
+
+
+    }
+
+
+    @Test
+    public void sfsdfsdf() {
+        CommonObject commonObject = new CommonObject();
+        commonObject.getObjAttr();
+
+        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+        commonObjectPopped.getObjAttr();
+
+
+        XxfbList xxfbList = new XxfbList();
+//        System.out.println("DFFGGGGG");
+//        System.out.println(xxfbList.getConVal());
+//        System.out.println("DFFGGGGG");
+        xxfbList = (XxfbList) xxfbList.getObjAttr();
+        System.out.println("@#!@#!@#!@#");
+        System.out.println(xxfbList.getX3());
+        System.out.println(xxfbList.getXxfbList());
+
+        System.out.println("@#!@#!@#!@#");
+
+
+    }
+
+
+    @Test
+    public void sdfdf() {
+        AttachmentUpload attachmentUpload = new AttachmentUpload();
+        System.out.println(attachmentUpload.get$UploadedFileStatus(1, "上传成功"));
+        System.out.println(attachmentUpload.get$UploadedFileStatus(1, "上传中"));
+        System.out.println(attachmentUpload.get$UploadedFileStatus(1, "上传失败"));
+
+
+    }
+
+
+    @Test
+    public void sfdf() {
+        CommonObject commonObject = new CommonObject();
+        commonObject.getObjAttr();
+        Edit edit = new Edit();
+        edit = (Edit) edit.getObjAttr();
+        JSONObject jsonObject3 = edit.getJsonObject(edit.getD69UploadFileCross());
+        System.out.println(edit.getX69UploadFileCross());
+        System.out.println(edit.getD69UploadFileCross());
+        System.out.println(jsonObject3);
+
+    }
+
+
+    @Test
+    public void sdffsd() {
 //        YMDSelection ymdSelection = new YMDSelection("签署日期");
 //        System.out.println("___________________________");
 //        System.out.println(ymdSelection.getdYMDLastYear());
@@ -30,7 +288,7 @@ public class XpathTest {
 //        commonObjectPopped.getObjAttr();
 //        System.out.println(commonObjectPopped.getJsonObject(commonObjectPopped.getD34P()));
         System.out.println("[[[[[[[[[[[[[]]]]]]]]]]]]]]]");
-        CustSelection test = new CustSelection("国君服务联系人");
+        CommonObjectPopped test = new CommonObjectPopped();
         test.getObjAttr();
 //        empSelection.getObjAttr();
 //        System.out.println("1111111111111111111111111");
@@ -46,9 +304,8 @@ public class XpathTest {
         System.out.println("1111111111111111");
 
 
-
         System.out.println("1111111111111111");
-        System.out.println((test.get$CS10SiblingByCustNameJson("KKKKK")));
+        System.out.println((test.get$XPLi("KKKKK")));
         System.out.println("1111111111111111");
 
 
@@ -63,12 +320,12 @@ public class XpathTest {
 
 
     @Test
-    public void dfsdf(){
+    public void dfsdf() {
         System.out.println(this.getClass().getName());
     }
 
     @Test
-    public void fsfsdf(){
+    public void fsfsdf() {
         //System.out.println(CommonObjectPopped.x50Pl1);
         String path = System.getProperty("user.dir");
         System.setProperty("webdriver.chrome.driver", path + "\\drivers\\chromedriver.exe");
@@ -106,7 +363,7 @@ public class XpathTest {
 
 
     @Test
-    public void ffgfgf(){
+    public void ffgfgf() {
         //System.out.println(EmpSelection.get$dES10(1));
 //        String a = AssignCust.xx5t;
 //        System.out.println(a);
@@ -114,7 +371,7 @@ public class XpathTest {
         System.out.println(DateMisc.getRandomYMD());
 //        System.out.println(ymdSelection.get$aByText("2019"));
 //        System.out.println(ymdSelection.get$a("上一年 (Control键加左方向键)"));
-       // System.out.println(empSelection.getXpath(empSelection.dES32));
+        // System.out.println(empSelection.getXpath(empSelection.dES32));
 //        Date date=new Date();//此时date为当前的时间
 //
 //        Calendar calendar = new GregorianCalendar();
@@ -128,18 +385,16 @@ public class XpathTest {
     }
 
 
-
-
     @Test
 
-    public void teeeee(){
+    public void teeeee() {
 
-        String parentXpath ="";
-        String childTagName ="span";
-        String childTagText ="中国邮政储蓄银行股份有限公司双辽市王奔镇营业所";
-        String[] containsAttributeValue ={};
-        String[] notContainsAttributeValue ={};
-        JSONObject jsonObject = XpathJson.fabricateJsonObject(parentXpath,childTagName,childTagText,containsAttributeValue,notContainsAttributeValue);
+        String parentXpath = "";
+        String childTagName = "span";
+        String childTagText = "中国邮政储蓄银行股份有限公司双辽市王奔镇营业所";
+        String[] containsAttributeValue = {};
+        String[] notContainsAttributeValue = {};
+        JSONObject jsonObject = XpathJson.fabricateJsonObject(parentXpath, childTagName, childTagText, containsAttributeValue, notContainsAttributeValue);
 
 
         //long startTime = System.currentTimeMillis();
@@ -153,7 +408,6 @@ public class XpathTest {
 //        containsAttributeValue =new String[]{};
 //        notContainsAttributeValue =new String[]{};
 //        jsonObject = XpathJson.fabricateJsonObject(parentXpath,childTagName,childTagText,containsAttributeValue,notContainsAttributeValue);
-
 
 
         //Xpath.getXpath(jsonObject);

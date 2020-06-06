@@ -1,11 +1,11 @@
-package com.pageObject.commonObject;
+package com.pageObject.matrix;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pageObject.commonObject.CommonObject;
 import com.utils.json.Attr;
 import com.utils.json.JsonObject;
 import lombok.Data;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -36,47 +36,47 @@ public class CustSelection extends JsonObject {
     }
 
 
-    private final String dCS2 = "通用-客户查询popped-客户名称-input";
-    private String xCS2 = commonObject.get$XQueryInput("客户名称");
+    private String dCS2 = "通用-客户查询popped-客户名称-input";
+    private String xCS2 = commonObject.get$XInput("客户名称");
     //div[1=1 and contains(text(),"操作")]/../..//label[1=1 and contains(text(),"客户名称")]/../following-sibling::*[1]//input
 
 
-    private final String dCS1 = "通用-客户查询popped-OA账户-input";
-    private String xCS1 = commonObject.get$XQueryInput("OA账户");
+    private String dCS1 = "通用-客户查询popped-OA账户-input";
+    private String xCS1 = commonObject.get$XInput("OA账户");
     //div[1=1 and contains(text(),"操作")]/../..//label[1=1 and contains(text(),"OA账户")]/../following-sibling::*[1]//input
 
-    private final String dCS27 = "通用-客户查询popped-客户经理-input";
-    private String xCS27 = commonObject.get$XQueryInput("客户经理");
+    private String dCS27 = "通用-客户查询popped-客户经理-input";
+    private String xCS27 = commonObject.get$XInput("客户经理");
     //div[1=1 and contains(text(),"操作")]/../..//label[1=1 and contains(text(),"客户经理")]/../following-sibling::*[1]//input
 
-    private final String dCS3 = "通用-客户查询popped-查询-span";
+    private String dCS3 = "通用-客户查询popped-查询-span";
     private String xCS3 = commonObject.get$XSpan("查询");
     //div[1=1 and contains(text(),"操作")]/../..//span[1=1 and contains(text(),"查询")]
 
 
-    private final String dCS4 = "通用-客户查询popped-重置-span";
+    private String dCS4 = "通用-客户查询popped-重置-span";
     private String xCS4 = commonObject.get$XSpan("重置");
     //div[1=1 and contains(text(),"操作")]/../..//span[1=1 and contains(text(),"重置")]
 
 
-    private final String dCS10 = "通用-客户查询popped-表格表体rows-tr";
+    private String dCS10 = "通用-客户查询popped-表格表体rows-tr";
     private String xCS10 = commonObject.getX10();
     //div[1=1 and contains(text(),"操作")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]
 
-    private final String dCS10Selected = "通用-客户查询popped-表格表体rows-selected-tr";
+    private String dCS10Selected = "通用-客户查询popped-表格表体rows-selected-tr";
     private String xCS10Selected = commonObject.getX10Selected();
     //div[1=1 and contains(text(),"操作")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and contains(@class,'selected')]
 
-    private final String dCS10NotSelected = "通用-客户查询popped-表格表体rows-not selected-tr";
+    private String dCS10NotSelected = "通用-客户查询popped-表格表体rows-not selected-tr";
     private String xCS10NotSelected = commonObject.getX10NotSelected();
     //div[1=1 and contains(text(),"操作")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(contains(@class,'selected'))]
 
 
-    private final String dCS30 = "通用-客户查询popped-关闭按钮-span";
+    private String dCS30 = "通用-客户查询popped-关闭按钮-span";
     private String xCS30 = commonObject.getX30();
     //div[1=1 and contains(text(),"操作")]/../..//span[1=1 and contains(text(),"关 闭")]
 
-    private final String dCS29 = "通用-客户查询popped-确定按钮-span";
+    private String dCS29 = "通用-客户查询popped-确定按钮-span";
     private String xCS29 = commonObject.getX29();
     //div[1=1 and contains(text(),"操作")]/../..//span[1=1 and contains(text(),"确 定")]
 
@@ -89,7 +89,7 @@ public class CustSelection extends JsonObject {
     private String get$XCS10Sibling(int num) {
         //div[1=1 and contains(text(),"操作")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(@style)][1]
         String xpath = commonObject.get$X10Sibling(num);
-        xpath = getPrefix() + xpath;
+        xpath = super.getPrefix() + xpath;
 
         return xpath;
     }
@@ -122,7 +122,7 @@ public class CustSelection extends JsonObject {
      */
     private String get$XCS10SiblingByCustName(String custName) {
         //div[1=1 and contains(text(),"操作")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]//td[text()='中国邮政储蓄银行股份有限公司双辽市王奔镇营业所']        //div[1=1 and contains(text(),"操作")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key][1]
-        String key = "xCS10"+"@"+this.getClass().getSimpleName()+getConVal();
+        String key = "xCS10" + "@" + this.getClass().getName() + getConVal();
         String xpath = attr.get(key);
         xpath = xpath + "//td[text()='";
         xpath = xpath + custName;
@@ -139,7 +139,7 @@ public class CustSelection extends JsonObject {
      */
     private String get$DCS10SiblingByCustName(String custName) {
         //通用-客户查询popped-表格表体-中国邮政储蓄银行股份有限公司双辽市王奔镇营业所
-        String key = "dCS10"+"@"+this.getClass().getSimpleName()+getConVal();
+        String key = "dCS10" + "@" + this.getClass().getName() + getConVal();
         String description = attr.get(key);
         description = description + "-" + custName;
         return description;

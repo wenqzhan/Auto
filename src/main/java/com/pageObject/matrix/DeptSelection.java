@@ -1,6 +1,7 @@
-package com.pageObject.commonObject;
+package com.pageObject.matrix;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pageObject.commonObject.CommonObject;
 import com.utils.json.Attr;
 import com.utils.json.JsonObject;
 import lombok.Data;

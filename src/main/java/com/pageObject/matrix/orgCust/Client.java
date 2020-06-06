@@ -2,6 +2,9 @@ package com.pageObject.matrix.orgCust;
 
 import com.alibaba.fastjson.JSONObject;
 import com.pageObject.commonObject.*;
+import com.pageObject.matrix.BizLineSelection;
+import com.pageObject.matrix.CustSelection;
+import com.pageObject.matrix.EmpSelection;
 import com.utils.json.JsonObject;
 import lombok.Data;
 
@@ -21,17 +24,17 @@ public class Client extends JsonObject {//客户联系人
         CustSelection custSelection = new CustSelection();
         EmpSelection empSelection = new EmpSelection("国君服务联系人");
 
-        commonObject.getObjAttr();
-        commonObjectPopped.getObjAttr();
+//        commonObject.getObjAttr();
+//        commonObjectPopped.getObjAttr();
         bizLineSelection.getObjAttr();
         custSelection.getObjAttr();
-        empSelection.getObjAttr();
+        empSelection = (EmpSelection) empSelection.getObjAttr("国君服务联系人");
 
     }
 
 
     private  String client =
-            "http://10.187.144.60:8081/orgcust/client";
+            "http://10.187.144.60:8080/orgcust/client";
 
     private final  String d35 = "客户联系人-新增按钮-span";
     private final  String x35 = commonObject.getX35();
@@ -83,8 +86,8 @@ public class Client extends JsonObject {//客户联系人
     private final  String x10NotSelected = commonObject.getX10NotSelected();
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(contains(@class,'selected'))]
 
-    private final  String d11 = "客户联系人-表格表头row下的th col-th";
-    private final  String x11 = commonObject.getX11();
+    private final  String d11Tr1 = "客户联系人-表格表头row下的tr[1]/th col-th";
+    private final  String x11Tr1 = commonObject.getX11Tr1();
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[not(@key='selection-column') and not(@key='action')]
 
     private final  String d31 = "客户联系人-表格表头-多选框-th";
@@ -139,9 +142,9 @@ public class Client extends JsonObject {//客户联系人
     private final  String x28 = commonObject.getX28();
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']//input
 
-    private final  String d48 = "客户联系人-添加/修改-成功系统提示信息";
-    private final  String x48 = commonObject.getX48();
-    //div[@class='ant-message-notice-content']
+    private final  String d81Final = "客户联系人-添加/修改-成功系统提示信息(有绿钩子的)";
+    private final  String x81Final = commonObject.getX81Final();
+    //div[@class='ant-message-content']
     //////////////
     private final  String d34P = commonObjectPopped.getD34P().replaceFirst("通用","客户联系人");
     private final  String x34P = commonObjectPopped.getX34P();
@@ -264,13 +267,13 @@ public class Client extends JsonObject {//客户联系人
     }
 
 
-    public  JSONObject get$D10SiblingJson(int num) {
+    public  JSONObject get$10SiblingJson(int num) {
         JsonObject.setJsonObject(get$D10Sibling(num), get$X10Sibling(num));
         return JsonObject.getJsonObject();
     }
 
 
-    public  JSONObject get$D10_actionSiblingJson(int num) {
+    public  JSONObject get$10_actionSiblingJson(int num) {
         JsonObject.setJsonObject(get$D10_actionSibling(num), get$X10_actionSibling(num));
         return JsonObject.getJsonObject();
     }

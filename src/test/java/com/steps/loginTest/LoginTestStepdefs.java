@@ -17,6 +17,9 @@ public class LoginTestStepdefs extends $ {
     private final static LoggerController log = LoggerController.getLogger(LoginTestStepdefs.class);
     private static String text;
     private static JSONObject jsonObject;
+    private TopNavigator topNavigator = new TopNavigator();
+//    private LoginAction loginAction = new LoginAction();
+    private LoginPage loginPage = new LoginPage();
     @当("^我用\"(.*?)\"打开\"(.*?)\"$")
     public void open(String browser, String website) throws Throwable {
         log.info("--------------测试开始-------------------");
@@ -30,7 +33,7 @@ public class LoginTestStepdefs extends $ {
             }
         }
         if (website.equals("新matrix")) {
-            $.get("http://10.187.144.60:8081/user/login");
+            $.get("http://10.187.144.60:8080/user/login");
         } else if (website.equals("百度")) {
             $.get("https://www.baidu.com");
         }
@@ -42,7 +45,7 @@ public class LoginTestStepdefs extends $ {
     public void inputUserName(String userName) {
         // Write code here that turns the phrase above into concrete actions
         //System.out.println("11111");
-        jsonObject = LoginPage.getJson(LoginPage.dLPUserNameInput);
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPUserNameInput());
         //System.out.println(jsonObject);
         WebElement element =$.findElement(jsonObject);
 //        System.out.println(element);
@@ -54,7 +57,7 @@ public class LoginTestStepdefs extends $ {
     @同时("^我在密码框中输入\"(.*?)\"$")
     public void inputPassword(String password) {
         // Write code here that turns the phrase above into concrete actions
-        jsonObject = LoginPage.getJson(LoginPage.dLPPWDInput);
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPPWDInput());
         WebElement element = $.findElement(jsonObject);
         $.clear(element);
         $.sendKeys(element,password);
@@ -62,25 +65,25 @@ public class LoginTestStepdefs extends $ {
 
     @当("^我点击登录按钮$")
     public void login() {
-        jsonObject = LoginPage.getJson(LoginPage.dLPLoginButton);
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPLoginButton());
         WebElement element =$.findElement(jsonObject);
         $.click(element);
     }
 
     @当("^成功登录$")
     public void longinSucessfully() {
-        jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
+        jsonObject = topNavigator.getJsonObject(topNavigator.getDTNArrow());
         WebElement element =$.findElement(jsonObject);
         //可以看到登录后才能看到的东西,那么登录成功
-        //$.get("http://10.187.144.60:8081/user/login");
-        jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
+        //$.get("http://10.187.144.60:8080/user/login");
+        jsonObject = topNavigator.getJsonObject(topNavigator.getDTNArrow());
         element =$.findElement(jsonObject);
 
-        jsonObject = TopNavigator.getJson(TopNavigator.dTNLogOut);
+        jsonObject = topNavigator.getJsonObject(topNavigator.getDTNLogOut());
         element =$.findElement(jsonObject);
         $.click(element);
 
-        jsonObject = TopNavigator.getJson(TopNavigator.dTNLogOutConfirm);
+        jsonObject = topNavigator.getJsonObject(topNavigator.getDTNLogOutConfirm());
         element =$.findElement(jsonObject);
         $.click(element);
 
@@ -95,7 +98,7 @@ public class LoginTestStepdefs extends $ {
 
     @假如("^系统有提示\"(.*?)\"$")
     public void getMessage(String message) {
-        jsonObject = LoginPage.getJson(LoginPage.dLPLoginFailPromot);
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPLoginFailPromote());
         WebElement element =$.findElement(jsonObject);
         text = $.getText(element);
         MyAssert.assertEquals(text, message);
@@ -103,7 +106,7 @@ public class LoginTestStepdefs extends $ {
 
     @并且("^提示信息为\"(.*?)\"$")
     public void getDescription(String description) {
-        jsonObject = LoginPage.getJson(LoginPage.dLPLoginFailDetails);
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPLoginFailDetails());
         WebElement element =$.findElement(jsonObject);
         text = $.getText(element);
         MyAssert.assertEquals(text, description);

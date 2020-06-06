@@ -1,6 +1,7 @@
-package com.pageObject.commonObject;
+package com.pageObject.matrix;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pageObject.commonObject.CommonObject;
 import com.utils.json.Attr;
 import com.utils.json.JsonObject;
 import lombok.Data;
@@ -11,14 +12,19 @@ import java.util.Map;
 public class EmpSelection extends JsonObject {
     private CommonObject commonObject = new CommonObject();
     private Map<String, String> attr = Attr.getAttr();
+
     public EmpSelection() {
 //        commonObject.getObjAttr();
+        setDesPrefix("");
+        setPrefix("");
+        setConVal("");
     }
 
-    public EmpSelection(String name) {
+    public EmpSelection(String label) {
 //        commonObject.getObjAttr();
-        setPrefix(name);
-        setConVal(name);
+        setDesPrefix(label);
+        setPrefix(label);
+        setConVal(label);
 //        changePrefix(name);
 
     }
@@ -40,33 +46,34 @@ public class EmpSelection extends JsonObject {
 
 //    private String prefix = "//div[1=1 and contains(text(),\"客户经理\")]/../..";
 
-    private final String append1 = "/following-sibling::span[1]/button";
+    private String append1 = "/following-sibling::span[1]/button";
 
 
-    private final String dES32 = commonObject.getX32().replaceFirst("-","-员工查询popped-左侧部门查询框-");//"通用-员工查询popped-左侧部门查询框-input";
+    private String dES32 = commonObject.getX32().replaceFirst("-", "-员工查询popped-左侧部门查询框-");
+    //"通用-员工查询popped-左侧部门查询框-input";
     private String xES32 = commonObject.getX32();
     //div[1=1 and contains(text(),"客户经理1")]/../..//input[1=1 and contains(@placeholder,'输入查询')]
 
 
-    private final String dES33 = commonObject.getD33().replaceFirst("-","-员工查询popped-左侧部门查询框-");
+    private String dES33 = commonObject.getD33().replaceFirst("-", "-员工查询popped-右侧人员查询框");
     private String xES33 = commonObject.getX33();
     //div[1=1 and contains(text(),"客户经理1")]/../..//input[1=1 and contains(@placeholder,'输入用户名')]
 
-    private final String dES33Span = "通用-员工查询popped-右侧用户名查询-input_旁边的查询按钮-span";
-    private String xES33Span = xES33 + append1;
+    private String dES33SearchSpan = "通用-员工查询popped-右侧用户名查询-input_旁边的查询按钮-span";
+    private String xES33SearchSpan = xES33 + append1;
     //div[1=1 and contains(text(),"客户经理1")]/../..//input[1=1 and contains(@placeholder,'输入用户名')]/following-sibling::span[1]
 
 
-    private final String dES10 = "通用-员工查询popped-表格表体rows-tr";
+    private String dES10 = "通用-员工查询popped-表格表体rows-tr";
     private String xES10 = commonObject.getX10();
     //div[1=1 and contains(text(),"客户经理1")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]
 
 
-    private final String dES30 = "通用-员工查询popped-关闭按钮-span";
+    private String dES30 = "通用-员工查询popped-关闭按钮-span";
     private String xES30 = commonObject.getX30();
     //div[1=1 and contains(text(),"业务条线")]/../..//span[1=1 and contains(text(),"关 闭")]
 
-    private final String dES29 = "通用-员工查询popped-确定按钮-span";
+    private String dES29 = "通用-员工查询popped-确定按钮-span";
     private String xES29 = commonObject.getX29();
     //div[1=1 and contains(text(),"业务条线")]/../..//span[1=1 and contains(text(),"确 定")]
 
@@ -78,7 +85,7 @@ public class EmpSelection extends JsonObject {
      */
     public String get$XES10Sibling(int num) {
         //div[1=1 and contains(text(),"客户经理1")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key][1]
-        String key = "xES10" + "@" + this.getClass().getSimpleName()+getConVal();
+        String key = "xES10" + "@" + this.getClass().getName() + getConVal();
         String xpath = attr.get(key);
         if (num > 0) {
             xpath = xpath + "[" + num + "]";
@@ -120,7 +127,10 @@ public class EmpSelection extends JsonObject {
      */
     private String get$XES10SiblingByUserName(String userName) {
         //div[1=1 and contains(text(),"客户经理1")]/../..//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]/td[text()='王明明']
-        String key = "xES10" + "@" + this.getClass().getSimpleName()+getConVal();
+        String key = "xES10" + "@" + this.getClass().getName() + getConVal();
+        System.out.println("#!@#!@");
+        System.out.println(key);
+        System.out.println("#!@#!@");
         String xpath = attr.get(key);
 
         xpath = xpath + "/td[text()='" + userName + "']/..";

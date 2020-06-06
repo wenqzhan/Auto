@@ -5,6 +5,7 @@ import com.utils.log.LoggerController;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class Randoms {
@@ -32,6 +33,23 @@ public class Randoms {
         return num;
     }
 
+    public static int getRandomNum(int min, int max, List<Integer> except){
+        int num = 0;
+        Random random = new Random();
+        while (true){
+            num = random.nextInt(max - min + 1) + min;
+            if (except.contains(num)){
+                continue;
+            }else {
+                break;
+            }
+        }
+        return num;
+    }
+
+
+
+
     public static String getRandomStr(int length) {
         StringBuilder str = new StringBuilder();
         Random random = new Random();
@@ -45,6 +63,17 @@ public class Randoms {
             }
         }
         log.info("生成随机字符" + str + "位数:" + length);
+        return str.toString();
+    }
+
+
+    public static String getRandomGBKStr(int length){
+        StringBuilder str = new StringBuilder();
+//        int random = getRandomNum(1,length);
+        for (int i = 0; i <length ; i++) {
+            str.append(getRandomGBKChar());
+        }
+        log.info("生成随机GBK字符" + str + "位数:" + length);
         return str.toString();
     }
 

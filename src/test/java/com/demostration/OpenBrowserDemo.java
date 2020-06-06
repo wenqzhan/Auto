@@ -22,7 +22,7 @@ public class OpenBrowserDemo extends $ {
 //    public void openTest() throws InterruptedException {
 //        LoginAction.login();
 //        //LoginAction.login2();
-//        $.get("http://10.187.144.60:8081/custListMange/customAdjustHistory");
+//        $.get("http://10.187.144.60:8080/custListMange/customAdjustHistory");
 //
 //        CustomAdjustHistoryAction.getTable();//获取第一页表格内容
 //        jsonObject = CustomAdjustHistory.getJson(CustomAdjustHistory.d11);

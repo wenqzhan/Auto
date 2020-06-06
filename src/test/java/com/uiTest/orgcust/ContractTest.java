@@ -1,4 +1,4 @@
-package com.uiTest;
+package com.uiTest.orgcust;
 
 import com.actions.OpenBrowserAction;
 import com.actions.matrix.LoginAction;
@@ -9,6 +9,7 @@ import com.pageObject.commonObject.*;
 import com.pageObject.matrix.orgCust.Client;
 import com.pageObject.matrix.orgCust.Contract;
 import com.utils.date.DateMisc;
+import com.utils.json.Attr;
 import com.utils.list.ListMisc;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -17,6 +18,8 @@ import org.testng.annotations.*;
 import java.util.List;
 
 public class ContractTest extends $ {
+    private static int testCount = 0;
+    private Attr attr = new Attr(this.getClass());
     boolean flag;
     String custName;
     String materialTitle;
@@ -26,6 +29,7 @@ public class ContractTest extends $ {
     String bizOpportunity;
     private ContractAction contractAction = new ContractAction();
     private Contract contract = new Contract();
+    LoginAction loginAction = new LoginAction();
 
 //    @Test
     public void clickUploadMaterial() {
@@ -280,8 +284,9 @@ public class ContractTest extends $ {
 
     @BeforeClass
     public void beforeClass01() {
+        testCount++;
         OpenBrowserAction.open("chrome", this.getClass());
-        LoginAction.login();
+        loginAction.login();
         get(contract.getContract());
         //get(Client.client);//登录后跳转客户维护分配页面
 
@@ -302,8 +307,11 @@ public class ContractTest extends $ {
 
     @AfterClass
     public void afterClass01() throws InterruptedException {
-
+        testCount--;
         Thread.sleep(5000);
+        if (testCount == 0) {
+            attr.deleteFromAttrs(this.getClass());
+        }
         $.quit();
     }
 

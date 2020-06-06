@@ -1,6 +1,7 @@
-package com.pageObject.commonObject;
+package com.pageObject.matrix;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pageObject.commonObject.CommonObject;
 import com.utils.json.JsonObject;
 import lombok.Data;
 
@@ -97,11 +98,11 @@ public class BizLineSelection extends JsonObject {
         //div[1=1 and contains(text(),"业务条线")]/../..//li[1]/span[3]/..
         String xpath;
         if (num > 0) {
-            xpath = getPrefix() + append1.replaceFirst("li", "li[" + num + "]");
+            xpath = super.getPrefix() + append1.replaceFirst("li", "li[" + num + "]");
         } else if (num == -1) {
-            xpath = getPrefix() + append1.replaceFirst("li", "li[" + "last()" + "]");
+            xpath = super.getPrefix() + append1.replaceFirst("li", "li[" + "last()" + "]");
         } else {
-            xpath = getPrefix() + append1;
+            xpath = super.getPrefix() + append1;
         }
 
         xpath = xpath + "/..";
@@ -138,7 +139,7 @@ public class BizLineSelection extends JsonObject {
     private String get$XBLS34SpanSibling(String name) {
         //div[1=1 and contains(text(),"业务条线")]/../..//li[3]//span[1=1 and contains(text(),"道合研究服务试用")]
 
-        String xpath = getPrefix() + append1.replaceFirst("/span\\[3]", "");
+        String xpath = super.getPrefix() + append1.replaceFirst("/span\\[3]", "");
 
         xpath = xpath + commonObject.get$XSpan(name) + "/..";
 

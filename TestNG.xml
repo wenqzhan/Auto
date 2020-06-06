@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Default Suite" parallel="methods" thread-count="2">
-<!--<suite name="Default Suite" >-->
-  <test name="webdriver">
-    <classes>
-        <class name="com.uiTest.ClientTest"/>
-        <class name="com.uiTest.ContractTest"/>
-        <!--<class name="com.demostration.OpenBrowserDemo"/>-->
-    <!--<class name="com.demostration.RunCucumberDemo"/> -->
-  </classes>
-</test> <!-- webdriver_demo -->
-  <listeners>
-          <listener class-name="com.utils.testng.RetryListener"/>
-          <listener class-name="com.utils.testng.TestResultListener"/>
-  </listeners>
+<suite name="Default Suite" parallel="tests" thread-count="1">
+    <!--<suite name="Default Suite" >-->
+    <test name="matrix.ClientTest">
+        <classes>
+            <class name="com.uiTest.orgcust.ClientTest"/>
+        </classes>
+    </test>
+    <test name="matrix.ContractTest">
+        <classes>
+            <class name="com.uiTest.orgcust.ContractTest"/>
+        </classes>
+    </test>
+    <test name="matrix.XxfbListTest">
+        <classes>
+            <class name="com.uiTest.learn.xxfb.XxfbListTest"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.utils.testng.RetryListener"/>
+        <listener class-name="com.utils.testng.TestResultListener"/>
+    </listeners>
 </suite> <!-- Default Suite -->

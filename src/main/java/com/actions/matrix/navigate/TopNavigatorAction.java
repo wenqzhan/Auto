@@ -9,18 +9,24 @@ import com.utils.log.LoggerController;
 import org.openqa.selenium.WebElement;
 
 public class TopNavigatorAction extends $ {
-    private final static LoggerController log = LoggerController.getLogger(TopNavigatorAction.class);
+    private TopNavigator topNavigator = new TopNavigator();
+
+    public TopNavigatorAction(){
+        topNavigator.getObjAttr();
+    }
+
+    private  static LoggerController log = LoggerController.getLogger(TopNavigatorAction.class);
 
 
-    public static String getUserCode(){
-       WebElement element =  findElement(TopNavigator.getJson(TopNavigator.dTNUserCode));
+    public  String getUserCode(){
+       WebElement element =  findElement(topNavigator.getJsonObject(topNavigator.getDTNUserCode()));
         String userCode = getText(element).trim().replace("[","").
                 replace("]","");
         return userCode;
     }
 
-    public static String getUserName(){
-        WebElement element = findElement(TopNavigator.getJson(TopNavigator.dTNUserName));
+    public  String getUserName(){
+        WebElement element = findElement(topNavigator.getJsonObject(topNavigator.getDTNUserName()));
         String userName = getText(element);
         int index = userName.indexOf("[");
         userName = userName.substring(0,index);
@@ -29,7 +35,7 @@ public class TopNavigatorAction extends $ {
 
 
 
-    public static String getUserID(){
+    public  String getUserID(){
         String id;
         String userCode = getUserCode();
         String userName = getUserName();

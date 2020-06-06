@@ -7,21 +7,27 @@ import com.pageObject.matrix.navigate.TopNavigator;
 import org.openqa.selenium.WebElement;
 
 public class LoginAction extends $ {
-    private static JSONObject jsonObject;
-    private static int counter = 0;
+    private  JSONObject jsonObject;
+    private  int counter = 0;
+    private LoginPage loginPage = new LoginPage();
+    private TopNavigator topNavigator = new TopNavigator();
 
+    public LoginAction(){
+        loginPage.getObjAttr();
+        topNavigator.getObjAttr();
+    }
 
-    public static void setCounter(int num) {
+    public  void setCounter(int num) {
         counter = num;
 
     }
 
-    public static void login() {
+    public  void login() {
         try {
             if (counter == 0) {
                 throw new Exception("这是第一次登陆,请无视这个异常");
             } else if (counter > 0) {
-                jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
+                jsonObject = topNavigator.getJsonObject(topNavigator.getDTNArrow());
                 $.findElement(jsonObject, 5);
             }
         } catch (Exception e) {
@@ -39,23 +45,23 @@ public class LoginAction extends $ {
         }
     }
 
-    public static void login1() {
-        $.get(LoginPage.matrix);
-        jsonObject = LoginPage.getJson(LoginPage.dLPUserNameInput);
+    public void login1() {
+        $.get(loginPage.getMatrixUrl());
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPUserNameInput());
         WebElement element = $.findElement(jsonObject);
         //$.clear();
         $.sendKeys(element, "029527");
 
-        jsonObject = LoginPage.getJson(LoginPage.dLPPWDInput);
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPPWDInput());
         element = $.findElement(jsonObject);
         //$.clear();
         $.sendKeys(element, "gtja@123456");
 
-        jsonObject = LoginPage.getJson(LoginPage.dLPLoginButton);
+        jsonObject = loginPage.getJsonObject(loginPage.getDLPLoginButton());
         element = $.findElement(jsonObject);
         $.click(element);
 
-        jsonObject = TopNavigator.getJson(TopNavigator.dTNArrow);
+        jsonObject = topNavigator.getJsonObject(topNavigator.getDTNArrow());
         element = $.findElement(jsonObject);
 
     }

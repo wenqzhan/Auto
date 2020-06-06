@@ -7,7 +7,7 @@ import com.utils.json.JsonObject;
 public class CustRelationshipBrokerage extends JsonObject { //客户关系经纪业务
 //    private CommonObject commonObject = new CommonObject();
 //    public  String custRelationshipBrokerage =
-//            "http://10.187.144.60:8081/orgcust/custRelationshipBrokerage";
+//            "http://10.187.144.60:8080/orgcust/custRelationshipBrokerage";
 //
 //    public final  String d1 = "客户关系经纪业务-查询按钮";
 //    private final  String x1 = commonObject.getXpath(commonObject.d3);

@@ -1,7 +1,7 @@
 package com.actions.matrix;
 
 import com.driver.$;
-import com.pageObject.commonObject.CustSelection;
+import com.pageObject.matrix.CustSelection;
 import org.openqa.selenium.WebElement;
 
 public class CustSelectionAction extends $ {
@@ -9,14 +9,14 @@ public class CustSelectionAction extends $ {
 
     //    private static String string; //通用的string,用来存string
     public CustSelectionAction() {
-        this.custSelection = new CustSelection("操作");
-//        custSelection.getObjAttr();
+        custSelection = new CustSelection("操作");
+        custSelection = (CustSelection) custSelection.getObjAttr();
     }
 
 
     public CustSelectionAction(String name) {
-        this.custSelection = new CustSelection(name);
-//        custSelection.getObjAttr();
+        custSelection = new CustSelection(name);
+        custSelection = (CustSelection) custSelection.getObjAttr();
     }
 
     private void inputCustName(String custName) {

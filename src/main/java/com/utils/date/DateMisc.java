@@ -81,6 +81,18 @@ public class DateMisc {
 
     }
 
+    public static String[] getRandomYMDToYMD(){
+        String[] strings = new String[2];
+        Date randomFromDate = randomDate("2000-01-01", "2099-12-31");
+        SimpleDateFormat format = new SimpleDateFormat(SHORT_DATE_FORMAT);
+        String rfd = format.format(randomFromDate);
+        Date randomToDate = randomDate(rfd, "2099-12-31");
+        String rtd = format.format(randomToDate);
+        strings[0]=rfd;
+        strings[1]=rtd;
+        return strings;
+    }
+
 
 
 }

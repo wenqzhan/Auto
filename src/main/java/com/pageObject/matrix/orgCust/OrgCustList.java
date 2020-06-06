@@ -6,7 +6,7 @@ import com.utils.json.JsonObject;
 
 public class OrgCustList extends JsonObject {
 //    private CommonObject commonObject = new CommonObject();
-//    public  String matrixOrgCustList = "http://10.187.144.60:8081/orgcust/list";
+//    public  String matrixOrgCustList = "http://10.187.144.60:8080/orgcust/list";
 //
 //    public final  String d1="客户查询-客户名称查询框";
 //    private final  String x1=commonObject.getXpath(commonObject.d2);

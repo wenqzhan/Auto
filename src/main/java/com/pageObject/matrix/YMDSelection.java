@@ -1,6 +1,7 @@
-package com.pageObject.commonObject;
+package com.pageObject.matrix;
 
 import com.alibaba.fastjson.JSONObject;
+import com.pageObject.commonObject.CommonObject;
 import com.utils.date.DateMisc;
 import com.utils.json.JsonObject;
 import lombok.Data;
@@ -10,26 +11,36 @@ public class YMDSelection extends JsonObject {
     private CommonObject commonObject = new CommonObject();
 //    private String prefix = "";
 
-    private final String lastYear = "上一年 (Control键加左方向键)";
-    private final String lastMonth = "上个月 (翻页上键)";
-    private final String selectYear = "选择年份";
-    private final String selectMonth = "选择月份";
-    private final String nextMonth = "下个月 (翻页下键)";
-    private final String nextYear = "下一年 (Control键加右方向键)";
-    private final String today = DateMisc.getYMD();
-    private final String lastDecade = "上一年代";
-    private final String selectDecade = "选择年代";
-    private final String nextDecade = "下一年代";
-    private final String lastCentury = "上一世纪";
-    private final String nextCentury = "下一世纪";
+    private String lastYear = "上一年 (Control键加左方向键)";
+    private String lastMonth = "上个月 (翻页上键)";
+    private String selectYear = "选择年份";
+    private String selectMonth = "选择月份";
+    private String nextMonth = "下个月 (翻页下键)";
+    private String nextYear = "下一年 (Control键加右方向键)";
+    private String today = DateMisc.getYMD();
+    private String lastDecade = "上一年代";
+    private String selectDecade = "选择年代";
+    private String nextDecade = "下一年代";
+    private String lastCentury = "上一世纪";
+    private String nextCentury = "下一世纪";
 
 
     public YMDSelection() {
+        setDesPrefix("");
+        super.setPrefix("");
+        setConVal("");
+//        super.setLabel("");
+
 
     }
 
     public YMDSelection(String label) {
+//        super.setLabel(label);
+        setDesPrefix(label);
         setPrefix(label);
+        setConVal(label);
+
+
 //        initialise();
 //        System.out.println("((())))))");
 //        System.out.println(getdYMDLastYear() );
@@ -37,9 +48,19 @@ public class YMDSelection extends JsonObject {
     }
 
     public void setPrefix(String label) {
-        super.setPrefix(commonObject.get$XQueryInput(label) + "/../..");
+        super.setPrefix(commonObject.get$XInput(label) + "/../..");
+        //label[1=1 and text()='客户柜台代码']/../following-sibling::*[1]//input/../..
 
     }
+
+    public void setPrefix(String label, String leftOrRight) {
+        super.setPrefix(commonObject.get$XInput(label) + "/../..//div[contains(@class,\"" + leftOrRight + "\")]");
+    }
+
+
+//    public void modifyPrefix(String label) {
+//        super.setPrefix(commonObject.get$XInput(label) + "/../..//div[contains(@class,\"right\")]");
+//    }
 
 //    private void initialize() {
 //        //label[1=1 and contains(text(),"签署日期")]/../following-sibling::*[1]//input/../..//a
@@ -61,79 +82,79 @@ public class YMDSelection extends JsonObject {
 //    }
 
 
-    private final String dYMDLastYear = "通用-日期控件-上一年-a";
-    private String xYMDLastYear = get$XByTitle(lastYear);
+    protected String dLastYear = "通用-日期控件-上一年-a";
+    protected String xLastYear = get$XByTitle(lastYear);
     //a[@title='上一年 (Control键加左方向键)']
 
-    private final String dYMDLastMonth = "通用-日期控件-上个月-a";
-    private String xYMDLastMonth = get$XByTitle(lastMonth);
+    protected String dLastMonth = "通用-日期控件-上个月-a";
+    protected String xLastMonth = get$XByTitle(lastMonth);
     //a[@title='上个月 (翻页上键)']
 
 
-    private final String dYMDSelectYear = "通用-日期控件-选择年份-a";
-    private String xYMDSelectYear = get$XByTitle(selectYear);
+    protected String dSelectYear = "通用-日期控件-选择年份-a";
+    protected String xSelectYear = get$XByTitle(selectYear);
     //a[@title='选择年份']
 
-    private final String dYMDSelectMonth = "通用-日期控件-选择月份-a";
-    private String xYMDSelectMonth = get$XByTitle(selectMonth);
+    protected String dSelectMonth = "通用-日期控件-选择月份-a";
+    protected String xSelectMonth = get$XByTitle(selectMonth);
     //a[@title='选择月份']
 
-    private final String dYMDNextMonth = "通用-日期控件-下个月-a";
-    private String xYMDNextMonth = get$XByTitle(nextMonth);
+    protected String dNextMonth = "通用-日期控件-下个月-a";
+    protected String xNextMonth = get$XByTitle(nextMonth);
     //a[@title='下个月 (翻页下键)']
 
-    private final String dYMDNextYear = "通用-日期控件-下一年-a";
-    private String xYMDNextYear = get$XByTitle(nextYear);
+    protected String dNextYear = "通用-日期控件-下一年-a";
+    protected String xNextYear = get$XByTitle(nextYear);
     //a[@title='下一年 (Control键加右方向键)']
 
-    private final String dYMDToday = "通用-日期控件-今天-a";
-    private String xYMDToday = get$XByTitle(today);
+    protected String dToday = "通用-日期控件-今天-a";
+    protected String xToday = get$XByTitle(today);
     //a[@title='DateFormat.getYMD()']
 
     ////////////////////点击了XXXX年后
-    private final String dYMDLastDecade = "通用-日期控件-上一年代-a";
-    private String xYMDLastDecade = get$XByTitle(lastDecade);
+    protected String dLastDecade = "通用-日期控件-上一年代-a";
+    protected String xLastDecade = get$XByTitle(lastDecade);
     //a[@title='上一年代']
 
-    private final String dYMDSelectDecade = "通用-日期控件-选择年代-a";
-    private String xYMDSelectDecade = get$XByTitle(selectDecade);
+    protected String dSelectDecade = "通用-日期控件-选择年代-a";
+    protected String xSelectDecade = get$XByTitle(selectDecade);
     //a[@title='选择年代']
 
-    private final String dYMDNextDecade = "通用-日期控件-下一年代-a";
-    private String xYMDNextDecade = get$XByTitle(nextDecade);
+    protected String dNextDecade = "通用-日期控件-下一年代-a";
+    protected String xNextDecade = get$XByTitle(nextDecade);
     //a[@title='下一年代']
 //////////////////
     //////////////////////////点击了XX月后
 
-    private final String dYMDLastYearMP = "通用-日期控件-月-上一年-a";
-    private String xYMDLastYearMP = xYMDLastYear.replaceFirst("//a\\[", "//a\\[@role and ");
+    protected String dLastYearMP = "通用-日期控件-月-上一年-a";
+    protected String xLastYearMP = xLastYear.replaceFirst("//a\\[", "//a\\[@role and ");
     //a[@role and @title='上一年 (Control键加左方向键)']
 
-    private final String dYMDSelectYearMP = "通用-日期控件-月-选择年份-a";
-    private String xYMDSelectYearMP = xYMDSelectYear.replaceFirst("//a\\[", "//a\\[@role and " +
+    protected String dSelectYearMP = "通用-日期控件-月-选择年份-a";
+    protected String xSelectYearMP = xSelectYear.replaceFirst("//a\\[", "//a\\[@role and " +
             "contains(@class,'month') and ");
     //a[@role and @title='选择年份']
 
-    private final String dYMDNextYearMP = "通用-日期控件-月-下一年-a";
-    private String xYMDNextYearMP = xYMDNextYear.replaceFirst("//a\\[", "//a\\[@role and ");
+    protected String dNextYearMP = "通用-日期控件-月-下一年-a";
+    protected String xNextYearMP = xNextYear.replaceFirst("//a\\[", "//a\\[@role and ");
     //a[@role and @title='下一年 (Control键加右方向键)']
 
     //////////////////////
 
 ////////////////////////////点了 XXXX-XXXX后
 
-    private final String dYMDLastCentury = "通用-日期控件-年/月-上一世纪-a";
-    private String xYMDLastCentury = get$XByTitle(lastCentury);
+    protected String dLastCentury = "通用-日期控件-年/月-上一世纪-a";
+    protected String xLastCentury = get$XByTitle(lastCentury);
     //a[@title='下一世纪']
 
 
-    private final String dYMDCenturyBetweenLastAndNext = "通用-日期控件-年/月-上一世纪和下一世纪当中的世纪-div";
-    private String xYMDCenturyBetweenLastAndNext = xYMDLastCentury + "/following-sibling::div";
+    protected String dCenturyBetweenLastAndNext = "通用-日期控件-年/月-上一世纪和下一世纪当中的世纪-div";
+    protected String xCenturyBetweenLastAndNext = xLastCentury + "/following-sibling::div";
     //a[@title='下一世纪']
 
 
-    private final String dYMDNextCentury = "通用-日期控件-年/月-下一世纪-a";
-    private String xYMDNextCentury = get$XByTitle(nextCentury);
+    protected String dNextCentury = "通用-日期控件-年/月-下一世纪-a";
+    protected String xNextCentury = get$XByTitle(nextCentury);
     //a[@title='下一世纪']
 
     /////////////////////////////
@@ -148,7 +169,7 @@ public class YMDSelection extends JsonObject {
     }
 
 
-    public String get$XYearByText(String year) {
+    private String get$XYearByText(String year) {
         //a[@class='ant-calendar-year-panel-year' and text()='2019']
         String a = getPrefix() + "//td[not(contains(@class,'decade'))]/a";
         a = a + "[@class='ant-calendar-year-panel-year' and text()='";
@@ -171,7 +192,7 @@ public class YMDSelection extends JsonObject {
 
 
     private String get$XDayByText(String day) {
-        //td[not(contains(@class,'month'))]/div[@class='ant-calendar-date' and text()='1']
+        //td[not(contains(@class,'next-month')) and not(contains(@class,'last-month'))]/div[@class='ant-calendar-date' and text()='1']
         String a = getPrefix() + "//td[(not(contains(@class,'next-month')) and not(contains(@class,'last-month')))]/div";
         a = a + "[@class='ant-calendar-date' and text()='";
         a = a + day;

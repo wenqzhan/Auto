@@ -7,7 +7,7 @@ import com.utils.json.JsonObject;
 public class CustomAdjustHistory extends JsonObject { //客户调整历史
 //    private CommonObject commonObject = new CommonObject();
 //
-//    public  String matrixCustomAdjustHistory = "http://10.187.144.60:8081/custListMange/customAdjustHistory";
+//    public  String matrixCustomAdjustHistory = "http://10.187.144.60:8080/custListMange/customAdjustHistory";
 //
 //    public final  String d1 = "客户调整历史-OA账号查询框";
 //    private final  String x1 = commonObject.getXpath(commonObject.d1);

@@ -7,157 +7,159 @@ import lombok.Data;
 public class CommonObjectPopped extends JsonObject {
 
     public CommonObjectPopped() {
-        super.setPrefix(this.prefix);
+//        super.setPrefix(this.prefix);
     }
 
     private CommonObject commonObject = new CommonObject();
 
     private final String prefix = "//div[@tabindex]";
+//
+//    private final String cross = "//i[1=1 and contains(@class,'close-circle') or contains(@class,'anticon-close')]";
+//
+//    private final String arrow = "//i[1=1 and contains(@class,'arrow')]";
 
-    private final String cross = "//i[1=1 and contains(@class,'close-circle') or contains(@class,'anticon-close')]";
-
-    private final String arrow = "//i[1=1 and contains(@class,'arrow')]";
-
-    private final String search = "/following-sibling::*//i[1=1 and contains(@class,'')]";
+//    private final String search = "/following-sibling::*//i[1=1 and contains(@class,'')]";
 
     private final String d9P = commonObject.getD9().replaceFirst("-","-first popped-");
-    private final String x9P = prefix + commonObject.getX9();
+    //通用-first popped-表格-table
+    private final String x9P = this.prefix + commonObject.getX9();
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]
 
     private final String d10P = commonObject.getD10().replaceFirst("-","-first popped-");
-    private final String x10P = prefix + commonObject.getX10();
+    //"通用-first popped-表格表体rows-tr";
+    private final String x10P = this.prefix + commonObject.getX10();
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]
 
     private final String d10PSelected = commonObject.getD10Selected().replaceFirst("-","-first popped-");
-    private final String x10PSelected = prefix + commonObject.getX10Selected();
+    private final String x10PSelected = this.prefix + commonObject.getX10Selected();
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and contains(@class,'selected')]
 
     private final String d10PNotSelected = commonObject.getD10NotSelected().replaceFirst("-","-first popped-");
-    private final String x10PNotSelected = prefix + commonObject.getX10NotSelected();
+    private final String x10PNotSelected = this.prefix + commonObject.getX10NotSelected();
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(contains(@class,'selected'))]
-    private final String d11P = commonObject.getD11().replaceFirst("-","-first popped-");
-    private final String x11P = prefix + commonObject.getX11();
+    private final String d11P = commonObject.getD11Tr1().replaceFirst("-","-first popped-");
+    private final String x11P = this.prefix + commonObject.getX11Tr1();
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[not(@key='selection-column')]
 
     private final String d31P = commonObject.getD31().replaceFirst("-","-first popped-");
-    private final String x31P = prefix + commonObject.getX31();
+    private final String x31P = this.prefix + commonObject.getX31();
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']
 
     private final String d12P = commonObject.getD12().replaceFirst("-","-first popped-");
-    private final String x12P = prefix + commonObject.getX12();
+    private final String x12P = this.prefix + commonObject.getX12();
     //div[@tabindex]//li[1=1 and contains(@title,'上一页')]
 
     private final String d13P = commonObject.getD13().replaceFirst("-","-first popped-");
-    private final String x13P = prefix + commonObject.getX13();
+    private final String x13P = this.prefix + commonObject.getX13();
     //div[@tabindex]//li[1=1 and contains(@title,'下一页')]
 
     private final String d14P = commonObject.getD14().replaceFirst("-","-first popped-");
-    private final String x14P = prefix + commonObject.getX14();
+    private final String x14P = this.prefix + commonObject.getX14();
     //div[@tabindex]//li[1=1 and contains(@title,'下一页')]/preceding-sibling::li[1]/a
 
     private final String d15P = commonObject.getD15().replaceFirst("-","-first popped-");
-    private final String x15P = prefix + commonObject.getX15();
+    private final String x15P = this.prefix + commonObject.getX15();
     //div[@tabindex]//div[1=1 and contains(text(),"跳至")]/input
 
     private final String d16P = commonObject.getD16().replaceFirst("-","-first popped-");
-    private final String x16P = prefix + commonObject.getX16();
+    private final String x16P = this.prefix + commonObject.getX16();
     //div[@tabindex]//div[1=1 and contains(text(),"跳至")]
 
     private final String d18P = commonObject.getD18().replaceFirst("-","-first popped-");
-    private final String x18P = prefix + commonObject.getX18();
+    private final String x18P = this.prefix + commonObject.getX18();
     //div[@tabindex]//div[1=1 and contains(@title,'条/页')]
 
     private final String d18PL5 = commonObject.getD18L5().replaceFirst("-","-first popped-");
-    private final String x18PL5 = prefix + commonObject.getX18L5();
+    private final String x18PL5 = this.prefix + commonObject.getX18L5();
     //div[@tabindex]//li[1=1 and text()='5 条/页' ]
 
     private final String d18PL10 = commonObject.getD18L10().replaceFirst("-","-first popped-");
-    private final String x18PL10 = prefix + commonObject.getX18L10();
+    private final String x18PL10 = this.prefix + commonObject.getX18L10();
     //div[@tabindex]//li[1=1 and text()='10 条/页' ]
 
     private final String d18PL20 = commonObject.getD18L20().replaceFirst("-","-first popped-");
-    private final String x18PL20 = prefix + commonObject.getX18L20();
+    private final String x18PL20 = this.prefix + commonObject.getX18L20();
     //div[@tabindex]//li[1=1 and text()='20 条/页' ]
 
     private final String d18PL30 = commonObject.getD18L30().replaceFirst("-","-first popped-");
-    private final String x18PL30 = prefix + commonObject.getX18L30();
+    private final String x18PL30 = this.prefix + commonObject.getX18L30();
     //div[@tabindex]//li[1=1 and text()='30 条/页' ]
 
     private final String d28P = commonObject.getD28().replaceFirst("-","-first popped-");
-    private final String x28P = prefix + commonObject.getX28();
+    private final String x28P = this.prefix + commonObject.getX28();
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']//input
 
 
     private final String d34P = commonObject.getD34().replaceFirst("-","-first popped-");
-    private final String x34P = prefix + commonObject.getX34();
+    private final String x34P = this.prefix + commonObject.getX34();
     //div[@tabindex]//label[1=1 and contains(text(),"业务条线")]/../following-sibling::*[1]//input
 
     private final String d34PCross = d34P+"-大×";
-    private final String x34PCross = x34P + "/.." + cross;
+    private final String x34PCross = x34P + "/.." + commonObject.getCross();
     //div[@tabindex]//label[1=1 and contains(text(),"业务条线")]/../following-sibling::*[1]//input/..//i[1=1 and contains(@class,'close-circle')]
 
     private final String d1P = commonObject.getD1().replaceFirst("-","-first popped-");
-    private final String x1P = prefix + commonObject.getX1();
+    private final String x1P = this.prefix + commonObject.getX1();
     //div[@tabindex]//label[1=1 and contains(text(),"OA账号")]/../following-sibling::*[1]//input
 
     private final String d2P = commonObject.getD2().replaceFirst("-","-first popped-");
-    private final String x2P = prefix + commonObject.getX2();
+    private final String x2P = this.prefix + commonObject.getX2();
     //div[@tabindex]//label[1=1 and contains(text(),"客户名称")]/../following-sibling::*[1]//input
 
 
     private final String d37P = commonObject.getD37().replaceFirst("-","-first popped-");
-    private final String x37P = prefix + commonObject.getX37();
+    private final String x37P = this.prefix + commonObject.getX37();
     //div[@tabindex]//label[1=1 and contains(text(),"联系人姓名")]/../following-sibling::*[1]//input
 
     private final String d38P = commonObject.getD38().replaceFirst("-","-first popped-");
-    private final String x38P = prefix + commonObject.getX38();
+    private final String x38P = this.prefix + commonObject.getX38();
     //div[@tabindex]//label[1=1 and contains(text(),"手机")]/../following-sibling::*[1]//input
 
     private final String d39P = commonObject.getD39().replaceFirst("-","-first popped-");
-    private final String x39P = prefix + commonObject.getX39();
+    private final String x39P = this.prefix + commonObject.getX39();
     //div[@tabindex]//label[1=1 and contains(text(),"部门")]/../following-sibling::*[1]//input
 
 
     private final String d40P = commonObject.getD40().replaceFirst("-","-first popped-");
-    private final String x40P = prefix + commonObject.getX40();
+    private final String x40P = this.prefix + commonObject.getX40();
     //div[@tabindex]//label[1=1 and contains(text(),"FAX")]/../following-sibling::*[1]//input
 
     private final String d41P = commonObject.getD41().replaceFirst("-","-first popped-");
-    private final String x41P = prefix + commonObject.getX41();
+    private final String x41P = this.prefix + commonObject.getX41();
     //div[@tabindex]//label[1=1 and contains(text(),"邮箱")]/../following-sibling::*[1]//input
 
     private final String d42P = commonObject.getD42().replaceFirst("-","-first popped-");
-    private final String x42P = prefix + commonObject.getX42();
+    private final String x42P = this.prefix + commonObject.getX42();
     //div[@tabindex]//label[1=1 and contains(text(),"客户简称")]/../following-sibling::*[1]//input
 
     private final String d43P = commonObject.getD43().replaceFirst("-","-first popped-");
-    private final String x43P = prefix + commonObject.getX43();
+    private final String x43P = this.prefix + commonObject.getX43();
     //div[@tabindex]//label[1=1 and contains(text(),"职务")]/../following-sibling::*[1]//input
 
 
     private final String d44P = commonObject.getD44().replaceFirst("-","-first popped-");
-    private final String x44P = prefix + commonObject.getX44();
+    private final String x44P = this.prefix + commonObject.getX44();
     //div[@tabindex]//label[1=1 and contains(text(),"座机")]/../following-sibling::*[1]//input
 
     private final String d45P = commonObject.getD45().replaceFirst("-","-first popped-");
-    private final String x45P = prefix + commonObject.getX45();
+    private final String x45P = this.prefix + commonObject.getX45();
     //div[@tabindex]//label[1=1 and contains(text(),"创建人")]/../following-sibling::*[1]//input
 
     private final String d46P = commonObject.getD46().replaceFirst("-","-first popped-");
-    private final String x46P = prefix + commonObject.getX46();
+    private final String x46P = this.prefix + commonObject.getX46();
     //div[@tabindex]//label[1=1 and contains(text(),"办公地址")]/../following-sibling::*[1]//input
 
 
     private final String d47P = commonObject.getD47().replaceFirst("-","-first popped-");
-    private final String x47P = prefix + commonObject.getX47();
+    private final String x47P = this.prefix + commonObject.getX47();
     //div[@tabindex]//label[1=1 and contains(text(),"国君服务联系人")]/../following-sibling::*[1]//input
 
     private final String d49P = commonObject.getD49().replaceFirst("-","-first popped-");
-    private final String x49P = prefix + commonObject.getX49();
+    private final String x49P = this.prefix + commonObject.getX49();
     //div[@tabindex]//label[1=1 and contains(text(),"材料名称")]/../following-sibling::*[1]//input
 
     private final String d50P = commonObject.getD50().replaceFirst("-","-first popped-");
-    private final String x50P = prefix + commonObject.getX50();
+    private final String x50P = this.prefix + commonObject.getX50();
     //div[@tabindex]//label[1=1 and contains(text(),"材料类型")]/../following-sibling::div[1]
 
 
@@ -174,46 +176,61 @@ public class CommonObjectPopped extends JsonObject {
     //div[@tabindex]//li/span[1=1 and @title='业务协议' ]
 
     private final String d51P = commonObject.getD51().replaceFirst("-","-first popped-");
-    private final String x51P = prefix + commonObject.getX51();
+    private final String x51P = this.prefix + commonObject.getX51();
     //div[@tabindex]//label[1=1 and contains(text(),"所属商机")]/../following-sibling::*[1]//input
 
     private final String d53P = commonObject.getD53().replaceFirst("-","-first popped-");
-    private final String x53P = prefix + commonObject.getX53();
+    private final String x53P = this.prefix + commonObject.getX53();
     //div[@tabindex]//label[1=1 and contains(text(),"联系人")]/../following-sibling::*[1]//input
 
     private final String d54P = commonObject.getD54().replaceFirst("-","-first popped-");
-    private final String x54P = prefix + commonObject.getX54();
+    private final String x54P = this.prefix + commonObject.getX54();
     //div[@tabindex]//label[1=1 and contains(text(),"签署日期")]/../following-sibling::*[1]//input
 
     private final String d55P = commonObject.getD55().replaceFirst("-","-first popped-");
-    private final String x55P = prefix + commonObject.getX55();
+    private final String x55P = this.prefix + commonObject.getX55();
     //div[@tabindex]//label[1=1 and contains(text(),"合同金额(万元)")]/../following-sibling::*[1]//input
 
 
     private final String d56P = commonObject.getD56().replaceFirst("-","-first popped-");
-    private final String x56P = prefix + commonObject.getX56();
+    private final String x56P = this.prefix + commonObject.getX56();
     //div[@tabindex]//label[1=1 and contains(text(),"关联商机")]/../following-sibling::*[1]//input
 
 
     private final String d27P = commonObject.getD27().replaceFirst("-","-first popped-");
-    private final String x27P = prefix + commonObject.getX27();
+    private final String x27P = this.prefix + commonObject.getX27();
     //div[@tabindex]//label[1=1 and contains(text(),"客户经理")]/../following-sibling::*[1]//input
 
     private final String d29P = commonObject.getD29().replaceFirst("-","-first popped-");
-    private final String x29P = prefix + commonObject.getX29();
+    private final String x29P = this.prefix + commonObject.getX29();
     //div[@tabindex]//span[1=1 and contains(text(),"确 定")]
 
     private final String d30P = commonObject.getD30().replaceFirst("-","-first popped-");
-    private final String x30P = prefix + commonObject.getX30();
+    //"通用-first popped-关闭按钮-span"
+    private final String x30P = this.prefix + commonObject.getX30();
     //div[@tabindex]//span[1=1 and contains(text(),"关 闭")]
 
+
+
+    private final String d60P = commonObject.getD60().replaceFirst("-","-first popped-");
+    //"通用-first popped-保存按钮-span";
+    private final String x60P =  this.prefix + commonObject.getX60();
+
+    private final String d61P= commonObject.getD61().replaceFirst("-","-first popped-");
+    //"通用-first popped-预览按钮-span";
+    private final String x61P = this.prefix + commonObject.getX61();
+
+    private final String d62P = commonObject.getD62().replaceFirst("-","-first popped-");
+    //"通用-first popped-返回按钮-span";
+    private final String x62P = this.prefix + commonObject.getX62();
+    
+    
     private final String dUploadP = "通用-first popped-上传文件-p";
-    private final String xUploadP = prefix + "//p[text()='点击或将文件拖拽到这里上传']";
+    private final String xUploadP = this.prefix + "//p[text()='点击或将文件拖拽到这里上传']";
     //div[@tabindex]//p[text()='点击或将文件拖拽到这里上传']
 
-    public String getStringP() {
-        return prefix;
-    }
+    private String d106P;
+    private String x106P;
 
     public String get$XPQuerySelect(String label) {
         return get$XPQuerySelect(label, "div");
@@ -225,9 +242,9 @@ public class CommonObjectPopped extends JsonObject {
         //div[@tabindex]//label[1=1 and contains(text(),"开发类型")]/../following-sibling::div[1]
         String xpath = "";
         if (tag.equals("div")) {
-            xpath = getStringP() + commonObject.get$XQuerySelectDiv(label);
+            xpath = prefix + commonObject.get$XDiv(label);
         } else {
-            xpath = getStringP() + commonObject.get$XQuerySelectDiv(label) + "//" + tag;
+            xpath = prefix + commonObject.get$XDiv(label) + "//" + tag;
             //div[@tabindex]//label[1=1 and contains(text(),"客户柜台代码")]/../following-sibling::div[1]//input
         }
 
@@ -302,14 +319,14 @@ public class CommonObjectPopped extends JsonObject {
     public String get$XPLi(String label) {
         //div[@tabindex]//li[1=1 and contains(text(),"个人")]
         String xpath = "";
-        xpath = getStringP() + commonObject.get$XLi(label);
+        xpath = prefix + commonObject.get$XLi(label);
         return xpath;
     }
 
     public String get$XPLiSpan(String label) {
         //div[@tabindex]//li/span[1=1 and @title='专项战略合作协议' ]
         String xpath = "";
-        xpath = getStringP() + commonObject.get$XLiSpan(label);
+        xpath = prefix + commonObject.get$XLiSpan(label);
         return xpath;
     }
 
@@ -326,30 +343,30 @@ public class CommonObjectPopped extends JsonObject {
 
     public String get$XPQueryInput(String label) {
         //div[@tabindex]//label[1=1 and contains(text(),"客户柜台代码")]/../following-sibling::*[1]//input
-        String xpath = prefix;
-        xpath = xpath + commonObject.get$XQueryInput(label);
+        String xpath = this.prefix;
+        xpath = xpath + commonObject.get$XInput(label);
         return xpath;
     }
 
 
     public String get$DPQueryInput(String label) {
         //通用-first popped-OA账号-查询框
-        String description = commonObject.get$DQueryInput(label);
+        String description = commonObject.get$DInput(label);
         description = description.replaceFirst("通用-", "通用-first popped");
         return description;
     }
 
 
     public String getArrow(String xpath) {
-        return xpath + arrow;
+        return commonObject.getArrow(xpath);
     }
 
     public String getCross(String xpath) {
-        return xpath + cross;
+        return commonObject.getCross(xpath);
     }
 
     public String getSearch(String xpath) {
-        return xpath + search;
+        return commonObject.getSearch(xpath);
     }
 
 

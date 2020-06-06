@@ -7,7 +7,7 @@ import com.utils.json.JsonObject;
 public class CustomerRelationshipFundAccount extends JsonObject {
 //    private CommonObject commonObject = new CommonObject();
 //
-//    public  String matrixCustomerRelationshipFundAccount = "http://10.187.144.60:8081/orgcust/customerRelationshipFundAccount";
+//    public  String matrixCustomerRelationshipFundAccount = "http://10.187.144.60:8080/orgcust/customerRelationshipFundAccount";
 //
 //    public final  String d1 = "客户关系资金账号-OA账号查询框";
 //    private final  String x1 = commonObject.getXpath(commonObject.d1);
