@@ -21,7 +21,7 @@ public class AttachmentUploadAction extends $ {
 
     public static boolean deleteAttachments(String label) {
         AttachmentUpload attachmentUpload;
-        if (label.contains("Popped")) {
+        if (label.toLowerCase().contains("popped")) {
             attachmentUpload = new AttachmentUpload(label);
             attachmentUpload = (AttachmentUpload) attachmentUpload.getObjAttr(label);
         } else {
@@ -82,7 +82,7 @@ public class AttachmentUploadAction extends $ {
 
     public static boolean uploadAttachments(String label, String... files) {
         AttachmentUpload attachmentUpload;
-        if (label.contains("Popped")) {
+        if (label.toLowerCase().contains("popped")) {
             attachmentUpload = new AttachmentUpload(label);
             attachmentUpload = (AttachmentUpload) attachmentUpload.getObjAttr(label);
         } else {

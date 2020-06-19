@@ -1,7 +1,6 @@
 package com.pageObject.matrix;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.CommonObject;
 import com.utils.json.Attr;
 import com.utils.json.JsonObject;
 import lombok.Data;
@@ -24,21 +23,21 @@ public class DeptSelection extends JsonObject {
     private final String append2 = "/following-sibling::div/div";
 
 
-    private final String dDS32 = commonObject.getD32().replaceFirst("-","-部门选择-");
-    private final String xDS32 = commonObject.getX32();
+    private final String dDSQueryInput = commonObject.getDQueryInput().replaceFirst("-","-部门选择-");
+    private final String xDSQueryInput = commonObject.getXQueryInput();
     //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]
 
-    private final String dDS29 = commonObject.getD29().replaceFirst("-","-部门选择-");
-    private final String xDS29 = xDS32 + this.append1 + commonObject.getX29();
+    private final String dDSConfirmButtonSpan = commonObject.getDConfirmButtonSpan().replaceFirst("-","-部门选择-");
+    private final String xDSConfirmButtonSpan = xDSQueryInput + this.append1 + commonObject.getXConfirmButtonSpan();
     //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]/../../following-sibling::*//span[1=1 and contains(text(),"确 定")]
 
-    private final String dDS30 = commonObject.getD30().replaceFirst("-","-部门选择-");
-    private final String xDS30 = xDS32 + this.append1 + commonObject.getX30();
+    private final String dDSCloseButtonSpan = commonObject.getDCloseButtonSpan().replaceFirst("-","-部门选择-");
+    private final String xDSCloseButtonSpan = xDSQueryInput + this.append1 + commonObject.getXCloseButtonSpan();
     //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]/../../following-sibling::*//span[1=1 and contains(text(),"关 闭")]
 
 
-    private final String dDS32Div = "通用-部门选择-查询框-input_候选项-div";
-    private final String xDS32Div = xDS32 + append2;
+    private final String dDSQueryInputDiv = "通用-部门选择-查询框-input_候选项-div";
+    private final String xDSQueryInputDiv = xDSQueryInput + append2;
     //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]/following-sibling::div/div
     //候选项一般有多个
 
@@ -47,9 +46,9 @@ public class DeptSelection extends JsonObject {
      *
      * @param num 第N行,如果最后一行传入-1
      */
-    private String get$XDS32Div(int num) {
+    private String get$XDSQueryInputDiv(int num) {
         //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]/following-sibling::div/div[1]
-        String key = "xDS32Div";
+        String key = "xDSQueryInputDiv";
         String xpath = attr.get(key);
         if (num > 0) {
             xpath = xpath + "[" + num + "]";
@@ -69,10 +68,10 @@ public class DeptSelection extends JsonObject {
      *
      * @param num 第N行,如果最后一行传入-1
      */
-    private String get$DDS32Div(int num) {
+    private String get$DDSQueryInputDiv(int num) {
         //通用-部门选择-查询框-input_候选项-第1-div
         String a;
-        String key = "dDS32Div";
+        String key = "dDSQueryInputDiv";
         String des = attr.get(key);
         if (num > 0) {
             a = "-第" + num;
@@ -93,9 +92,9 @@ public class DeptSelection extends JsonObject {
      *
      * @param dept 部门名称
      */
-    private String get$XDS32Div(String dept) {
+    private String get$XDSQueryInputDiv(String dept) {
         //div[1=1 and contains(@class,'ant-modal-content')]//input[1=1 and contains(@placeholder,'输入查询')]/following-sibling::div/div[@title='国泰君安证券']
-        String key = "xDS32Div";
+        String key = "xDSQueryInputDiv";
         String xpath = attr.get(key);
 
         xpath = xpath + "[@title='" + dept + "']";
@@ -108,9 +107,9 @@ public class DeptSelection extends JsonObject {
      *
      * @param dept 部门名称
      */
-    private String get$DDS32Div(String dept) {
+    private String get$DDSQueryInputDiv(String dept) {
         //通用-部门选择-查询框-input_候选项国泰君安证券-div
-        String key = "dDS32Div";
+        String key = "dDSQueryInputDiv";
         String des = attr.get(key);
 
         des = des.replace("-div", dept + "-div");
@@ -118,15 +117,15 @@ public class DeptSelection extends JsonObject {
     }
 
 
-    public JSONObject get$DDS32DivJson(String dept) {
-        JsonObject.setJsonObject(get$DDS32Div(dept),
-                get$XDS32Div(dept));
+    public JSONObject get$DDSQueryInputDivJson(String dept) {
+        JsonObject.setJsonObject(get$DDSQueryInputDiv(dept),
+                get$XDSQueryInputDiv(dept));
         return JsonObject.getJsonObject();
     }
 
-    public JSONObject get$DDS32DivJson(int num) {
-        JsonObject.setJsonObject(get$DDS32Div(num),
-                get$XDS32Div(num));
+    public JSONObject get$DDSQueryInputDivJson(int num) {
+        JsonObject.setJsonObject(get$DDSQueryInputDiv(num),
+                get$XDSQueryInputDiv(num));
         return JsonObject.getJsonObject();
     }
 

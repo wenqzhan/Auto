@@ -2,14 +2,20 @@ package com.unitTest;
 
 import com.alibaba.fastjson.JSONObject;
 import com.driver.Xpath;
-import com.pageObject.commonObject.*;
+import com.pageObject.matrix.CommonObject;
 import com.pageObject.matrix.*;
 import com.pageObject.matrix.learn.xxfb.Edit;
 import com.pageObject.matrix.learn.xxfb.XxfbList;
+import com.pageObject.matrix.orgCust.Client;
+import com.pageObject.matrix.orgCust.Contract;
+import com.pageObject.matrix.research.clientList.Detail;
+import com.sql.matrix.ProvinceCitySelectionSql;
+import com.sql.matrix.research.client.ClientListSql;
 import com.utils.date.DateMisc;
 import com.utils.file.MyFile;
 import com.utils.json.XpathJson;
 import com.utils.random.Randoms;
+import com.utils.string.StringMisc;
 import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.compress.utils.IOUtils;
 import org.openqa.selenium.WebDriver;
@@ -27,12 +33,88 @@ import java.util.List;
 
 public class XpathTest {
 
+    @Test
+    public void sdfdfsdf(){
+       Contract contract = new Contract();
+       Contract contractPopped = new Contract("POPPED");
+        contract = (Contract) contract.getObjAttr();
+        contractPopped = (Contract) contractPopped.getObjAttr("POPPED");
+
+        System.out.println(contractPopped.getJsonObject(contractPopped.getDCustNameInput()));
+    }
+
+    @Test
+    public void sdfsdfadafa(){
+        System.out.println( StringMisc.isDisorderlyLike("1,2","2,1"));
+    }
+
+    @Test
+    public void dsffdfadawss(){
+        Detail detail = new Detail();
+        detail = (Detail) detail.getObjAttr();
+    Client client = new Client();
+    Client clientPopped = new Client("POPPED");
+    client = (Client) client.getObjAttr();
+    clientPopped = (Client) clientPopped.getObjAttr("POPPED");
+
+        System.out.println(client.getJsonObject(client.getDTableHeaderTr1Ths()));
+
+        System.out.println(clientPopped.getJsonObject(clientPopped.getDCustNameInput()));
+
+        System.out.println(clientPopped.getDCustNameInput());
+        System.out.println(client.getDCustNameInput());
+
+        System.out.println(detail.getXExportButtonSpan());
+
+        System.out.println(clientPopped.getPrefix());
+        System.out.println(clientPopped.get$DQueryInputJson("联系人姓名"));
+
+
+    }
+
+
+    @Test
+    public void dfasdfdfasdff(){
+        ManagerSelection managerSelection = new ManagerSelection("操作");
+        managerSelection = (ManagerSelection) managerSelection.getObjAttr("操作");
+        System.out.println(managerSelection.getJsonObject(managerSelection.getXSelectedEmpNameTd()));
+
+    }
+
+    @Test
+    public void sdfsdfsdfasxxxf(){
+        ProvinceCitySelectionSql provinceCitySelectionSql = new ProvinceCitySelectionSql();
+        String cityName = provinceCitySelectionSql.getCityName();
+        System.out.println(cityName);
+        String provinceName = provinceCitySelectionSql.getProvinceName(cityName);
+        System.out.println(provinceName);
+    }
+
+
+
+    @Test
+    public void sdfsdfsss(){
+        XXXSelection xxxSelection = new XXXSelection("客户类型-类型选择");
+        System.out.println(xxxSelection.get$XXXResultSpan("企业类客户"));
+
+    }
+
+
+    @Test
+    public void sd1fsdfsdf(){
+        ClientListSql clientListSql = new ClientListSql();
+        System.out.println(clientListSql.getSqlTeamResultStr());
+        //
+//
+//        System.out.println(IntMisc.getIntFromString("dsfsdfs 113123 hjhkjhsssssar3334"));
+    }
+
 
     @Test
     public void sdfsdfsdfsd(){
-        TableContent tableContent = new TableContent("poppd tabbed");
-        tableContent = (TableContent) tableContent.getObjAttr("poped tabbed");
-        System.out.println(tableContent.getJsonObject(tableContent.getD10ActionMore()));
+        TableContent tableContent = new TableContent();
+        tableContent = (TableContent) tableContent.getObjAttr();
+        System.out.println(tableContent.getJsonObject(tableContent.getDTableTrsActionMore()));
 
 
 
@@ -120,13 +202,13 @@ public class XpathTest {
     public void sdfsdfsadf() {
         CommonObject commonObject = new CommonObject();
         commonObject.getObjAttr();
-        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
-        commonObjectPopped =(CommonObjectPopped) commonObjectPopped.getObjAttr();
+//        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+//        commonObjectPopped =(CommonObjectPopped) commonObjectPopped.getObjAttr();
         System.out.println("FSDFSDFSADFSDFFDFFSDFSDF");
-        System.out.println(commonObjectPopped.getDUploadP());
-        System.out.println(commonObjectPopped.getXUploadP());
+//        System.out.println(commonObjectPopped.getDUploadP());
+//        System.out.println(commonObjectPopped.getXUploadP());
         System.out.println("FSDFSDFSADFSDFFDFFSDFSDF");
-        System.out.println(commonObjectPopped.getJsonObject(commonObjectPopped.getDUploadP()));
+//        System.out.println(commonObjectPopped.getJsonObject(commonObjectPopped.getDUploadP()));
 
 
     }
@@ -135,13 +217,13 @@ public class XpathTest {
     @Test
     public void sdfdaa() {
         CommonObject commonObject = new CommonObject();
-        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+//        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
         commonObject.getObjAttr();
-        commonObjectPopped.getObjAttr();
+//        commonObjectPopped.getObjAttr();
         XxfbList xxfbList = new XxfbList();
         xxfbList = (XxfbList) xxfbList.getObjAttr();
-        System.out.println(xxfbList.getJsonObject(xxfbList.getD10ActionMore()));
-        System.out.println(xxfbList.getJsonObject(xxfbList.getD10ActionDetails()));
+        System.out.println(xxfbList.getJsonObject(xxfbList.getDTableTrsActionMore()));
+        System.out.println(xxfbList.getJsonObject(xxfbList.getDTableTrsActionDetails()));
 
 
     }
@@ -159,7 +241,7 @@ public class XpathTest {
         AttachmentUpload attachmentUpload = new AttachmentUpload("附件");
         attachmentUpload = (AttachmentUpload) attachmentUpload.getObjAttr("附件");
         System.out.println(attachmentUpload.getJsonObject(attachmentUpload.getDUploadPUploadDoneFile()));
-        System.out.println(attachmentUpload.getJsonObject(attachmentUpload.getD48Final()));
+        System.out.println(attachmentUpload.getJsonObject(attachmentUpload.getDSuccessPromptDivFinal()));
     }
 
     @Test
@@ -193,7 +275,7 @@ public class XpathTest {
         String name = "操作";
         CustSelection custSelection = new CustSelection(name);
         custSelection = (CustSelection) custSelection.getObjAttr();
-        System.out.println(custSelection.getJsonObject(custSelection.getDCS2()));
+        System.out.println(custSelection.getJsonObject(custSelection.getDCustNameInput()));
         System.out.println();
 
     }
@@ -233,8 +315,8 @@ public class XpathTest {
         CommonObject commonObject = new CommonObject();
         commonObject.getObjAttr();
 
-        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
-        commonObjectPopped.getObjAttr();
+//        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+//        commonObjectPopped.getObjAttr();
 
 
         XxfbList xxfbList = new XxfbList();
@@ -243,7 +325,7 @@ public class XpathTest {
 //        System.out.println("DFFGGGGG");
         xxfbList = (XxfbList) xxfbList.getObjAttr();
         System.out.println("@#!@#!@#!@#");
-        System.out.println(xxfbList.getX3());
+        System.out.println(xxfbList.getXQueryButtonSpan());
         System.out.println(xxfbList.getXxfbList());
 
         System.out.println("@#!@#!@#!@#");
@@ -269,9 +351,9 @@ public class XpathTest {
         commonObject.getObjAttr();
         Edit edit = new Edit();
         edit = (Edit) edit.getObjAttr();
-        JSONObject jsonObject3 = edit.getJsonObject(edit.getD69UploadFileCross());
-        System.out.println(edit.getX69UploadFileCross());
-        System.out.println(edit.getD69UploadFileCross());
+        JSONObject jsonObject3 = edit.getJsonObject(edit.getDTitleImageInputUploadFileCross());
+        System.out.println(edit.getXTitleImageInputUploadFileCross());
+        System.out.println(edit.getDTitleImageInputUploadFileCross());
         System.out.println(jsonObject3);
 
     }
@@ -288,8 +370,8 @@ public class XpathTest {
 //        commonObjectPopped.getObjAttr();
 //        System.out.println(commonObjectPopped.getJsonObject(commonObjectPopped.getD34P()));
         System.out.println("[[[[[[[[[[[[[]]]]]]]]]]]]]]]");
-        CommonObjectPopped test = new CommonObjectPopped();
-        test.getObjAttr();
+//        CommonObjectPopped test = new CommonObjectPopped();
+//        test.getObjAttr();
 //        empSelection.getObjAttr();
 //        System.out.println("1111111111111111111111111");
 //        System.out.println(empSelection.getPrefix());
@@ -300,12 +382,12 @@ public class XpathTest {
 //        System.out.println("2222222222222222222222222");
 
         System.out.println("1111111111111111");
-        System.out.println(test.getPrefix());
+//        System.out.println(test.getPrefix());
         System.out.println("1111111111111111");
 
 
         System.out.println("1111111111111111");
-        System.out.println((test.get$XPLi("KKKKK")));
+//        System.out.println((test.get$XPLi("KKKKK")));
         System.out.println("1111111111111111");
 
 

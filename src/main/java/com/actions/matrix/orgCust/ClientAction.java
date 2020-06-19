@@ -13,6 +13,7 @@ import com.utils.log.LoggerController;
 import com.utils.num.IntMisc;
 import com.utils.random.RandomInfo;
 import com.utils.random.Randoms;
+import com.utils.string.StringMisc;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -32,18 +33,21 @@ public class ClientAction extends $ {
     private JSONObject jsonObject;
     private BizLineSelection bizLineSelection = new BizLineSelection();
     private Client client = new Client();
+    private Client clientPopped = new Client("POPPED");
     private TopNavigator topNavigator = new TopNavigator();
 
-    public void getAttr() {
-//        bizLineSelection.getObjAttr();
+    public ClientAction() {
+        bizLineSelection = (BizLineSelection) bizLineSelection.getObjAttr();
+        client = (Client) client.getObjAttr();
+        topNavigator = (TopNavigator) topNavigator.getObjAttr();
+        clientPopped = (Client) clientPopped.getObjAttr("POPPED");
     }
-
 
     public List<List<String>> getTable() {
         List<String> strsInHeader = new ArrayList<>();
         List<List<String>> tableContent = new ArrayList<>();
-        if (isNotDisplayed(client.getJsonObject(client.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
-            jsonObject = client.getJsonObject(client.getD10());
+        if (isNotDisplayed(client.getJsonObject(client.getDTableLoadingSignSpan()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
+            jsonObject = client.getJsonObject(client.getDTableTrs());
             try {
                 findElement(jsonObject, 2, false);
                 List<WebElement> elements = findElements(jsonObject);
@@ -52,7 +56,7 @@ public class ClientAction extends $ {
                 log.info("表格表体应该是空的");
             }
         }
-        jsonObject = client.getJsonObject(client.getD11Tr1());
+        jsonObject = client.getJsonObject(client.getDTableHeaderTr1Ths());
         List<WebElement> elements = $.findElements(jsonObject);
         strsInHeader = $.getTableHeader(elements);
         //定位表头,获取表头中的所有文字,存到tableContent中
@@ -67,12 +71,12 @@ public class ClientAction extends $ {
         List<List<String>> tableContent = new ArrayList<>();
 
 
-        if (isNotDisplayed(client.getJsonObject(client.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
-            jsonObject = client.get$10SiblingJson(num);
+        if (isNotDisplayed(client.getJsonObject(client.getDTableLoadingSignSpan()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
+            jsonObject = client.get$TableTrsSiblingJson(num);
             List<WebElement> elements = $.findElements(jsonObject);
             tableContent = $.getTableBody(elements);
         }
-        jsonObject = client.getJsonObject(client.getD11Tr1());
+        jsonObject = client.getJsonObject(client.getDTableHeaderTr1Ths());
         List<WebElement> elements = $.findElements(jsonObject);
         //$.getTableHeader();
         //定位表头,获取表头中的所有文字,存到tableContent中
@@ -123,7 +127,7 @@ public class ClientAction extends $ {
 
     public boolean isBizLinesEqualsStrings() {
         boolean flag = true;
-        WebElement element = findElement(client.getJsonObject(client.getD34P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDBusinessLineInput()));
         text = getInputValue(element);
         List<String> list = Arrays.asList(text.split(","));
         strings2 = new ArrayList<>(list);
@@ -145,14 +149,14 @@ public class ClientAction extends $ {
         return flag;
     }
 
-    public boolean isSelected(WebElement element) {
-        boolean flag = true;
-        attributeValue = getAttribute(element, "class");
-        flag = (attributeValue.contains("selected") || attributeValue.contains("checked"));
-        attributeValue = "";
-        log.info("isSelected:" + flag);
-        return flag;
-    }
+//    public boolean isSelected(WebElement element) {
+//        boolean flag = true;
+//        attributeValue = getAttribute(element, "class");
+//        flag = (attributeValue.contains("selected") || attributeValue.contains("checked"));
+//        attributeValue = "";
+//        log.info("isSelected:" + flag);
+//        return flag;
+//    }
 
     public String getRandomMobile() {
         String mobile = "";
@@ -174,7 +178,7 @@ public class ClientAction extends $ {
         int a = nums.size();
         for (int i = 0; i < a; i++) {
 
-            WebElement element = findElement(bizLineSelection.getJsonBLS34SpanSibling(nums.get(i)));
+            WebElement element = findElement(bizLineSelection.getBusinessLineInputSpanSiblingJson(nums.get(i)));
 
             flag = isSelected(element);
             if (!flag) {
@@ -189,7 +193,7 @@ public class ClientAction extends $ {
 
     public void clickRandomBizLine() {
         List<WebElement> webElements =
-                findElements(bizLineSelection.getJsonObject(bizLineSelection.getDBLS34Span()));
+                findElements(bizLineSelection.getJsonObject(bizLineSelection.getDBusinessLineInputSpan()));
         int num = webElements.size();
         WebElement element;
 
@@ -227,9 +231,12 @@ public class ClientAction extends $ {
             String body = listBody.get(i);
 
             if (!(head.equals("开通道合APP") || head.equals("道合APP有效期") || head.equals("更新时间"))) {
-                WebElement element = findElement(client.get$DPQueryInputJson(head));
+                WebElement element = findElement(clientPopped.get$DQueryInputJson(head));
                 text = getInputValue(element);
                 flag = text.equals(body);
+                if(!flag){
+                    flag = StringMisc.isDisorderlyLike(text,body);
+                }
             } else if (head.equals("创建人")) {
                 WebElement element = findElement(topNavigator.getJsonObject(topNavigator.getDTNUserName()));
                 text = getText(element);
@@ -247,7 +254,7 @@ public class ClientAction extends $ {
 
 
     public int getPerPageNum() {
-        WebElement element = findElement(client.getJsonObject(client.getD18()));//定位 条/页
+        WebElement element = findElement(client.getJsonObject(client.getDTableLinesPerPageDiv()));//定位 条/页
         text = getText(element);//获取 条/页 里的文本
         perPageNum = IntMisc.getPerPageNum(text);
         return perPageNum;
@@ -266,7 +273,7 @@ public class ClientAction extends $ {
             }
 
             if (!(head.equals("开通道合APP") || head.equals("道合APP有效期") || head.equals("更新时间"))) {
-                WebElement element = findElement(client.get$DPQueryInputJson(head));
+                WebElement element = findElement(clientPopped.get$DQueryInputJson(head));
                 String inputValue = getInputValue(element);
                 webInfo.add(inputValue);
             } else if (head.equals("创建人")) {

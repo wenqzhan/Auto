@@ -1,9 +1,11 @@
 package com.sql.matrix;
 
+import com.utils.jdbc.JDBC;
+
 public class EmpSelectionSql {
 
 
-    private final static String sql2 =
+    private final static String empNameSql =
             "select 员工姓名\n" +
                     "  from (select username as 员工姓名\n" +
                     "          from je_core_enduser\n" +
@@ -12,8 +14,8 @@ public class EmpSelectionSql {
                     "         order by dbms_random.value)\n" +
                     " where rownum = 1";
 
-    public static String getSql2() {
-        return sql2;
+    public static String getEmpNameSql() {
+        return empNameSql;
     }
 
 
@@ -30,6 +32,9 @@ public class EmpSelectionSql {
         return sql1;
     }
 
+    public static String getEmpName(){
+        return JDBC.getSqlResultStr(empNameSql);
+    }
 
 
 }

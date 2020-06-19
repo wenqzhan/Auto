@@ -1,7 +1,5 @@
 package com.pageObject.matrix.orgCust;
 
-import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.CommonObject;
 import com.utils.json.JsonObject;
 
 public class OrgCustList extends JsonObject {

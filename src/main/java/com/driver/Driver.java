@@ -1,20 +1,12 @@
 package com.driver;
 
-import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.CommonObject;
-import com.pageObject.commonObject.CommonObjectPopped;
-import com.utils.json.Attr;
+import com.pageObject.matrix.CommonObject;
 import com.utils.log.LoggerController;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -173,8 +165,8 @@ public class Driver {
             CommonObject commonObject = new CommonObject();
             commonObject.getObjAttr();
 
-            CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
-            commonObjectPopped.getObjAttr();
+        CommonObject commonObjectPopped = new CommonObject("POPPED");
+            commonObjectPopped.getObjAttr("POPPED");
         }
 
     public static Class<?> getThisClazz(){

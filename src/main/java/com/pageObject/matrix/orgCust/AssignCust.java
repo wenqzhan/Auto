@@ -1,34 +1,34 @@
 package com.pageObject.matrix.orgCust;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.CommonObject;
-import com.pageObject.commonObject.CommonObjectPopped;
+import com.pageObject.matrix.CommonObject;
+//import com.pageObject.matrix.commonObject.CommonObjectPopped;
 import com.utils.json.JsonObject;
 
 public class AssignCust extends JsonObject { //客户维护分配
-    private CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+//    private CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
     private CommonObject commonObject = new CommonObject();
     public  String assignCust =
             "http://10.187.144.60:8080/orgcust/assigncust";
 
 
-    public final  String d1 = "客户维护分配-OA账号查询框-input";
-    private final  String x1 = commonObject.getX1();
+    public final  String dOAAccountInput = "客户维护分配-OA账号查询框-input";
+    private final  String xOAAccountInput = commonObject.getXOAAccountInput();
 
-    public final  String d2 = "客户维护分配-客户名称查询框-input";
-    private final  String x2 = commonObject.getX2();
+    public final  String dCustNameInput = "客户维护分配-客户名称查询框-input";
+    private final  String xCustNameInput = commonObject.getXCustNameInput();
 
-    public final  String d27 = "客户维护分配-客户经理查询框-input";
-    private final  String x27 = commonObject.getX27();
+    public final  String dCustManagerInput = "客户维护分配-客户经理查询框-input";
+    private final  String xCustManagerInput = commonObject.getXCustManagerInput();
 
-    public final  String d3 = "客户维护分配-查询按钮-span";
-    private final  String x3 = commonObject.getX3();
+    public final  String dQueryButtonSpan = "客户维护分配-查询按钮-span";
+    private final  String xQueryButtonSpan = commonObject.getXQueryButtonSpan();
 
-    public final  String d4 = "客户维护分配-重置按钮-span";
-    private final  String x4 = commonObject.getX4();
+    public final  String dResetConditionsButtonSpan = "客户维护分配-重置按钮-span";
+    private final  String xResetConditionsButtonSpan = commonObject.getXResetConditionsButtonSpan();
 
-    public final  String d5 = "客户维护分配-查询条件展开收起按钮-a";
-    private final  String x5 = commonObject.getX5();
+    public final  String dUnfoldFoldButtonSpan = "客户维护分配-查询条件展开收起按钮-a";
+    private final  String xUnfoldFoldButtonSpan = commonObject.getXUnfoldFoldButtonSpan();
 
     public final  String dd1 = "客户维护分配-客户分配按钮-span";
     private final  String xx1 = "//span[1=1 and contains(text(),\"客户分配\")]";
@@ -36,69 +36,69 @@ public class AssignCust extends JsonObject { //客户维护分配
     public final  String dd2 = "客户维护分配-历史记录按钮-span";
     private final  String xx2 = "//span[1=1 and contains(text(),\"历史记录\")]";
 
-    public final  String d9 = "客户维护分配-表格-table";
-    private final  String x9 = commonObject.getX9();
+    public final  String dTableTable = "客户维护分配-表格-table";
+    private final  String xTableTable = commonObject.getXTableTable();
 
-    public final  String d10 = "客户维护分配-表格表体rows-tr";
-    private final  String x10 = commonObject.getX10();
-
-
-    public final  String d10Selected = "客户维护分配-表格表体rows-selected";
-    private final  String x10Selected = commonObject.getX10Selected();
-
-    public final  String d10NotSelected = "客户维护分配-表格表体rows-not selected";
-    private final  String x10NotSelected = commonObject.getX10NotSelected();
+    public final  String dTableTrs = "客户维护分配-表格表体rows-tr";
+    private final  String xTableTrs = commonObject.getXTableTrs();
 
 
-    public final  String d11Tr1 = "客户维护分配-表格表头row下的tr[1]/th col-th";
-    private final  String x11Tr1 = commonObject.getX11Tr1();
+    public final  String dTableTrsSelectedTrs = "客户维护分配-表格表体rows-selected";
+    private final  String xTableTrsSelectedTrs = commonObject.getXTableTrsSelectedTrs();
 
-    public final  String d31 = "客户维护分配-表格表头-多选框";
-    private final  String x31 = commonObject.getX31();
-
-
-    public final  String d12 = "客户维护分配-表格下方翻页按钮-上一页-li";
-    private final  String x12 = commonObject.getX12();
-
-    public final  String d13 = "客户维护分配-表格下方翻页按钮-下一页-li";
-    private final  String x13 = commonObject.getX13();
-
-    public final  String d14 = "客户维护分配-表格下方翻页按钮-下一页前的按钮,可以看出共多少页-a";
-    private final  String x14 = commonObject.getX14();
-
-    public final  String d15 = "客户维护分配-表格下方跳页输入框-input";
-    private final  String x15 = commonObject.getX15();
-
-    public final  String d16 = "客户维护分配-表格下方跳页输入框左边的跳至两个字-div";
-    private final  String x16 = commonObject.getX16();
-
-    public final  String d17 = "客户维护分配-数据加载(转菊花)-span";
-    private final  String x17 = commonObject.getX17();
-
-    public final  String d18 = "客户维护分配-条/页-div";
-    private final  String x18 = commonObject.getX18();
-
-    public final  String d18L5 = "客户维护分配-条/页-5 条/页-li";
-    private final  String x18L5 = commonObject.getX18L5();
-
-    public final  String d18L10 = "客户维护分配-条/页-10 条/页-li";
-    private final  String x18L10 = commonObject.getX18L10();
-
-    public final  String d18L20 = "客户维护分配-条/页-20 条/页-li";
-    private final  String x18L20 = commonObject.getX18L20();
-
-    public final  String d18L30 = "客户维护分配-条/页-30 条/页-li";
-    private final  String x18L30 = commonObject.getX18L30();
+    public final  String dTableTrsNotSelectedTrs = "客户维护分配-表格表体rows-not selected";
+    private final  String xTableTrsNotSelectedTrs = commonObject.getXTableTrsNotSelectedTrs();
 
 
-    public final  String d28 = "客户维护分配-表头多选框-input";
-    private final  String x28 = commonObject.getX28();
+    public final  String dTableHeaderTr1Ths = "客户维护分配-表格表头row下的tr[1]/th col-th";
+    private final  String xTableHeaderTr1Ths = commonObject.getXTableHeaderTr1Ths();
 
-    public final  String d29 = "客户维护分配-通用-确定按钮-span";
-    private final  String x29 = commonObject.getX29();
+    public final  String dTableHeaderMultiCheckboxTh = "客户维护分配-表格表头-多选框";
+    private final  String xTableHeaderMultiCheckboxThTh = commonObject.getXTableHeaderMultiCheckboxTh();
 
-    public final  String d30 = "客户维护分配-通用-关闭按钮-span";
-    private final  String x30 = commonObject.getX30();
+
+    public final  String dTableLastPageButtonLi = "客户维护分配-表格下方翻页按钮-上一页-li";
+    private final  String xTableLastPageButtonLi = commonObject.getXTableLastPageButtonLi();
+
+    public final  String dTableNextPageButtonLi = "客户维护分配-表格下方翻页按钮-下一页-li";
+    private final  String xTableNextPageButtonLi = commonObject.getXTableNextPageButtonLi();
+
+    public final  String dMaxPageButtonA = "客户维护分配-表格下方翻页按钮-下一页前的按钮,可以看出共多少页-a";
+    private final  String xMaxPageButtonA = commonObject.getXMaxPageButtonA();
+
+    public final  String dTableJumpToInput = "客户维护分配-表格下方跳页输入框-input";
+    private final  String xTableJumpToInput = commonObject.getXTableJumpToInput();
+
+    public final  String dTableJumpDiv = "客户维护分配-表格下方跳页输入框左边的跳至两个字-div";
+    private final  String xTableJumpDiv = commonObject.getXTableJumpDiv();
+
+    public final  String dTableLoadingSignSpan = "客户维护分配-数据加载(转菊花)-span";
+    private final  String xTableLoadingSignSpan = commonObject.getXTableLoadingSignSpan();
+
+    public final  String dTableLinesPerPageDiv = "客户维护分配-条/页-div";
+    private final  String xTableLinesPerPageDiv = commonObject.getXTableLinesPerPageDiv();
+
+    public final  String dTableFiveLinesPerPageLi = "客户维护分配-条/页-5 条/页-li";
+    private final  String xTableFiveLinesPerPageLi = commonObject.getXTableFiveLinesPerPageLi();
+
+    public final  String dTableTenLinesPerPageLi = "客户维护分配-条/页-10 条/页-li";
+    private final  String xTableTenLinesPerPageLi = commonObject.getXTableTenLinesPerPageLi();
+
+    public final  String dTableTwentyLinesPerPageLi = "客户维护分配-条/页-20 条/页-li";
+    private final  String xTableTwentyLinesPerPageLi = commonObject.getXTableTwentyLinesPerPageLi();
+
+    public final  String dTableThirtyLinesPerPageLi = "客户维护分配-条/页-30 条/页-li";
+    private final  String xTableThirtyLinesPerPageLi = commonObject.getXTableThirtyLinesPerPageLi();
+
+
+    public final  String dTableHeaderMultiCheckboxInput = "客户维护分配-表头多选框-input";
+    private final  String xTableHeaderMultiCheckboxInput = commonObject.getXTableHeaderMultiCheckboxInput();
+
+    public final  String dConfirmButtonSpan = "客户维护分配-通用-确定按钮-span";
+    private final  String xConfirmButtonSpan = commonObject.getXConfirmButtonSpan();
+
+    public final  String dCloseButtonSpan = "客户维护分配-通用-关闭按钮-span";
+    private final  String xCloseButtonSpan = commonObject.getXCloseButtonSpan();
 
 
 //    public final  String dd2Pd9t = "客户维护分配-客户维护历史-表格-table";
@@ -154,7 +154,7 @@ public class AssignCust extends JsonObject { //客户维护分配
 //    public final  String dd2Pd28t = "客户维护分配-客户维护历史-表头多选框-input";
 //    private final  String dd2Px28t = commonObjectPopped.getXpath(commonObjectPopped.getD28P());
 
-    private final  String t = commonObjectPopped.getPrefix();
+    private final  String t = commonObject.getPoppedPrefix();
 
     public final  String dd1Pdd1 = "客户维护分配-客户分配-客户名称-textarea";
     private final  String xx1Pxx1 = t + commonObject.get$XDiv("客户名称") + "//textarea";
@@ -199,11 +199,11 @@ public class AssignCust extends JsonObject { //客户维护分配
 
 
     public final  String dd1Pdd3Pdd2 = "客户维护分配-客户分配-客户所属部门-确定按钮-span";
-    private final  String xx1Pxx3Pxx2 = xx1Pxx3Pxx1 + "/../../following-sibling::*" + x29;
+    private final  String xx1Pxx3Pxx2 = xx1Pxx3Pxx1 + "/../../following-sibling::*" + xConfirmButtonSpan;
     //div[1=1 and contains(@class,'ant-modal-content')]//input[@placeholder]/../../following-sibling::*//span[1=1 and contains(text(),"确 定")]
 
     public final  String dd1Pdd3Pdd3 = "客户维护分配-客户分配-客户所属部门-关闭按钮-span";
-    private final  String xx1Pxx3Pxx3 = xx1Pxx3Pxx1 + "/../../following-sibling::*" + x30;
+    private final  String xx1Pxx3Pxx3 = xx1Pxx3Pxx1 + "/../../following-sibling::*" + xCloseButtonSpan;
     //div[1=1 and contains(@class,'ant-modal-content')]//input[@placeholder]/../../following-sibling::*//span[1=1 and contains(text(),"确 定")]
 
 
@@ -231,7 +231,7 @@ public class AssignCust extends JsonObject { //客户维护分配
     //div[@tabindex]//table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key]
 
     public final  String dd1Pdd5Pdd4 = "客户维护分配-客户分配-客户维护经理-员工选择-确定按钮-span";
-    private final  String xx1Pxx5Pxx4 = xx1Pxx5Pxx1 +"/../../../../../../following-sibling::*" + x29;
+    private final  String xx1Pxx5Pxx4 = xx1Pxx5Pxx1 +"/../../../../../../following-sibling::*" + xConfirmButtonSpan;
     //input[1=1 and contains(@placeholder,'输入用户名查询...')]/../../../../../../following-sibling::*//span[text()='确 定']
 
 
@@ -249,7 +249,7 @@ public class AssignCust extends JsonObject { //客户维护分配
     private final  String xx1Pxx6Pxx1 = "//div[1=1 and contains(@class,'ant-modal-content')]//input[@placeholder]";
 
     public final  String dd1Pdd6Pdd2 = "客户维护分配-客户分配-客户所属部门-团队名称-确定按钮-span";
-    private final  String xx1Pxx6Pxx2 = xx1Pxx6Pxx1 + "/../../following-sibling::*" + x29;
+    private final  String xx1Pxx6Pxx2 = xx1Pxx6Pxx1 + "/../../following-sibling::*" + xConfirmButtonSpan;
 
 
     public final  String dd3 = "客户维护分配-客户分配-提示信息-span";
@@ -328,23 +328,23 @@ public class AssignCust extends JsonObject { //客户维护分配
 
     private  String get$D1(String num) { //表格表体-第num行的描述
 
-        return commonObject.get$D10Sibling(num).replace("通用", "客户维护分配");
+        return commonObject.get$DTableTrsSibling(num).replace("通用", "客户维护分配");
     }
 
     private  String get$X1(String num) {//表格表体-第num行的xpath
 
-        return commonObject.get$X10Sibling(num);
+        return commonObject.get$XTableTrsSibling(num);
     }
 
 
     private  String get$D1P(String num) { //表格表体-第num行的描述
 
-        return commonObjectPopped.get$D10PSibling(num).replace("通用", "客户维护分配");
+        return commonObject.get$DTableTrsSibling(num).replace("通用", "客户维护分配");
     }
 
     private  String get$X1P(String num) {//表格表体-第num行的xpath
 
-        return commonObjectPopped.get$X10PSibling(num);
+        return commonObject.get$XTableTrsSibling(num);
     }
 
     public  JSONObject get$Json1(String num) { //表格表体-第num行的json

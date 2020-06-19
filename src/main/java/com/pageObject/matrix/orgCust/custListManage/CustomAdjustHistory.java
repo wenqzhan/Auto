@@ -1,7 +1,5 @@
 package com.pageObject.matrix.orgCust.custListManage;
 
-import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.CommonObject;
 import com.utils.json.JsonObject;
 
 public class CustomAdjustHistory extends JsonObject { //客户调整历史

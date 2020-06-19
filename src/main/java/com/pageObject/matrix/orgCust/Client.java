@@ -1,280 +1,278 @@
 package com.pageObject.matrix.orgCust;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.*;
-import com.pageObject.matrix.BizLineSelection;
-import com.pageObject.matrix.CustSelection;
-import com.pageObject.matrix.EmpSelection;
+import com.pageObject.matrix.CommonObject;
 import com.utils.json.JsonObject;
 import lombok.Data;
 
 @Data
 public class Client extends JsonObject {//客户联系人
-    private CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+    //    private CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
     private CommonObject commonObject = new CommonObject();
 //    private String X = "xpath";
 //    private String D = "description";
 
-    public Client(){
-        //commonObjectPopped.getObjAttr();
-        //commonObject.getObjAttr();
-        CommonObject commonObject = new CommonObject();
-        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
-        BizLineSelection bizLineSelection = new BizLineSelection();
-        CustSelection custSelection = new CustSelection();
-        EmpSelection empSelection = new EmpSelection("国君服务联系人");
+    public Client() {
+        setDesPrefix("客户联系人");
+        super.setPrefix("");
+        setConVal("");
+    }
 
-//        commonObject.getObjAttr();
-//        commonObjectPopped.getObjAttr();
-        bizLineSelection.getObjAttr();
-        custSelection.getObjAttr();
-        empSelection = (EmpSelection) empSelection.getObjAttr("国君服务联系人");
+    public Client(String label) {
+        setDesPrefix("客户联系人" + label);
+        setPrefix(label);
+        setConVal(label);
+    }
 
+    public void setPrefix(String label) {
+        if (label.toLowerCase().contains("popped")) {
+            super.setPrefix(getPoppedPrefix());
+        }
     }
 
 
-    private  String client =
+    private String client =
             "http://10.187.144.60:8080/orgcust/client";
 
-    private final  String d35 = "客户联系人-新增按钮-span";
-    private final  String x35 = commonObject.getX35();
+    private String dNewButtonSpan;
+    private String xNewButtonSpan;
     //span[1=1 and contains(text(),"新增")]
 
-    private final  String d6 = "客户联系人-导出按钮-span";
-    private final  String x6 = commonObject.getX36();
+    private String dExportButtonSpan;
+    private String xExportButtonSpan;
     //span[1=1 and contains(text(),"导出")]
 
-    private final  String d36 = "客户联系人-开通道合按钮-span";
-    private final  String x36 = commonObject.getX36();
+    private String dGrantVintexPermissionSpan;
+    private String xGrantVintexPermissionSpan;
     //span[1=1 and contains(text(),"开通道合")]
 
 
-    private final  String d37 = "客户联系人-联系人姓名框-input";
-    private final  String x37 = commonObject.getX37();
+    private String dContactNameInput;
+    private String xContactNameInput;
     //label[1=1 and contains(text(),"联系人姓名")]/../following-sibling::*[1]//input
 
-    private final  String d38 = "客户联系人-手机框-input";
-    private final  String x38 = commonObject.getX38();
+    private String dMobileInput;
+    private String xMobileInput;
     //label[1=1 and contains(text(),"手机")]/../following-sibling::*[1]//input
 
-    private final  String d41 = "客户联系人-邮箱框-input";
-    private final  String x41 = commonObject.getX41();
+    private String dEmailInput;
+    private String xEmailInput;
     //label[1=1 and contains(text(),"邮箱")]/../following-sibling::*[1]//input
 
-    private final  String d3 = "客户联系人-查询按钮-span";
-    private final  String x3 = commonObject.getX3();
+    private String dQueryButtonSpan;
+    private String xQueryButtonSpan;
     //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"查询")]
 
-    private final  String d4 = "客户联系人-重置按钮-span";
-    private final  String x4 = commonObject.getX4();
+    private String dResetConditionsButtonSpan;
+    private String xResetConditionsButtonSpan;
     //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"重置")]
 
     ///////////////////////
-    private final  String d9 = "客户联系人-表格-table";
-    private final  String x9 = commonObject.getX9();
+    private String dTableTable;
+    private String xTableTable;
     //table[1=1 and contains(@class,'ant-table-fixed')]
 
-    private final  String d10 = "客户联系人-表格表体rows-tr";
-    private final  String x10 = commonObject.getX10();
+    private String dTableTrs;
+    private String xTableTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not (contains(@style,'height'))]
 
-    private final  String d10Selected = "客户联系人-表格表体rows-selected-tr";
-    private final  String x10Selected = commonObject.getX10Selected();
+    private String dTableTrsSelectedTrs;
+    private String xTableTrsSelectedTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and contains(@class,'selected')]
 
-    private final  String d10NotSelected = "客户联系人-表格表体rows-not selected-tr";
-    private final  String x10NotSelected = commonObject.getX10NotSelected();
+    private String dTableTrsNotSelectedTrs;
+    private String xTableTrsNotSelectedTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(contains(@class,'selected'))]
 
-    private final  String d11Tr1 = "客户联系人-表格表头row下的tr[1]/th col-th";
-    private final  String x11Tr1 = commonObject.getX11Tr1();
+    private String dTableHeaderTr1Ths;
+    private String xTableHeaderTr1Ths;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[not(@key='selection-column') and not(@key='action')]
 
-    private final  String d31 = "客户联系人-表格表头-多选框-th";
-    private final  String x31 = commonObject.getX31();
+    private String dTableHeaderMultiCheckboxTh;
+    private String xTableHeaderMultiCheckboxTh;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']
 
-    private final  String d12 = "客户联系人-表格下方翻页按钮-上一页-li";
-    private final  String x12 = commonObject.getX12();
+    private String dTableLastPageButtonLi;
+    private String xTableLastPageButtonLi;
     //li[1=1 and contains(@title,'上一页')]
 
-    private final  String d13 = "客户联系人-表格下方翻页按钮-下一页-li";
-    private final  String x13 = commonObject.getX13();
+    private String dTableNextPageButtonLi;
+    private String xTableNextPageButtonLi;
     //li[1=1 and contains(@title,'下一页')]
 
-    private final  String d14 = "客户联系人-表格下方翻页按钮-下一页前的按钮,可以看出共多少页-a";
-    private final  String x14 = commonObject.getX14();
+    private String dMaxPageButtonA;
+    private String xMaxPageButtonA;
     //li[1=1 and contains(@title,'下一页')]/preceding-sibling::li[1]/a
 
-    private final  String d15 = "客户联系人-表格下方跳页输入框-input";
-    private final  String x15 = commonObject.getX15();
+    private String dTableJumpToInput;
+    private String xTableJumpToInput;
     //div[1=1 and contains(text(),"跳至")]/input
 
-    private final  String d16 = "客户联系人-表格下方跳页输入框左边的跳至两个字-div";
-    private final  String x16 = commonObject.getX16();
+    private String dTableJumpDiv;
+    private String xTableJumpDiv;
     //div[1=1 and contains(text(),"跳至")]
 
-    private final  String d17 = "客户联系人-数据加载(转菊花)-span";
-    private final  String x17 = commonObject.getX17();
+    private String dTableLoadingSignSpan;
+    private String xTableLoadingSignSpan;
     //span[1=1 and contains(@class,'ant-spin-dot')]
 
-    private final  String d18 = "客户联系人-条/页-div";
-    private final  String x18 = commonObject.getX18();
+    private String dTableLinesPerPageDiv;
+    private String xTableLinesPerPageDiv;
     //div[1=1 and contains(@title,'条/页')]
 
-    private final  String d18L5 = "客户联系人-条/页-5 条/页-li";
-    private final  String x18L5 = commonObject.getX18L5();
+    private String dTableFiveLinesPerPageLi;
+    private String xTableFiveLinesPerPageLi;
     //li[1=1 and text()='5 条/页' ]
 
-    private final  String d18L10 = "客户联系人-条/页-10 条/页-li";
-    private final  String x18L10 = commonObject.getX18L10();
+    private String dTableTenLinesPerPageLi;
+    private String xTableTenLinesPerPageLi;
     //li[1=1 and text()='10 条/页' ]
 
-    private final  String d18L20 = "客户联系人-条/页-20 条/页-li";
-    private final  String x18L20 = commonObject.getX18L20();
+    private String dTableTwentyLinesPerPageLi;
+    private String xTableTwentyLinesPerPageLi;
     //li[1=1 and text()='20 条/页' ]
 
-    private final  String d18L30 = "客户联系人-条/页-30 条/页-li";
-    private final  String x18L30 = commonObject.getX18L30();
+    private String dTableThirtyLinesPerPageLi;
+    private String xTableThirtyLinesPerPageLi;
     //li[1=1 and text()='30 条/页' ]
 
-    private final  String d28 = "客户联系人-表头多选框-input";
-    private final  String x28 = commonObject.getX28();
+    private String dTableHeaderMultiCheckboxInput;
+    private String xTableHeaderMultiCheckboxInput;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']//input
 
-    private final  String d81Final = "客户联系人-添加/修改-成功系统提示信息(有绿钩子的)";
-    private final  String x81Final = commonObject.getX81Final();
+    private String dSuccessPromptWithGreenCheckDivFinal;
+    private String xSuccessPromptWithGreenCheckDivFinal;
     //div[@class='ant-message-content']
     //////////////
-    private final  String d34P = commonObjectPopped.getD34P().replaceFirst("通用","客户联系人");
-    private final  String x34P = commonObjectPopped.getX34P();
+    private String dBusinessLineInput;
+    private String xBusinessLineInput;
     //div[@tabindex]//label[1=1 and contains(text(),"业务条线")]/../following-sibling::*[1]//input
 
-    private final  String d34PCross = commonObjectPopped.getD34PCross().replaceFirst("通用","客户联系人");;
-    private final  String x34PCross = commonObjectPopped.getX34PCross();
+    private String dBusinessLineInputCrossI;
+    private String xBusinessLineInputCrossI;
     //div[@tabindex]//label[1=1 and contains(text(),"业务条线")]/../following-sibling::*[1]//input/..//i[1=1 and contains(@class,'close-circle')]
 
-    private final  String d1P = commonObjectPopped.getD1P().replaceFirst("通用","客户联系人");;
-    private final  String x1P = commonObjectPopped.getX1P();
+    private String dOAAccountInput;
+    private String xOAAccountInput;
     //label[1=1 and contains(text(),"OA账号")]/../following-sibling::*[1]//input
 
-    private final  String d2P = commonObjectPopped.getD2P().replaceFirst("通用","客户联系人");;
-    private final  String x2P = commonObjectPopped.getX2P();
+    private String dCustNameInput;
+    private String xCustNameInput;
     //label[1=1 and contains(text(),"客户名称")]/../following-sibling::*[1]//input
 
 
-    private final  String d37P = commonObjectPopped.getD37P().replaceFirst("通用","客户联系人");;
-    private final  String x37P = commonObjectPopped.getX37P();
-    //label[1=1 and contains(text(),"联系人姓名")]/../following-sibling::*[1]//input
+//    private   String d37 ;
+//    private   String x37 ;
+//    //label[1=1 and contains(text(),"联系人姓名")]/../following-sibling::*[1]//input
 
-    private final  String d38P = commonObjectPopped.getD38P().replaceFirst("通用","客户联系人");;
-    private final  String x38P = commonObjectPopped.getX38P();
-    //label[1=1 and contains(text(),"手机")]/../following-sibling::*[1]//input
+//    private   String d38 ;
+//    private   String x38 ;
+//    //label[1=1 and contains(text(),"手机")]/../following-sibling::*[1]//input
 
-    private final  String d39P = commonObjectPopped.getD39P().replaceFirst("通用","客户联系人");;
-    private final  String x39P = commonObjectPopped.getX39P();
+    private String dDepartmentInput;
+    private String xDepartmentInput;
     //label[1=1 and contains(text(),"部门")]/../following-sibling::*[1]//input
 
 
-    private final  String d40P = commonObjectPopped.getD40P().replaceFirst("通用","客户联系人");;
-    private final  String x40P = commonObjectPopped.getX40P();
+    private String dFaxInput;
+    private String xFaxInput;
     //label[1=1 and contains(text(),"FAX")]/../following-sibling::*[1]//input
 
-    private final  String d41P = commonObjectPopped.getD41P().replaceFirst("通用","客户联系人");;
-    private final  String x41P = commonObjectPopped.getX41P();
-    //label[1=1 and contains(text(),"邮箱")]/../following-sibling::*[1]//input
+//    private   String d41 ;
+//    private   String x41 ;
+//    //label[1=1 and contains(text(),"邮箱")]/../following-sibling::*[1]//input
 
-    private final  String d42P = commonObjectPopped.getD42P().replaceFirst("通用","客户联系人");;
-    private final  String x42P =commonObjectPopped.getX42P();
-    //label[1=1 and contains(text(),"客户简称")]/../following-sibling::*[1]//input
+    private String dCustAbbInput;
+    private String xCustAbbInput;
 
-    private final  String d43P = commonObjectPopped.getD43P().replaceFirst("通用","客户联系人");;
-    private final  String x43P = commonObjectPopped.getX43P();
+
+    private String dPositionInput;
+    private String xPositionInput;
     //label[1=1 and contains(text(),"职务")]/../following-sibling::*[1]//input
 
 
-    private final  String d44P =commonObjectPopped.getD44P().replaceFirst("通用","客户联系人");;
-    private final  String x44P = commonObjectPopped.getX44P();
+    private String dTelInput;
+    private String xTelInput;
     //label[1=1 and contains(text(),"座机")]/../following-sibling::*[1]//input
 
-    private final  String d45P = commonObjectPopped.getD45P().replaceFirst("通用","客户联系人");;
-    private final  String x45P = commonObjectPopped.getX45P();
+    private String dCreatorInput;
+    private String xCreatorInput;
     //label[1=1 and contains(text(),"创建人")]/../following-sibling::*[1]//input
 
-    private final  String d46P = commonObjectPopped.getD46P().replaceFirst("通用","客户联系人");;
-    private final  String x46P = commonObjectPopped.getX46P();
+    private String dOfficeAddressInput;
+    private String xOfficeAddressInput;
     //label[1=1 and contains(text(),"办公地址")]/../following-sibling::*[1]//input
 //
 //    private final  String d27P = "客户联系人-first popped-客户经理框-input";
 //    private final  String x27P = commonObjectPopped.getXpath(commonObjectPopped.d27P);
 //    //label[1=1 and contains(text(),"客户经理")]/../following-sibling::*[1]//input
 //
-    private final  String d47P = commonObjectPopped.getD47P().replaceFirst("通用","客户联系人");;
-    private final  String x47P = commonObjectPopped.getX47P();
+    private String dGTJAContactInput;
+    private String xGTJAContactInput;
     //label[1=1 and contains(text(),"国君服务联系人")]/../following-sibling::*[1]//input
 
 
-    private final  String d29P = commonObjectPopped.getD29P().replaceFirst("通用","客户联系人");;
-    private final  String x29P = commonObjectPopped.getX29P();
+    private String dConfirmButtonSpan;
+    private String xConfirmButtonSpan;
     //div[@tabindex]//span[1=1 and contains(text(),"确 定")]
 
-    private final  String d30P = commonObjectPopped.getD30P().replaceFirst("通用","客户联系人");;
-    private final  String x30P = commonObjectPopped.getX30P();
+    private String dCloseButtonSpan;
+    private String xCloseButtonSpan;
     //div[@tabindex]//span[1=1 and contains(text(),"关 闭")]
 
 
-    private  String get$XPQueryInput(String label) {
+    private String get$XQueryInput(String label) {
         //div[@tabindex]//label[1=1 and contains(text(),"客户柜台代码")]/../following-sibling::*[1]//input
-        return commonObjectPopped.get$XPQueryInput(label);
+        return getPrefix()+ commonObject.get$XQueryInput(label);
     }
 
 
-    private  String get$DPQueryInput(String label) {
-        return commonObjectPopped.get$DPQueryInput(label).
+    private String get$DQueryInput(String label) {
+        return commonObject.get$DQueryInput(label).
                 replaceFirst("通用", "客户联系人");
     }
 
-    private  String get$X10Sibling(int num) {
+    private String get$XTableTrsSibling(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(@style)][30]
-        String xpath = commonObject.get$X10Sibling(num);
+        String xpath = commonObject.get$XTableTrsSibling(num);
         return xpath;
     }
 
-    private  String get$D10Sibling(int num) {
+    private String get$DTableTrsSibling(int num) {
         //客户联系人-表格表体-第1行
-        String description = commonObject.get$D10Sibling(num);
+        String description = commonObject.get$DTableTrsSibling(num);
         description = description.replaceFirst("通用", "客户联系人");
         return description;
     }
 
 
-    private  String get$X10_actionSibling(int num) {
+    private String get$XTableTrs_actionSibling(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style][30]
-        String xpath = commonObject.get$X10ActionSibling(num);
+        String xpath = commonObject.get$XTableTrsActionSibling(num);
         return xpath;
     }
 
-    private  String get$D10_actionSibling(int num) {
+    private String get$DTableTrs_actionSibling(int num) {
         //客户联系人-表格表体-第1行
-        String description = commonObject.get$D10ActionSibling(num);
+        String description = commonObject.get$DTableTrsActionSibling(num);
         description = description.replaceFirst("通用", "客户联系人");
         return description;
     }
 
-    public  JSONObject get$DPQueryInputJson(String label) {
-        JsonObject.setJsonObject(get$DPQueryInput(label), get$XPQueryInput(label));
+    public JSONObject get$DQueryInputJson(String label) {
+        JsonObject.setJsonObject(get$DQueryInput(label), get$XQueryInput(label));
         return JsonObject.getJsonObject();
     }
 
 
-    public  JSONObject get$10SiblingJson(int num) {
-        JsonObject.setJsonObject(get$D10Sibling(num), get$X10Sibling(num));
+    public JSONObject get$TableTrsSiblingJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrsSibling(num), get$XTableTrsSibling(num));
         return JsonObject.getJsonObject();
     }
 
 
-    public  JSONObject get$10_actionSiblingJson(int num) {
-        JsonObject.setJsonObject(get$D10_actionSibling(num), get$X10_actionSibling(num));
+    public JSONObject get$TableTrs_actionSiblingJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrs_actionSibling(num), get$XTableTrs_actionSibling(num));
         return JsonObject.getJsonObject();
     }
 

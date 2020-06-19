@@ -33,7 +33,7 @@ public class LoginTestStepdefs extends $ {
             }
         }
         if (website.equals("新matrix")) {
-            $.get("http://10.187.144.60:8080/user/login");
+            $.get("http://10.187.1t.60:8080/user/login");
         } else if (website.equals("百度")) {
             $.get("https://www.baidu.com");
         }

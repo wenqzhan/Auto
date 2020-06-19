@@ -39,9 +39,9 @@ public class XxfbListAction extends $ {
     //信息发布点击新增
     public boolean clickNewButton() {
         boolean flag;
-        WebElement element = findElement(xxfbList.getJsonObject(xxfbList.getD35()));
+        WebElement element = findElement(xxfbList.getJsonObject(xxfbList.getDTableTrs()));
         click(element);
-        flag = isElementAppeared(edit.getJsonObject(edit.getD60()));
+        flag = isElementAppeared(edit.getJsonObject(edit.getDSaveButtonSpan()));
         flag = getUrl().equals(edit.getEdit());
         if (!flag) {
             log.info("网址不对或者没看到保存按钮");
@@ -51,26 +51,26 @@ public class XxfbListAction extends $ {
 
     //选择附件权限
     public boolean selectAttachmentPermission() {
-        JSONObject jsonObject1 = edit.getJsonObject(edit.getD63());
-        JSONObject jsonObject2 = edit.getJsonObject(edit.getD63RadioSpan());
-        JSONObject jsonObject3 = edit.getJsonObject(edit.getD64());
-        JSONObject jsonObject4 = edit.getJsonObject(edit.getD64RadioSpan());
+        JSONObject jsonObject1 = edit.getJsonObject(edit.getDAttachmentAccessViewOnlySpan());
+        JSONObject jsonObject2 = edit.getJsonObject(edit.getDAttachmentAccessViewOnlySpanRadioSpan());
+        JSONObject jsonObject3 = edit.getJsonObject(edit.getDAttachmentAccessViewAndDownloadSpan());
+        JSONObject jsonObject4 = edit.getJsonObject(edit.getDAttachmentAccessViewAndDownloadSpanRadioSpan());
         return randomClickAndCheckAttribute(jsonObject1, jsonObject2, jsonObject3, jsonObject4);
     }
 
     //选择是否有水印
     public boolean selectIsWatermarked() {
-        JSONObject jsonObject1 = edit.getJsonObject(edit.getD65());
-        JSONObject jsonObject2 = edit.getJsonObject(edit.getD65RadioSpan());
-        JSONObject jsonObject3 = edit.getJsonObject(edit.getD66());
-        JSONObject jsonObject4 = edit.getJsonObject(edit.getD66RadioSpan());
+        JSONObject jsonObject1 = edit.getJsonObject(edit.getDIsWaterMarkedYesSpan());
+        JSONObject jsonObject2 = edit.getJsonObject(edit.getDIsWaterMarkedYesSpanRadioSpan());
+        JSONObject jsonObject3 = edit.getJsonObject(edit.getDIsWaterMarkedNoSpan());
+        JSONObject jsonObject4 = edit.getJsonObject(edit.getDIsWaterMarkedNoSpanRadioSpan());
         return randomClickAndCheckAttribute(jsonObject1, jsonObject2, jsonObject3, jsonObject4);
     }
 
     //选择分类
     public boolean selectClassification() {
         boolean flag = true;
-        WebElement element = findElement(edit.getJsonObject(edit.getD58()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDClassificationDiv()));
         click(element);
         List<Integer> except = new ArrayList<>();
         except.add(6);
@@ -78,7 +78,7 @@ public class XxfbListAction extends $ {
         int random = Randoms.getRandomNum(1, 13, except);
         String str = random < 10 ? "0" + random : "" + random;
         Field[] fields = edit.getClass().getDeclaredFields();
-        String varName = "d58Span" + str;
+        String varName = "dClassificationDivSpan" + str;
         String varValue;
         Object o = null;
         for (Field field : fields) {
@@ -112,9 +112,9 @@ public class XxfbListAction extends $ {
         String title = getClassificationValue();
         long timestamp = System.currentTimeMillis();
         title = title + "@" + timestamp;
-        WebElement element = findElement(edit.getJsonObject(edit.getD67()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDTitleInput()));
         sendKeys(element, title);
-        element = findElement(edit.getJsonObject(edit.getD67()));
+        element = findElement(edit.getJsonObject(edit.getDTitleInput()));
         String text = getInputValue(element);
         flag = text.equals(title);
         return flag;
@@ -128,9 +128,9 @@ public class XxfbListAction extends $ {
         String randomStr = Randoms.getRandomStr(Randoms.getRandomNum(10, 50));
         long timestamp = System.currentTimeMillis();
         abstractText = abstractText + randomStr + "@" + timestamp;
-        WebElement element = findElement(edit.getJsonObject(edit.getD68()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDMainBodyInput()));
         sendKeys(element, abstractText);
-        element = findElement(edit.getJsonObject(edit.getD68()));
+        element = findElement(edit.getJsonObject(edit.getDMainBodyInput()));
         String text = getInputValue(element);
         flag = text.equals(abstractText);
         return flag;
@@ -142,7 +142,7 @@ public class XxfbListAction extends $ {
         boolean flag;
         WebElement element;
         try {
-            element = findElement(edit.getJsonObject(edit.getD69UploadFileCross()), 1, false);
+            element = findElement(edit.getJsonObject(edit.getDTitleImageInputUploadFileCross()), 1, false);
             click(element);
             Thread.sleep(500);
         } catch (Exception e) {
@@ -156,9 +156,9 @@ public class XxfbListAction extends $ {
         System.out.println(file);
         String name = MyFile.getFileName(file);
         System.out.println(name);
-        element = findElement(edit.getJsonObject(edit.getD69()));
+        element = findElement(edit.getJsonObject(edit.getDTitleImageInput()));
         upload(element, file);
-        element = findElement(edit.getJsonObject(edit.getD69UploadFile()), 60);
+        element = findElement(edit.getJsonObject(edit.getDTitleImageInputUploadFile()), 60);
         String nameOnWeb = getAttribute(element, "title");
         flag = name.equals(nameOnWeb);
         return flag;
@@ -171,9 +171,9 @@ public class XxfbListAction extends $ {
         String randomStr = Randoms.getRandomGBKStr(Randoms.getRandomNum(50, 150));
         long timestamp = System.currentTimeMillis();
         summary = summary + randomStr + "@" + timestamp;
-        WebElement element = findElement(edit.getJsonObject(edit.getD70()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDSummaryTextarea()));
         sendKeys(element, summary);
-        element = findElement(edit.getJsonObject(edit.getD70()));
+        element = findElement(edit.getJsonObject(edit.getDSummaryTextarea()));
         String text = getTextareaValue(element);
         flag = text.equals(summary);
         return flag;
@@ -182,11 +182,11 @@ public class XxfbListAction extends $ {
     //选择发布人
     public boolean selectPublisher() {
         boolean flag;
-        String empName = JDBC.getSqlResultStr(EmpSelectionSql.getSql2());
-        WebElement element = findElement(edit.getJsonObject(edit.getD71()));
+        String empName = JDBC.getSqlResultStr(EmpSelectionSql.getEmpNameSql());
+        WebElement element = findElement(edit.getJsonObject(edit.getDPublisherIpnt()));
         click(element);
         flag = EmpSelectionAction.selectEmp("发布人", empName);
-        element = findElement(edit.getJsonObject(edit.getD71()));
+        element = findElement(edit.getJsonObject(edit.getDPublisherIpnt()));
         String empNameInInput = getInputValue(element);
         flag = flag && empName.equals(empNameInInput);
         return flag;
@@ -195,20 +195,20 @@ public class XxfbListAction extends $ {
 
     //选择显示设置
     public boolean selectDisplayOption() {
-        JSONObject jsonObject1 = edit.getJsonObject(edit.getD72());
-        JSONObject jsonObject2 = edit.getJsonObject(edit.getD72RadioSpan());
-        JSONObject jsonObject3 = edit.getJsonObject(edit.getD73());
-        JSONObject jsonObject4 = edit.getJsonObject(edit.getD73RadioSpan());
+        JSONObject jsonObject1 = edit.getJsonObject(edit.getDDisplaySetupOfflineSpan());
+        JSONObject jsonObject2 = edit.getJsonObject(edit.getDDisplaySetupOfflineSpanRadioSpan());
+        JSONObject jsonObject3 = edit.getJsonObject(edit.getDDisplaySetupOnlineSpan());
+        JSONObject jsonObject4 = edit.getJsonObject(edit.getDDisplaySetupOnlineSpanRadioSpan());
         return randomClickAndCheckAttribute(jsonObject1, jsonObject2, jsonObject3, jsonObject4);
     }
 
     //输入置顶顺序
     public boolean inputTopOrder() {
         boolean flag;
-        WebElement element = findElement(edit.getJsonObject(edit.getD74()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDTopOrderInput()));
         if (getDriver().toString().toLowerCase().contains("firefox")) {
             element.clear();
-            element = findElement(edit.getJsonObject(edit.getD74()));
+            element = findElement(edit.getJsonObject(edit.getDTopOrderInput()));
 //            System.out.println("!!!!!!!");
             sendKeys(element, "-1");
 //            System.out.println("!!!!!!!");
@@ -216,7 +216,7 @@ public class XxfbListAction extends $ {
         } else {
             sendKeys(element, "-1");
         }
-        element = findElement(edit.getJsonObject(edit.getD74()));
+        element = findElement(edit.getJsonObject(edit.getDTopOrderInput()));
         String text = getInputValue(element);
         flag = text.equals("-1");
         return flag;
@@ -225,10 +225,10 @@ public class XxfbListAction extends $ {
 
     //选择推送今日必读
     public boolean selectTodayMustRead() {
-        JSONObject jsonObject1 = edit.getJsonObject(edit.getD75());
-        JSONObject jsonObject2 = edit.getJsonObject(edit.getD75RadioSpan());
-        JSONObject jsonObject3 = edit.getJsonObject(edit.getD76());
-        JSONObject jsonObject4 = edit.getJsonObject(edit.getD76RadioSpan());
+        JSONObject jsonObject1 = edit.getJsonObject(edit.getDPushTodayMustReadYesSpan());
+        JSONObject jsonObject2 = edit.getJsonObject(edit.getDPushTodayMustReadYesSpanRadioSpan());
+        JSONObject jsonObject3 = edit.getJsonObject(edit.getDPushTodayMustReadNoSpan());
+        JSONObject jsonObject4 = edit.getJsonObject(edit.getDPushTodayMustReadNoSpanRadioSpan());
         return randomClickAndCheckAttribute(jsonObject1, jsonObject2, jsonObject3, jsonObject4);
     }
 
@@ -236,15 +236,15 @@ public class XxfbListAction extends $ {
     public boolean inputExternalLink() {
         boolean flag;
         String link = "https://www.baidu.com/";
-        WebElement element = findElement(edit.getJsonObject(edit.getD77()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDExternalLinkInput()));
         if (getDriver().toString().toLowerCase().contains("firefox")) {
             element.clear();
-            element = findElement(edit.getJsonObject(edit.getD77()));
+            element = findElement(edit.getJsonObject(edit.getDExternalLinkInput()));
             sendKeys(element, link);
         } else {
             sendKeys(element, link);
         }
-        element = findElement(edit.getJsonObject(edit.getD77()));
+        element = findElement(edit.getJsonObject(edit.getDExternalLinkInput()));
         String text = getInputValue(element);
 //        System.out.println("SDFSDFSDFF");
 //        System.out.println(link);
@@ -261,11 +261,11 @@ public class XxfbListAction extends $ {
         String randomStr = Randoms.getRandomGBKStr(Randoms.getRandomNum(1500, 2500));
         long timestamp = System.currentTimeMillis();
         mainBodyText = mainBodyText + randomStr + "@" + timestamp;
-        WebElement element = findElement(edit.getJsonObject(edit.getD78()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDMainBodyTextIframe()));
         switchToFrame(element);
-        element = findElement(edit.getJsonObject(edit.getD78IframeBody()));
+        element = findElement(edit.getJsonObject(edit.getDMainBodyTextIframeIframeBody()));
         sendKeys(element, mainBodyText);
-        element = findElement(edit.getJsonObject(edit.getD78IframeBody()));
+        element = findElement(edit.getJsonObject(edit.getDMainBodyTextIframeIframeBody()));
         String text = getText(element);
         flag = mainBodyText.equals(text);
         switchToDefaultContent();
@@ -293,9 +293,9 @@ public class XxfbListAction extends $ {
     //点击保存
     public boolean clickSaveButton() {
         boolean flag = true;
-        WebElement element = findElement(edit.getJsonObject(edit.getD60()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDSaveButtonSpan()));
         click(element);
-        element = findElement(edit.getJsonObject(edit.getD80Final()));
+        element = findElement(edit.getJsonObject(edit.getDNoticePromptDivFinal()));
         String attribute = getAttribute(element, "class");
 //        JSONObject jsonObject1 = edit.getJsonObject(edit.getD48Final());
 //        JSONObject jsonObject2 = edit.getJsonObject(edit.getD79Final());
@@ -309,7 +309,7 @@ public class XxfbListAction extends $ {
 
     //获得分类
     private String getClassificationValue() {
-        WebElement element = findElement(edit.getJsonObject(edit.getD58Rendered()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDClassificationDivRendered()));
         String value = getAttribute(element, "title");
         return value;
     }
@@ -351,20 +351,20 @@ public class XxfbListAction extends $ {
 //    这里完成的是用标题搜索查看结果是几条
     public boolean checkResult() {
         boolean flag;
-        WebElement element = findElement(edit.getJsonObject(edit.getD67()));
+        WebElement element = findElement(edit.getJsonObject(edit.getDTitleInput()));
         String title = getInputValue(element);
-        element = findElement(edit.getJsonObject(edit.getD62()));
+        element = findElement(edit.getJsonObject(edit.getDBackButtonSpan()));
         click(element);
-        element = findElement(xxfbList.getJsonObject(xxfbList.getD35()));
-        element = findElement(xxfbList.getJsonObject(xxfbList.getD57()));
+        element = findElement(xxfbList.getJsonObject(xxfbList.getDNewButtonSpan()));
+        element = findElement(xxfbList.getJsonObject(xxfbList.getDTitleInput()));
         sendKeys(element, "*******");
-        element = findElement(xxfbList.getJsonObject(xxfbList.getD3()));
+        element = findElement(xxfbList.getJsonObject(xxfbList.getDQueryButtonSpan()));
         click(element);
-        element = findElement(xxfbList.getJsonObject(xxfbList.getD57()));
+        element = findElement(xxfbList.getJsonObject(xxfbList.getDTitleInput()));
         sendKeys(element, title);
-        element = findElement(xxfbList.getJsonObject(xxfbList.getD3()));
+        element = findElement(xxfbList.getJsonObject(xxfbList.getDQueryButtonSpan()));
         click(element);
-        JSONObject jsonObject = xxfbList.getJsonObject(xxfbList.getD10());
+        JSONObject jsonObject = xxfbList.getJsonObject(xxfbList.getDTableTrs());
         flag = isElementAppeared(jsonObject);
         if (!flag) {
             log.error("查询结果没有加载出来");
@@ -393,10 +393,10 @@ public class XxfbListAction extends $ {
 
     public boolean clickEdit() {
         boolean flag;
-        WebElement element = findElement(xxfbList.getJsonObject(xxfbList.getD10ActionMore()));
-        element = findElement(xxfbList.getJsonObject(xxfbList.getD10ActionMoreEdits()));
+        WebElement element = findElement(xxfbList.getJsonObject(xxfbList.getDTableTrsActionMore()));
+        element = findElement(xxfbList.getJsonObject(xxfbList.getDTableTrsActionMoreEdits()));
         click(element);
-        JSONObject jsonObject = edit.getJsonObject(edit.getD60());
+        JSONObject jsonObject = edit.getJsonObject(edit.getDSaveButtonSpan());
         flag = isElementAppeared(jsonObject);
         return flag;
     }
@@ -406,8 +406,8 @@ public class XxfbListAction extends $ {
         List<String> strsInHeader = new ArrayList<>();
         List<List<String>> tableContent = new ArrayList<>();
         JSONObject jsonObject;
-        if (isNotDisplayed(xxfbList.getJsonObject(xxfbList.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
-            jsonObject = xxfbList.getJsonObject(xxfbList.getD10());
+        if (isNotDisplayed(xxfbList.getJsonObject(xxfbList.getDTableLoadingSignSpan()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
+            jsonObject = xxfbList.getJsonObject(xxfbList.getDTableTrs());
             try {
                 findElement(jsonObject, 2, false);
                 List<WebElement> elements = findElements(jsonObject);
@@ -416,7 +416,7 @@ public class XxfbListAction extends $ {
                 log.info("表格表体应该是空的");
             }
         }
-        jsonObject = xxfbList.getJsonObject(xxfbList.getD11Tr1());
+        jsonObject = xxfbList.getJsonObject(xxfbList.getDTableHeaderTr1Ths());
         List<WebElement> elements = $.findElements(jsonObject);
         strsInHeader = $.getTableHeader(elements);
         //定位表头,获取表头中的所有文字,存到tableContent中
@@ -431,12 +431,12 @@ public class XxfbListAction extends $ {
         List<List<String>> tableContent = new ArrayList<>();
         JSONObject jsonObject;
 
-        if (isNotDisplayed(xxfbList.getJsonObject(xxfbList.getD17()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
-            jsonObject = xxfbList.get$10SiblingJson(num);
+        if (isNotDisplayed(xxfbList.getJsonObject(xxfbList.getDTableLoadingSignSpan()))) {//如果数据加载的那个菊花不显示了,说明已经加载好
+            jsonObject = xxfbList.get$TableTrsSiblingJson(num);
             List<WebElement> elements = $.findElements(jsonObject);
             tableContent = $.getTableBody(elements);
         }
-        jsonObject = xxfbList.getJsonObject(xxfbList.getD11Tr1());
+        jsonObject = xxfbList.getJsonObject(xxfbList.getDTableHeaderTr1Ths());
         List<WebElement> elements = $.findElements(jsonObject);
         //$.getTableHeader();
         //定位表头,获取表头中的所有文字,存到tableContent中

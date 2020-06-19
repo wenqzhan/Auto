@@ -1,7 +1,7 @@
 package com.pageObject.matrix.learn.xxfb;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.CommonObject;
+import com.pageObject.matrix.CommonObject;
 import com.utils.json.JsonObject;
 import lombok.Data;
 
@@ -21,15 +21,15 @@ public class XxfbList extends JsonObject {//信息发布
             "http://10.187.144.60:8080/learn/xxfb/xxfbList";
 
 
-    private String d3;
+    private String dQueryButtonSpan;
     //"信息发布-查询按钮-span";
-    private String x3;
+    private String xQueryButtonSpan;
     //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"查询")]
 
 
-    private String d4;
+    private String dResetConditionsButtonSpan;
     ////信息发布-重置按钮-span";
-    private String x4;
+    private String xResetConditionsButtonSpan;
     //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"重置")]
 
 //    private  String d5 ;// "信息发布-查询条件展开收起按钮-a";
@@ -37,14 +37,14 @@ public class XxfbList extends JsonObject {//信息发布
 //    //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"重置")]/../../a
 
 
-    private String d35;
+    private String dNewButtonSpan;
     // "信息发布-新增按钮-span";
-    private String x35;
+    private String xNewButtonSpan;
     //span[1=1 and contains(text(),"新增")]
 
-    private String d6;
+    private String dExportButtonSpan;
     // "信息发布-导出按钮-span";
-    private String x6;
+    private String xExportButtonSpan;
     //span[1=1 and contains(text(),"导出")]
 
 //    private  String d7 ;// "信息发布-报表导出确认按钮-span";
@@ -52,257 +52,257 @@ public class XxfbList extends JsonObject {//信息发布
 //    //span[1=1 and contains(text(),"确认")]
 
 
-    private String d57;
+    private String dTitleInput;
     // "信息发布-标题框-input";
-    private String x57;
+    private String xTitleInput;
     //label[1=1 and contains(text(),"标题")]/../following-sibling::*[1]//input
 
 
-    private String d58;
+    private String dClassificationDiv;
     // "信息发布-分类框-div";////
-    private String x58;
+    private String xClassificationDiv;
     //label[1=1 and contains(text(),"分类")]/../following-sibling::div[1]
 
 
-    private String d58Span01;
+    private String dClassificationDivApplicationCasesSpan;
     // "信息发布-分类框-应用案例-span";////
-    private String x58Span01;
+    private String xClassificationDivApplicationCasesSpan;
     //span[1=1 and @title='应用案例']
 
-    private String d58Span02;
+    private String dClassificationDivInstitutionsAnnouncementSpan;
     // "信息发布-分类框-制度公告-span";////
-    private String x58Span02;
+    private String xClassificationDivInstitutionsAnnouncementSpan;
     //span[1=1 and @title='制度公告']
 
-    private String d58Span03;
+    private String dClassificationDivSystemIntroductionSpan;
     // "信息发布-分类框-系统介绍-span";////
-    private String x58Span03;
+    private String xClassificationDivSystemIntroductionSpan;
     //span[1=1 and @title='系统介绍']
 
-    private String d58Span04;
+    private String dClassificationDivVocationalStudySpan;
     // "信息发布-分类框-业务学习-span";////
-    private String x58Span04;
+    private String xClassificationDivVocationalStudySpan;
     //span[1=1 and @title='业务学习']
 
-    private String d58Span05;
+    private String dClassificationDivFAQSpan;
     // "信息发布-分类框-常见问答-span";////
-    private String x58Span05;
+    private String xClassificationDivFAQSpan;
     //span[1=1 and @title='常见问答']
 
-    private String d58Span06;
+    private String dClassificationDivMustReadTodaySpan;
     // "信息发布-分类框-今日必读-span";////
-    private String x58Span06;
+    private String xClassificationDivMustReadTodaySpan;
     //span[1=1 and @title='今日必读']
 
-    private String d58Span07;
+    private String dClassificationDivServiceProductsSpan;
     // "信息发布-分类框-服务产品-span";////
-    private String x58Span07;
+    private String xClassificationDivServiceProductsSpan;
     //span[1=1 and @title='服务产品']
 
-    private String d58Span08;
+    private String dClassificationDivDataServiceSpan;
     // "信息发布-分类框-数据服务-span";////
-    private String x58Span08;
+    private String xClassificationDivDataServiceSpan;
     //span[1=1 and @title='数据服务']
 
-    private String d58Span09;
+    private String dClassificationDivIndustryAnalysisSpan;
     // "信息发布-分类框-行业分析-span";////
-    private String x58Span09;
+    private String xClassificationDivIndustryAnalysisSpan;
     //span[1=1 and @title='行业分析']
 
-    private String d58Span10;
+    private String dClassificationDivMarketingPlatformSpan;
     // "信息发布-分类框-营销平台-span";////
-    private String x58Span10;
+    private String xClassificationDivMarketingPlatformSpan;
     //span[1=1 and @title='营销平台']
 
-    private String d58Span11;
+    private String dClassificationDivBizOrgSpan;
     // "信息发布-分类框-企业机构-span";////
-    private String x58Span11;
+    private String xClassificationDivBizOrgSpan;
     //span[1=1 and @title='企业机构']
 
-    private String d58Span12;
+    private String dClassificationDivMarketDynamicsSpan;
     // "信息发布-分类框-市场动态-span";////
-    private String x58Span12;
+    private String xClassificationDivMarketDynamicsSpan;
     //span[1=1 and @title='市场动态']
 
-    private String d58Span13;
+    private String dClassificationDivResearchAnalysisSpan;
     // "信息发布-分类框-研究分析-span";////
-    private String x58Span13;
+    private String xClassificationDivResearchAnalysisSpan;
     //span[1=1 and @title='研究分析']
 
 
     //////////////////////////////////
-    private String d9;
+    private String dTableTable;
     // "信息发布-表格-table";
-    private String x9;
+    private String xTableTable;
     //table[1=1 and contains(@class,'ant-table-fixed')]
 
-    private String d10;
+    private String dTableTrs;
     // "信息发布-表格表体rows-tr";
-    private String x10;
+    private String xTableTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not (contains(@style,'height'))] //不包含编辑那列,比如客户联系人,具体取决于样式
 
-    private String d10Action = "信息发布-表格表体rows-tr-action(详情,更多...)";
+    private String dTableActionTrs = "信息发布-表格表体rows-tr-action(详情,更多...)";
     // "信息发布-表格表体rows-tr-action(详情,更多...)";
-    private String x10Action;
+    private String xTableActionTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style]
 
-    private String d10ActionDetails = "信息发布-表格表体rows-tr-action(详情,更多...)-详情-a";
+    private String dTableTrsActionDetails = "信息发布-表格表体rows-tr-action(详情,更多...)-详情-a";
     //"信息发布-表格表体rows-tr-action(详情,更多...)-详情-a";
-    private String x10ActionDetails;
+    private String xTableTrsActionDetails;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style]//a[text()='详情']
 
-    private String d10ActionMore = "信息发布-表格表体rows-tr-action(详情,更多...)-更多-a";
+    private String dTableTrsActionMore = "信息发布-表格表体rows-tr-action(详情,更多...)-更多-a";
     //"信息发布-表格表体rows-tr-action(详情,更多...)-更多-a";
-    private String x10ActionMore;
+    private String xTableTrsActionMore;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style]//a[text()='详情']/following-sibling::a[1]
 
 
-    private String d10ActionMoreEdits;
+    private String dTableTrsActionMoreEdits;
     // "信息发布-表格表体rows-selected-tr";
-    private String x10ActionMoreEdits;
+    private String xTableTrsActionMoreEdits;
     //a[text()='编辑']这个需要进一步处理,定位最后一个
 
 
-    private String d10ActionMoreDeletes;
+    private String dTableTrsActionMoreDeletes;
     // "信息发布-表格表体rows-selected-tr";
-    private String x10ActionMoreDeletes;
+    private String xTableTrsActionMoreDeletes;
     //a[text()='删除'] 这个需要进一步处理,定位最后一个
 
 
-    private String d59;
+    private String dCancelButtonSpan;
     // "信息发布-删除-取消-span";
-    private String x59;
+    private String xCancelButtonSpan;
     //span[1=1 and contains(text(),"关 闭")]
 
-    private String d29;
+    private String dConfirmButtonSpan;
     // "信息发布-删除-确定按钮-span";
-    private String x29;
+    private String xConfirmButtonSpan;
     //span[1=1 and contains(text(),"确 定")]
 
-    private String d10Selected;
+    private String dTableTrsSelectedTrs;
     // "信息发布-表格表体rows-selected-tr";
-    private String x10Selected;
+    private String xTableTrsSelectedTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and contains(@class,'selected') and not(@Style) ]
 
-    private String d10NotSelected;
+    private String dTableTrsNotSelectedTrs;
     // "信息发布-表格表体rows-not selected-tr";
-    private String x10NotSelected;
+    private String xTableTrsNotSelectedTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(contains(@class,'selected')) and not(@Style)]
 
-    private String d11Tr1;
+    private String dTableHeaderTr1Ths;
     // "信息发布-表格表头row下的th col-th";
-    private String x11Tr1;
+    private String xTableHeaderTr1Ths;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)][1]//th[not(@key='selection-column') and not(@key='action')]
 
-    private String d31;
+    private String dTableHeaderMultiCheckboxTh;
     // "信息发布-表格表头-多选框-th";
-    private String x31;
+    private String xTableHeaderMultiCheckboxTh;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']
 
 
-    private String d12;
+    private String dTableLastPageButtonLi;
     // "信息发布-表格下方翻页按钮-上一页-li";
-    private String x12;
+    private String xTableLastPageButtonLi;
     //li[1=1 and contains(@title,'上一页')]
 
-    private String d13;
+    private String dTableNextPageButtonLi;
     // "信息发布-表格下方翻页按钮-下一页-li";
-    private String x13;
+    private String xTableNextPageButtonLi;
     //li[1=1 and contains(@title,'下一页')]
 
-    private String d14;
+    private String dMaxPageButtonA;
     // "信息发布-表格下方翻页按钮-下一页前的按钮,可以看出共多少页-a";
-    private String x14;
+    private String xMaxPageButtonA;
     //li[1=1 and contains(@title,'下一页')]/preceding-sibling::li[1]/a
 
-    private String d15;
+    private String dTableJumpToInput;
     // "信息发布-表格下方跳页输入框-input";
-    private String x15;
+    private String xTableJumpToInput;
     //div[1=1 and contains(text(),"跳至")]/input
 
-    private String d16;
+    private String dTableJumpDiv;
     // "信息发布-表格下方跳页输入框左边的跳至两个字-div";
-    private String x16;
+    private String xTableJumpDiv;
     //div[1=1 and contains(text(),"跳至")]
 
-    private String d17;
+    private String dTableLoadingSignSpan;
     // "信息发布-数据加载(转菊花)-span";
-    private String x17;
+    private String xTableLoadingSignSpan;
     //span[1=1 and contains(@class,'ant-spin-dot')]
 
-    private String d18;
+    private String dTableLinesPerPageDiv;
     // "信息发布-条/页-div";
-    private String x18;
+    private String xTableLinesPerPageDiv;
     //div[1=1 and contains(@title,'条/页')]
 
-    private String d18L5;
+    private String dTableFiveLinesPerPageLi;
     // "信息发布-条/页-5 条/页-li";
-    private String x18L5;
+    private String xTableFiveLinesPerPageLi;
     //li[1=1 and text()='5 条/页' ]
 
-    private String d18L10;
+    private String dTableTenLinesPerPageLi;
     // "信息发布-条/页-10 条/页-li";
-    private String x18L10;
+    private String xTableTenLinesPerPageLi;
     //li[1=1 and text()='10 条/页' ]
 
-    private String d18L20;
+    private String dTableTwentyLinesPerPageLi;
     // "信息发布-条/页-20 条/页-li";
-    private String x18L20;
+    private String xTableTwentyLinesPerPageLi;
     //li[1=1 and text()='20 条/页' ]
 
-    private String d18L30;
+    private String dTableThirtyLinesPerPageLi;
     // "信息发布-条/页-30 条/页-li";
-    private String x18L30;
+    private String xTableThirtyLinesPerPageLi;
     //li[1=1 and text()='30 条/页' ]
 
-    public String d28;
+    public String dTableHeaderMultiCheckboxInput;
     // "信息发布-表头多选框-input";
-    private String x28;
+    private String xTableHeaderMultiCheckboxInput;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']//input
 
     /////////////////////////////////
 
 
-    private String get$D58Span(int num) {
+    private String get$DClassificationDivSpan(int num) {
         //信息发布-分类框-下拉候选项-第num行
 
-        return commonObject.get$D58Span(num).replaceFirst("通用", "信息发布");
+        return commonObject.get$DClassificationDivSpan(num).replaceFirst("通用", "信息发布");
     }
 
-    private String get$X58Span(int num) {
+    private String get$XClassificationDivSpan(int num) {
         //label[1=1 and contains(text(),"分类")]/../following-sibling::div[1]//span[num+2]
 
-        return commonObject.get$X58Span(num);
+        return commonObject.get$XClassificationDivSpan(num);
     }
 
-    public JSONObject get$58SpanJson(int num) {
-        JsonObject.setJsonObject(get$D58Span(num), get$X58Span(num));
+    public JSONObject get$ClassificationDivSpanJson(int num) {
+        JsonObject.setJsonObject(get$DClassificationDivSpan(num), get$XClassificationDivSpan(num));
         return JsonObject.getJsonObject();
     }
 
 
-    private String get$X10Sibling(int num) {
+    private String get$XTableTrsSibling(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(@style)][30]
-        String xpath = commonObject.get$X10Sibling(num);
+        String xpath = commonObject.get$XTableTrsSibling(num);
         return xpath;
     }
 
-    private String get$D10Sibling(int num) {
+    private String get$DTableTrsSibling(int num) {
         //信息发布-表格表体-第1行
-        String description = commonObject.get$D10Sibling(num);
+        String description = commonObject.get$DTableTrsSibling(num);
         description = description.replaceFirst("通用", "信息发布");
         return description;
     }
 
-    public JSONObject get$10SiblingJson(int num) {
-        JsonObject.setJsonObject(get$D10Sibling(num), get$X10Sibling(num));
+    public JSONObject get$TableTrsSiblingJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrsSibling(num), get$XTableTrsSibling(num));
         return JsonObject.getJsonObject();
     }
 
 
-    private String get$X10ActionDetails(int num) {
+    private String get$XTableTrsActionDetails(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style][1]//a[text()='详情']
-        String xpath = x10ActionDetails;
+        String xpath = xTableTrsActionDetails;
         if (num > 0) {
             xpath = xpath.replaceFirst("]//a", "][" + num + "]//a");
         } else if (num == -1) {
@@ -317,15 +317,15 @@ public class XxfbList extends JsonObject {//信息发布
     }
 
     ///////////////////////////////
-    private String get$D10ActionDetails(int num) {
+    private String get$DTableTrsActionDetails(int num) {
         //通用-表格表体-第1行
         String desc = "信息发布-操作更多-第";
         return commonObject.get$D(num, desc);
     }
 
 
-    public JSONObject get$10ActionDetailsJson(int num) {
-        JsonObject.setJsonObject(get$D10ActionDetails(num), get$X10ActionDetails(num));
+    public JSONObject get$TableTrsActionDetailsJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrsActionDetails(num), get$XTableTrsActionDetails(num));
         return JsonObject.getJsonObject();
     }
 

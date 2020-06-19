@@ -81,6 +81,15 @@ public class DateMisc {
 
     }
 
+    public static String getPastYMD(){
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat(SHORT_DATE_FORMAT);
+        String today = format.format(date);
+        Date pastYMD = randomDate("2000-01-01", today);
+        return format.format(pastYMD);
+
+    }
+
     public static String[] getRandomYMDToYMD(){
         String[] strings = new String[2];
         Date randomFromDate = randomDate("2000-01-01", "2099-12-31");

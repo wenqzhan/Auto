@@ -1,14 +1,13 @@
 package com.pageObject.matrix;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pageObject.commonObject.CommonObject;
-import com.pageObject.commonObject.CommonObjectPopped;
+//import com.pageObject.matrix.commonObject.CommonObjectPopped;
 import com.utils.json.JsonObject;
 import lombok.Data;
 
 @Data
 public class AttachmentUpload extends JsonObject {
-    CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+//    CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
     CommonObject commonObject = new CommonObject();
 
     public AttachmentUpload() {
@@ -40,7 +39,7 @@ public class AttachmentUpload extends JsonObject {
         setConVal(label);
     }
 
-    private String prefix = commonObjectPopped.getPrefix();
+    private String prefix = commonObject.getPoppedPrefix();
 
     private String dUpload = "通用-点击或将文件拖拽到这里上传";
     private String xUpload = "//p[text()='点击或将文件拖拽到这里上传']";
@@ -84,8 +83,8 @@ public class AttachmentUpload extends JsonObject {
     private String xUploadUploadCross = commonObject.getCross(xUploadUpload);;
 //label[1=1 and text()='附件']/../following-sibling::*[1] //div[contains(@class,"item-done") or contains(@class,"item-uploading") or contains(@class,"item-error")  ]//i[1=1 and contains(@class,'close-circle') or contains(@class,'anticon-close')]
 
-    private String d48Final = "通用-成功系统提示信息";
-    private String x48Final = commonObject.getX48Final();
+    private String dSuccessPromptDivFinal = "通用-成功系统提示信息";
+    private String xSuccessPromptDivFinal = commonObject.getXSuccessPromptDivFinal();
 
 
     private String get$DUploadedFile(int num) {

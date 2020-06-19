@@ -1,7 +1,5 @@
 package com.pageObject.matrix;
 
-import com.pageObject.commonObject.CommonObject;
-
 public class YMDToYMDLeftSelection extends YMDSelection{
     private CommonObject commonObject = new CommonObject();
 

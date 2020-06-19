@@ -37,7 +37,7 @@ public class ListMisc {
         //System.out.println("a1 " + a1);
         int a2 = list2.size();
         //System.out.println("a2 " + a2);
-        int a3 = (a1 > a2) ? a1 : a2;
+        int a3 = Math.max(a1, a2);
 
         try {
             for (int i = 0; i < a3; i++) {
@@ -56,6 +56,10 @@ public class ListMisc {
                     String str1 = list1.get(i);
                     String str2 = list2.get(i);
                     log.info("[" + str1 + "]" + "和" + "[" + str2 + "]" + "不相同,但符合既定规则|" + "i是 " + i + ",");
+                } else if (StringMisc.isEqual(list1.get(i),list2.get(i)) == 3 ){
+                    String str1 = list1.get(i);
+                    String str2 = list2.get(i);
+                    log.info("[" + str1 + "]" + "和" + "[" + str2 + "]" + "不相同,排序错误,符合既定规则|" + "i是 " + i + ",");
                 }
             }
 
@@ -83,7 +87,7 @@ public class ListMisc {
         //System.out.println("a1 " + a1);
         int a2 = list2.size();
         //System.out.println("a2 " + a2);
-        int a3 = (a1 > a2) ? a1 : a2;
+        int a3 = Math.max(a1, a2);
         //System.out.println("a3 " + a3);
         try {
             for (int i = 0; i < a3; i++) {
@@ -91,7 +95,7 @@ public class ListMisc {
                 //System.out.println("b1 " + b1);
                 int b2 = list2.get(i).size();
                 //System.out.println("b2 " + b2);
-                int b3 = (b1 > b2) ? b1 : b2;
+                int b3 = Math.max(b1, b2);
                 //System.out.println("b3 " + b3);
                 for (int j = 0; j < b3; j++) {
                     if (StringMisc.isEqual(list1.get(i).get(j), list2.get(i).get(j)) == 0) {

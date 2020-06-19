@@ -992,8 +992,8 @@ public class $ extends Driver {
         String xpath = tableHeaderJson.getString("xpath");
         String colsXpath1 = xpath + "/../tr[1]" + append;
         String colsXpath2 = xpath + "/../tr[2]" + append;
-        List<WebElement> cols1 = findElements(By.xpath(colsXpath1));
-        List<WebElement> cols2 = findElements(By.xpath(colsXpath2));
+        List<WebElement> cols1 = findElements(By.xpath(colsXpath1),10,true);
+        List<WebElement> cols2 = findElements(By.xpath(colsXpath2),10,true);
         if (elements.size() == 1) {
             strsInHeader = getTableHeader(cols1);
         } else if(elements.size() == 2){
@@ -1017,8 +1017,11 @@ public class $ extends Driver {
 //    }
 
     public static List<List<String>> getTableBody(JSONObject tableBodyJson){
+        log.info("开始获取表格具体内容");
         List<WebElement> elements = findElements(tableBodyJson);
-        return getTableBody(elements);
+        List<List<String>> lists = getTableBody(elements);
+        log.info("获取表格具体内容结束");
+        return lists;
     }
 
 
@@ -1084,6 +1087,28 @@ public class $ extends Driver {
         return tableContent;
     }
 
+
+    public static String getInputValue(JSONObject jsonObject){
+        WebElement element = findElement(jsonObject);
+        String value = getInputValue(element);
+        int count = 0;
+        while(true){
+            if(!value.equals("")){
+                break;
+            }else {
+                element = findElement(jsonObject);
+                value = getInputValue(element);
+            }
+            count++;
+            if(count>3){
+                log.info("尝试了多次,input里还是空的,可能就是空的");
+                break;
+            }
+        }
+        return value;
+    }
+
+
     /**
      * 获取input中的字符串
      */
@@ -1122,6 +1147,16 @@ public class $ extends Driver {
         }
         return value;
     }
+
+    public static boolean isSelected(WebElement element) {
+        boolean flag = true;
+        String attributeValue = getAttribute(element, "class");
+        flag = (attributeValue.contains("selected") || attributeValue.contains("checked"));
+        attributeValue = "";
+        log.info("isSelected:" + flag);
+        return flag;
+    }
+
 
 
 //    public static WebElement  findElement(String description){

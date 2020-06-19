@@ -5,25 +5,27 @@ import com.utils.random.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class IntMisc {
     private final static LoggerController log = LoggerController.getLogger(IntMisc.class);
 
     public static int getMaxPageNum(String text){
-        int a =Integer.valueOf(text);
+        int a =Integer.parseInt(text);
         log.info("当前最大页数是: " + a);
         return a;
     }
 
     public static int getPerPageNum(String text){
         String string = text.replace("条/页","").trim();
-        int a = Integer.valueOf(string);
+        int a = Integer.parseInt(string);
         log.info("当前的条/页是: " + a);
         return a;
     }
 
     public static int getRandomPageNum(String text){
-        int a = Integer.valueOf(text);
+        int a = Integer.parseInt(text);
         a = Randoms.getRandomNum(2,a-1);
         log.info("随机生成的页数是第: " +a+" 页");
         return a;
@@ -59,6 +61,12 @@ public class IntMisc {
         return a;
     }
 
+
+    public static  int getIntFromString(String str){
+        String regEx = "[^0-9]";
+        str = str.replaceAll(regEx,"").trim();
+        return Integer.parseInt(str);
+    }
 
 
 }

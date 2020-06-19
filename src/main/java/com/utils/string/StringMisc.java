@@ -1,8 +1,11 @@
 package com.utils.string;
 
+import com.utils.list.ListMisc;
 import com.utils.random.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class StringMisc {
@@ -14,12 +17,38 @@ public class StringMisc {
             flag = 1;//equals
         } else if (isLike(a, b)) {
             flag = 2;//only like
+        } else if (isDisorderlyLike(a,b)){
+            flag = 3;//disorderly like
         }
 
 
         return flag;
 
 
+    }
+
+    public static boolean isDisorderlyLike(String str1, String str2){
+        boolean flag = false;
+        List<String> l1;
+        List<String> l2;
+        if(str1.contains(",")&&str2.contains(",")){
+            l1 = new ArrayList<>(Arrays.asList(str1.split(",")));
+            l2 = new ArrayList<>(Arrays.asList(str2.split(",")));
+            Collections.sort(l1);
+            Collections.sort(l2);
+            String s1 = "";
+            String s2 = "";
+            for (String s:l1){
+                s1 = s1 + s;
+            }
+
+            for (String s:l2){
+                s2 = s2 + s;
+            }
+
+            flag = s1.equals(s2);
+        }
+        return flag;
     }
 
     public static boolean isLike(String str1, String str2) {

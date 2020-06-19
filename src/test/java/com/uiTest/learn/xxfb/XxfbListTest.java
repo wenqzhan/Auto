@@ -4,8 +4,6 @@ import com.actions.OpenBrowserAction;
 import com.actions.matrix.LoginAction;
 import com.actions.matrix.learn.xxfb.XxfbListAction;
 import com.driver.$;
-import com.pageObject.commonObject.CommonObject;
-import com.pageObject.commonObject.CommonObjectPopped;
 import com.utils.json.Attr;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

@@ -1,11 +1,11 @@
 package com.utils.json;
 
 import com.alibaba.fastjson.JSONObject;
-import com.driver.Driver;
-import com.pageObject.commonObject.CommonObject;
-import com.pageObject.commonObject.CommonObjectPopped;
+import com.pageObject.matrix.CommonObject;
+//import com.pageObject.matrix.commonObject.CommonObjectPopped;
 import com.utils.log.LoggerController;
 import lombok.Data;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -21,6 +21,7 @@ public class JsonObject {
     //    public static JSONObject jsonObject = new JSONObject();
     public static JSONObject jsonObjectTemp = new JSONObject();
     private String conVal; // 用于区别有构造函数说创建的类
+    private String outerLabel = "";
 
     public void setConVal(String conVal) {
         this.conVal = conVal;
@@ -29,6 +30,16 @@ public class JsonObject {
     public String getConVal() {
         return conVal;
     }
+
+    public void setOuterLabel(String outerLabel) {
+        this.outerLabel = outerLabel;
+    }
+
+    public String getOuterLabel() {
+        return outerLabel;
+    }
+
+    private String poppedPrefix = "//div[@tabindex]";
 
 //    public String getLabel() {
 //        return label;
@@ -165,7 +176,7 @@ public class JsonObject {
         return getObjAttr(null);
     }
 
-    private String printMap(Map<String,String> map){
+    private String printMap(Map<String, String> map) {
         StringBuilder sb = new StringBuilder();
         Iterator<Map.Entry<String, String>> iter = map.entrySet().iterator();
         while (iter.hasNext()) {
@@ -184,112 +195,48 @@ public class JsonObject {
 
 
     public Object getObjAttr(String string) {
-
-//        int i = 1;
-//        while (true) {
-//            try {
-//                System.out.println("DTSDFSDF");
-//                String clazzName = Thread.currentThread().getStackTrace()[i].getClassName();
-//                System.out.println(clazzName);
-//                System.out.println("DTSDFSDF");
-//                i++;
-//            } catch (Exception e) {
-//                    break;
-//            }
-//
-//        }
-        Map<String, String> attr = Attr.getAttr();
+//        Map<String, String> attr = Attr.getAttr();
         Map<String, String> attrCommon = Attr.getAttrCommon();
         Object obj;
         obj = null;
         if (attrCommon.size() == 0) {
-            Object obj1;
-            Object obj2;
+            Object commmon;
             CommonObject commonObject = new CommonObject();
-            CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
             String clazzName1 = commonObject.getClass().getName();
-//            System.out.println("sdfsdfsdfs111d" + clazzName1);
-            String clazzName2 = commonObjectPopped.getClass().getName();
             try {
-                Class clazz1 = Class.forName(clazzName1);
-//                System.out.println("sdfdfsdfsdf");
-//                System.out.println("clazzName1 is:" + clazzName1);
-//                System.out.println("sdfdfsdfsdf");
-                Class clazz2 = Class.forName(clazzName2);
-                Constructor con1 = null;
-                Constructor con2 = null;
+                Class<?> clazz1 = Class.forName(clazzName1);
+                Constructor<?> con1 = null;
                 con1 = clazz1.getConstructor();
-                con2 = clazz2.getConstructor();
-                obj1 = con1.newInstance();
-                obj2 = con2.newInstance();
+                commmon = con1.newInstance();
                 Field[] fields1;
-                Field[] fields2;
-                fields1 = obj1.getClass().getDeclaredFields();
-                fields2 = obj2.getClass().getDeclaredFields();
+                fields1 = commmon.getClass().getDeclaredFields();
                 for (Field field : fields1) {
                     if (field.getType().equals(String.class)) {
                         String varName = field.getName() + "@" + clazzName1;
 
                         boolean access = field.isAccessible();
                         if (!access) field.setAccessible(true);
-                        Object o = field.get(obj1);
+                        Object o = field.get(commmon);
                         System.out.println("初始化[C]变量： " + varName + " = " + o);
                         String str = o.toString();
                         Attr.setAttrCommon(varName, str);
                         if (!access) field.setAccessible(false);
                     }
                 }
-                attrCommon = Attr.getAttrCommon();
-
-                for (Field field : fields2) {
-                    if (field.getType().equals(String.class)) {
-                        String varName = field.getName() + "@" + clazzName2;
-
-                        boolean access = field.isAccessible();
-                        if (!access) field.setAccessible(true);
-                        Object o = field.get(obj2);
-                        if (o == null) {
-                            Object o1 = null;
-                            if (!varName.startsWith("d")) {
-                                o1 = attrCommon.get(field.getName().substring(0, field.getName().length() - 1) + "@" + CommonObject.class.getName());
-                            } else {
-                                o1 = attrCommon.get(field.getName().substring(0, field.getName().length() - 1) + "@" + CommonObject.class.getName()).replaceFirst("通用", "通用-first popped");
-                            }
-                            o = o1;
-                        }
-
-                        System.out.println("初始化[CP]变量： " + varName + " = " + o);
-                        String str = o.toString();
-                        Attr.setAttrCommon(varName, str);
-                        if (!access) field.setAccessible(false);
-                    }
-                }
-
-
             } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
                 e.printStackTrace();
             }
 
             attrCommon = Attr.getAttrCommon();
-//            System.out.println("DFSDFSDFASDFADFFFFFFF");
-//            System.out.println(attrCommon.size());
-//            System.out.println(printMap(attrCommon));
-//
-//            System.out.println("DFSDFSDFASDFADFFFFFFF");
         }
         if (conVal == null) {
             conVal = "";
         }
-
-
-        Class clazz = this.getClass();
-        Class superClazz = this.getClass().getSuperclass();
-        Constructor con = null;
-//        Constructor con1 = null;
+        Class<?> clazz = this.getClass();
+        Class<?> superClazz = this.getClass().getSuperclass();
+        Constructor<?> con = null;
         String clazzName = clazz.getName();
         String superClazzName = superClazz.getName();
-//        String clazzName1 = CommonObject.getClazzName();
-
         try {
             if (string == null) {
                 con = clazz.getConstructor();
@@ -302,22 +249,28 @@ public class JsonObject {
 
         try {
             if (string == null) {
+                assert con != null;
                 obj = con.newInstance();
             } else {
+                assert con != null;
                 obj = con.newInstance(string);
             }
         } catch (InstantiationException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
         Field[] fields;
+        Field[] fieldsChild;
+        Field[] fieldsSuper;
         // 获取对象obj的所有属性域
         if (superClazzName.contains("JsonObject")) {
+            assert obj != null;
             fields = obj.getClass().getDeclaredFields();
         } else {
-            fields = obj.getClass().getSuperclass().getDeclaredFields();
+            assert obj != null;
+            fieldsSuper = obj.getClass().getSuperclass().getDeclaredFields();
+            fieldsChild = obj.getClass().getDeclaredFields();
+            fields = ArrayUtils.addAll(fieldsSuper, fieldsChild);
         }
-
-
         for (Field field : fields) {
             // 对于每个属性，获取属性名
             if (field.getType().equals(String.class)) {
@@ -338,51 +291,27 @@ public class JsonObject {
                             }
                         }
                         System.out.println("变量： " + varName + " = " + o);
-                    } else if (o == null) {
+                    } else {
 
-                        if (clazzName.contains("CommonObjectPopped")) {
-                            Object o1 = null;
-//                            Object o2 = null;
-                            if (!varName.startsWith("d")) {
-                                o1 = attrCommon.get(field.getName().substring(0, field.getName().length() - 1) + "@" + CommonObject.class.getName());
-                            } else {
-                                o1 = attrCommon.get(field.getName().substring(0, field.getName().length() - 1) + "@" + CommonObject.class.getName()).replaceFirst("通用", "通用-first popped");
-                            }
-                            o = o1;
-                            System.out.println("变量： " + varName + " = " + o);
-                        } else if (!clazzName.contains("CommonObjectPopped")) {
-//                        System.out.println("@@@@@@@@");
-//                        System.out.println(CommonObject.class.getName());
-//                        System.out.println(field.getName()+"@");
-//                        System.out.println("@@@@@@@@");
-                            Object o1 = null;
-                            Object o2 = null;
-                            if (!varName.startsWith("d")) {
-                                o1 = attrCommon.get(field.getName() + "@" + CommonObject.class.getName());
-                                o2 = attrCommon.get(field.getName() + "@" + CommonObjectPopped.class.getName());
-                            } else {
-                                try {
-                                    if (!getDesPrefix().equals("")) {
-                                        o1 = attrCommon.get(field.getName() + "@" + CommonObject.class.getName()).replaceFirst("通用", getDesPrefix());
-                                    } else {
-                                        o1 = attrCommon.get(field.getName() + "@" + CommonObject.class.getName());
-                                    }
-                                } catch (NullPointerException e) {
-                                    if (!getDesPrefix().equals("")) {
-                                        o2 = attrCommon.get(field.getName() + "@" + CommonObjectPopped.class.getName()).replaceFirst("通用", getDesPrefix());
-                                    } else {
-                                        o2 = attrCommon.get(field.getName() + "@" + CommonObjectPopped.class.getName());
-                                    }
+                        Object o1 = null;
+                        if (!varName.startsWith("d")) {
+                            o1 = attrCommon.get(field.getName() + "@" + CommonObject.class.getName());
+                        } else {
+                            try {
+                                if (!getDesPrefix().equals("")) {
+                                    o1 = attrCommon.get(field.getName() + "@" + CommonObject.class.getName()).replaceFirst("通用", getDesPrefix());
+                                } else {
+                                    o1 = attrCommon.get(field.getName() + "@" + CommonObject.class.getName());
                                 }
+                            } catch (Exception e) {
+                                System.out.println("错误在这里哈哈哈哈哈");
+                                e.printStackTrace();
                             }
-
-
-                            o = o1 != null ? o1 : o2;
-
-                            System.out.println("变量： " + varName + " = " + o);
                         }
+                        o = o1;
+                        System.out.println("变量： " + varName + " = " + o);
                     }
-                    if (prefix != "") {
+                    if (!prefix.equals("")) {
                         if (varName.startsWith("x") && !varName.contains("Final")) {
                             Object value = getPrefix() + o;
                             field.set(obj, value);
@@ -391,54 +320,25 @@ public class JsonObject {
                         }
                     }
                     field.set(obj, o);
+                    assert o != null;
                     String str = o.toString();
-//                    System.out.println("*************999999999");
                     Attr.setAttr(varName, str);
-
-//                    System.out.println("!!!!!!!!!");
-//                    Object caaa = field.get(obj);
-//                    System.out.println(field.getName()+":"+caaa);
-//                    System.out.println("@@@@@@@@@");
-
-
                     if (!access) field.setAccessible(false);
                 } catch (Exception ex) {
+                    System.out.println("错误在这里啦啦啦啦啦啦");
                     ex.printStackTrace();
                 }
-//            attrs.put(this.getClass().getName(),attr);
             }
         }
-
-//        System.out.println("UUUUUUUUUUUUUUUUU");
-//        System.out.println("UUUUUUUUUUUUUUUUU");
-//        Field[] fields2 = obj.getClass().getDeclaredFields();
-//        for (Field field : fields2) {
-//            boolean access = field.isAccessible();
-//            if (!access) field.setAccessible(true);
-//            System.out.println("!!!!!11111!!!!");
-//            Object caaa = null;
-//            try {
-//                caaa = field.get(obj);
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println(field.getName()+":"+caaa);
-//            System.out.println("@@@@@@111111@@@");
-//        }
-
-
         return obj;
     }
 
     public String getVal(String key) {
         Map<String, String> attr = Attr.getAttr();
 
-        String str1 = attr.get(key + "@" + CommonObject.class.getName());
-        String str2 = attr.get(key + "@" + CommonObjectPopped.class.getName());
+        //        String str2 = attr.get(key + "@" + CommonObjectPopped.class.getName());
 
-        String str = str1 != null ? str1 : str2;
-
-        return str;
+        return attr.get(key + "@" + CommonObject.class.getName());
     }
 
 

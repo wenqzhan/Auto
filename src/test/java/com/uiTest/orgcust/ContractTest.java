@@ -5,8 +5,6 @@ import com.actions.matrix.LoginAction;
 import com.actions.matrix.YMDSelectionAction;
 import com.actions.matrix.orgCust.ContractAction;
 import com.driver.$;
-import com.pageObject.commonObject.*;
-import com.pageObject.matrix.orgCust.Client;
 import com.pageObject.matrix.orgCust.Contract;
 import com.utils.date.DateMisc;
 import com.utils.json.Attr;
@@ -29,13 +27,14 @@ public class ContractTest extends $ {
     String bizOpportunity;
     private ContractAction contractAction = new ContractAction();
     private Contract contract = new Contract();
+    private Contract contractPopped = new Contract("POPPED");
     LoginAction loginAction = new LoginAction();
 
 //    @Test
     public void clickUploadMaterial() {
 
         contractAction.clickUploadMaterial();
-        flag = contractAction.isElementAppeared(contract.getJsonObject(contract.getD30P()));
+        flag = contractAction.isElementAppeared(contractPopped.getJsonObject(contractPopped.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
     }
 
@@ -67,7 +66,7 @@ public class ContractTest extends $ {
 //            "selectBizOpportunity"})
     public void selectMaterialType() {
         type = contractAction.selectMaterialType();
-        WebElement element = findElement(contract.getJsonObject(contract.getD50PSpan()));
+        WebElement element = findElement(contractPopped.getJsonObject(contractPopped.getDMaterialTypeDivSpan()));
         flag = contractAction.isStringEqualsAttribute(element, type);
         Assert.assertTrue(flag);
 
@@ -81,7 +80,7 @@ public class ContractTest extends $ {
         date = DateMisc.getRandomYMD();
         contractAction.clickAssignDate();
         YMDSelectionAction.selectYMD("签署日期", date);
-        WebElement element = findElement(contract.getJsonObject(contract.getD54P()));
+        WebElement element = findElement(contractPopped.getJsonObject(contractPopped.getDContractSignedDateInput()));
         flag = contractAction.isStringEqualsText(element, date);
         Assert.assertTrue(flag);
     }
@@ -90,7 +89,7 @@ public class ContractTest extends $ {
 //            "selectBizOpportunity", "selectMaterialType", "selectSignDate"})
     public void inputContractAmount() {
         amount = contractAction.inputContractAmount();
-        WebElement element = findElement(contract.getJsonObject(contract.getD55P()));
+        WebElement element = findElement(contractPopped.getJsonObject(contractPopped.getDContractAmountInTenThousandsInput()));
         flag = contractAction.isStringEqualsText(element, amount);
         Assert.assertTrue(flag);
 
@@ -142,9 +141,9 @@ public class ContractTest extends $ {
 //            "selectBizOpportunity", "selectMaterialType", "selectSignDate",
 //            "inputContractAmount", "uploadAttachment", "clickConfirmButton"})
     public void clickEdit() {
-        WebElement element = findElement(contract.get$10ActionEditSiblingJson(1));
+        WebElement element = findElement(contract.get$TableTrsActionEditSiblingJson(1));
         click(element);
-        flag = contractAction.isElementAppeared(contract.getJsonObject(contract.getD30P()));
+        flag = contractAction.isElementAppeared(contractPopped.getJsonObject(contractPopped.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
     }
 
@@ -285,6 +284,8 @@ public class ContractTest extends $ {
     @BeforeClass
     public void beforeClass01() {
         testCount++;
+        contract = (Contract) contract.getObjAttr();
+        contractPopped = (Contract) contractPopped.getObjAttr("POPPED");
         OpenBrowserAction.open("chrome", this.getClass());
         loginAction.login();
         get(contract.getContract());

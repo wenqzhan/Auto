@@ -52,7 +52,9 @@ public class ClientTest extends $ {
     private ClientAction clientAction = new ClientAction();
     private BizLineSelection bizLineSelection = new BizLineSelection();
     private Client client = new Client();
+    private Client clientPopped = new Client("POPPED");
     private LoginAction loginAction = new LoginAction();
+
 
     private void setAttr() {
 //        empSelection.getObjAttr();
@@ -66,18 +68,18 @@ public class ClientTest extends $ {
         setAttr();
 //        custSelection.getObjAttr();
 //        empSelection.getObjAttr();
-        List<WebElement> elements = findElements(client.getJsonObject(client.getD11Tr1()));
+        List<WebElement> elements = findElements(client.getJsonObject(client.getDTableHeaderTr1Ths()));
         tableHeader = getTableHeader(elements);
-        WebElement element = findElement(client.getJsonObject(client.getD35()));
+        WebElement element = findElement(client.getJsonObject(client.getDNewButtonSpan()));
         click(element);
-        flag = clientAction.isElementAppeared(client.getJsonObject(client.getD30P()));
+        flag = clientAction.isElementAppeared(clientPopped.getJsonObject(clientPopped.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
     }
 
 
     //    @Test(dependsOnMethods = {"clickNewClientButton"})
     public void inputClientName() {
-        WebElement element = findElement(client.getJsonObject(client.getD37P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDContactNameInput()));
         string = RandomInfo.getChineseName();
         sendKeys(element, string);
         flag = clientAction.isStringEqualsText(element, string);
@@ -86,7 +88,7 @@ public class ClientTest extends $ {
 
     //    @Test(dependsOnMethods = {"clickNewClientButton", "inputClientName"})
     public void inputEmail() {
-        WebElement element = findElement(client.getJsonObject(client.getD41P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDEmailInput()));
         String email = RandomInfo.getEmail(5, 15);
         string = email;
         sendKeys(element, email);
@@ -102,9 +104,9 @@ public class ClientTest extends $ {
 
     //    @Test(dependsOnMethods = {"clickNewClientButton", "inputClientName", "inputEmail"})
     public void clickCustName() {
-        WebElement element = findElement(client.getJsonObject(client.getD2P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDCustNameInput()));
         click(element);
-        flag = clientAction.isElementAppeared(custSelection.getJsonObject(custSelection.getDCS30()));
+        flag = clientAction.isElementAppeared(custSelection.getJsonObject(custSelection.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
     }
 
@@ -112,7 +114,7 @@ public class ClientTest extends $ {
     public void inputRandomCustName() {
         randomCustName = JDBC.getSqlResultStr(ClientSql.getSql1());
         string = randomCustName;
-        WebElement element = findElement(custSelection.getJsonObject(custSelection.getDCS2()));
+        WebElement element = findElement(custSelection.getJsonObject(custSelection.getDCustNameInput()));
         sendKeys(element, randomCustName);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -122,18 +124,18 @@ public class ClientTest extends $ {
 //    @Test(dependsOnMethods = {"clickNewClientButton", "inputClientName", "inputEmail",
 //            "clickCustName", "inputRandomCustName"})
     public void clickSearchButtonForCustName() {
-        WebElement element = findElement(custSelection.getJsonObject(custSelection.getDCS3()));
+        WebElement element = findElement(custSelection.getJsonObject(custSelection.getDSearchButtonSpan()));
         click(element);
-        flag = clientAction.isElementAppeared(custSelection.getJsonObject(custSelection.getDCS10()));
+        flag = clientAction.isElementAppeared(custSelection.getJsonObject(custSelection.getDTableTrs()));
         Assert.assertTrue(flag);
     }
 
     //    @Test(dependsOnMethods = {"clickNewClientButton", "inputClientName", "inputEmail",
 //            "clickCustName", "inputRandomCustName", "clickSearchButtonForCustName"})
     public void selectCustNameSearchResult() {
-        WebElement element = findElement(custSelection.get$CS10SiblingByCustNameJson(randomCustName));
+        WebElement element = findElement(custSelection.get$TableTrsSiblingByCustNameJson(randomCustName));
         click(element);
-        element = findElement(custSelection.get$CS10SiblingByCustNameJson(randomCustName));
+        element = findElement(custSelection.get$TableTrsSiblingByCustNameJson(randomCustName));
         flag = clientAction.isSelected(element);
         Assert.assertTrue(flag);
 
@@ -143,9 +145,9 @@ public class ClientTest extends $ {
 //            "clickCustName", "inputRandomCustName", "clickSearchButtonForCustName",
 //            "selectCustNameSearchResult"})
     public void clickConfirmButtonForCustName() {
-        WebElement element = findElement(custSelection.getJsonObject(custSelection.getDCS29()));
+        WebElement element = findElement(custSelection.getJsonObject(custSelection.getDConfirmButtonSpan()));
         click(element);
-        flag = clientAction.isElementAppeared(client.getJsonObject(client.getD30P()));
+        flag = clientAction.isElementAppeared(clientPopped.getJsonObject(clientPopped.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
     }
 
@@ -155,7 +157,7 @@ public class ClientTest extends $ {
 //            "selectCustNameSearchResult", "clickConfirmButtonForCustName"})
     public void checkCustNameInput() {
         string = randomCustName;
-        WebElement element = findElement(client.getJsonObject(client.getD2P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDCustNameInput()));
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
     }
@@ -166,7 +168,7 @@ public class ClientTest extends $ {
     public void inputRandomDept() {
         randomDeptName = Randoms.getRandomDeptName();
         string = randomDeptName;
-        WebElement element = findElement(client.getJsonObject(client.getD39P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDDepartmentInput()));
         sendKeys(element, randomDeptName);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -177,9 +179,9 @@ public class ClientTest extends $ {
 //            "selectCustNameSearchResult", "clickConfirmButtonForCustName", "checkCustNameInput",
 //            "inputRandomDept"})
     public void clickManager() {//国君服务联系人
-        WebElement element = findElement(client.getJsonObject(client.getD47P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDGTJAContactInput()));
         click(element);
-        flag = clientAction.isElementAppeared(empSelection.getJsonObject(empSelection.getDES33()));
+        flag = clientAction.isElementAppeared(empSelection.getJsonObject(empSelection.getDUserQueryInput()));
         Assert.assertTrue(flag);
 
     }
@@ -192,7 +194,7 @@ public class ClientTest extends $ {
     public void inputEmpName() {
         randomEmpName = JDBC.getSqlResultStr(ClientSql.getSql2());
         string = randomEmpName;
-        WebElement element = findElement(empSelection.getJsonObject(empSelection.getDES33()));
+        WebElement element = findElement(empSelection.getJsonObject(empSelection.getDUserQueryInput()));
         sendKeys(element, randomEmpName);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -203,9 +205,9 @@ public class ClientTest extends $ {
 //            "selectCustNameSearchResult", "clickConfirmButtonForCustName", "checkCustNameInput",
 //            "inputRandomDept", "clickManager", "inputEmpName"})
     public void clickSearchButtonForEmpName() {
-        WebElement element = findElement(empSelection.getJsonObject(empSelection.getDES33SearchSpan()));
+        WebElement element = findElement(empSelection.getJsonObject(empSelection.getDUserQueryInputSearchSpan()));
         click(element);
-        flag = clientAction.isElementAppeared(empSelection.getJsonObject(empSelection.getDES10()));
+        flag = clientAction.isElementAppeared(empSelection.getJsonObject(empSelection.getDTableTrs()));
         Assert.assertTrue(flag);
     }
 
@@ -216,9 +218,9 @@ public class ClientTest extends $ {
 //            "inputRandomDept", "clickManager", "inputEmpName",
 //            "clickSearchButtonForEmpName"})
     public void selectEmpNameSearchResult() {
-        WebElement element = findElement(empSelection.get$JsonES10SiblingByUserName(randomEmpName));
+        WebElement element = findElement(empSelection.get$JsonTableTrsSiblingByUserName(randomEmpName));
         click(element);
-        element = findElement(empSelection.get$JsonES10SiblingByUserName(randomEmpName));
+        element = findElement(empSelection.get$JsonTableTrsSiblingByUserName(randomEmpName));
         flag = clientAction.isSelected(element);
         Assert.assertTrue(flag);
 
@@ -230,9 +232,9 @@ public class ClientTest extends $ {
 //            "inputRandomDept", "clickManager", "inputEmpName",
 //            "clickSearchButtonForEmpName", "selectEmpNameSearchResult"})
     public void clickConfirmButtonForEmpName() {
-        WebElement element = findElement(empSelection.getJsonObject(empSelection.getDES29()));
+        WebElement element = findElement(empSelection.getJsonObject(empSelection.getDConfirmButtonSpan()));
         click(element);
-        flag = clientAction.isElementAppeared(client.getJsonObject(client.getD30P()));
+        flag = clientAction.isElementAppeared(clientPopped.getJsonObject(clientPopped.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
     }
 
@@ -243,7 +245,7 @@ public class ClientTest extends $ {
 //            "clickSearchButtonForEmpName", "selectEmpNameSearchResult", "clickConfirmButtonForEmpName"})
     public void checkManagerInput() {
         string = randomEmpName;
-        WebElement element = findElement(client.getJsonObject(client.getD47P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDGTJAContactInput()));
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
     }
@@ -257,7 +259,7 @@ public class ClientTest extends $ {
     public void inputFAX() {
         randomFAX = RandomInfo.getTel();
         string = randomFAX;
-        WebElement element = findElement(client.getJsonObject(client.getD40P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDFaxInput()));
         sendKeys(element, randomFAX);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -273,7 +275,7 @@ public class ClientTest extends $ {
     public void inputMobile() {
         randomMobile = clientAction.getRandomMobile();
         string = randomMobile;
-        WebElement element = findElement(client.getJsonObject(client.getD38P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDMobileInput()));
         sendKeys(element, randomMobile);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -286,9 +288,9 @@ public class ClientTest extends $ {
 //            "clickSearchButtonForEmpName", "selectEmpNameSearchResult", "clickConfirmButtonForEmpName",
 //            "checkManagerInput", "inputFAX", "inputMobile"})
     public void clickBizLine() {
-        WebElement element = findElement(client.getJsonObject(client.getD34P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDBusinessLineInput()));
         click(element);
-        flag = clientAction.isElementAppeared(bizLineSelection.getJsonObject(bizLineSelection.getDBLS30()));
+        flag = clientAction.isElementAppeared(bizLineSelection.getJsonObject(bizLineSelection.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
 
     }
@@ -315,9 +317,9 @@ public class ClientTest extends $ {
 //            "checkManagerInput", "inputFAX", "inputMobile",
 //            "clickBizLine", "selectBizLine"})
     public void clickConfirmButtonForBizLine() {
-        WebElement element = findElement(bizLineSelection.getJsonObject(bizLineSelection.getDBLS29()));
+        WebElement element = findElement(bizLineSelection.getJsonObject(bizLineSelection.getDConfirmButtonSpan()));
         click(element);
-        flag = clientAction.isElementAppeared(client.getJsonObject(client.getD30P()));
+        flag = clientAction.isElementAppeared(clientPopped.getJsonObject(clientPopped.getDCloseButtonSpan()));
         Assert.assertTrue(flag);
     }
 
@@ -346,7 +348,7 @@ public class ClientTest extends $ {
     public void inputJobPosition() {
         randomJobPosition = Randoms.getJobPosition();
         string = randomJobPosition;
-        WebElement element = findElement(client.getJsonObject(client.getD43P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDPositionInput()));
         sendKeys(element, randomJobPosition);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -363,7 +365,7 @@ public class ClientTest extends $ {
     public void inputTel() {
         randomTel = RandomInfo.getTel();
         string = randomTel;
-        WebElement element = findElement(client.getJsonObject(client.getD44P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDTelInput()));
         sendKeys(element, randomTel);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -380,7 +382,7 @@ public class ClientTest extends $ {
     public void inputOfficeAddress() {
         randomAddress = RandomInfo.getRoadAddress();
         string = randomAddress;
-        WebElement element = findElement(client.getJsonObject(client.getD46P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDOfficeAddressInput()));
         sendKeys(element, randomAddress);
         flag = clientAction.isStringEqualsText(element, string);
         Assert.assertTrue(flag);
@@ -400,9 +402,9 @@ public class ClientTest extends $ {
         strings1 = clientAction.getWebpageInfo(tableHeader);
 
 
-        WebElement element = findElement(client.getJsonObject(client.getD29P()));
+        WebElement element = findElement(clientPopped.getJsonObject(clientPopped.getDConfirmButtonSpan()));
         click(element);
-        flag = clientAction.isElementAppeared(client.getJsonObject(client.getD81Final()));
+        flag = clientAction.isElementAppeared(client.getJsonObject(client.getDSuccessPromptWithGreenCheckDivFinal()));
         Assert.assertTrue(flag);
 
     }
@@ -418,14 +420,24 @@ public class ClientTest extends $ {
 //            "clickConfirmButtonForNewClient"})
     public void compareInputWithWeb() {
         tableContent = clientAction.getInfo(1);
-        WebElement element = findElement(client.get$10SiblingJson(1));
+        WebElement element = findElement(client.get$TableTrsSiblingJson(1));
         doubleClick(element);
         strings2 = clientAction.getWebpageInfo(tableHeader);
-        flag = ListMisc.isEqualAfterSorted(strings1, strings2);
+        System.out.println("s1s1s1s1s1s1s1s1");
+        for(String str:strings1){
+            System.out.println(str);
+        }
+        System.out.println("s1s1s1s1s1s1s1s1");
+        System.out.println("s2s2s2s2s2s2s2s2");
+        for(String str:strings2){
+            System.out.println(str);
+        }
+        System.out.println("s2s2s2s2s2s2s2s2");
+        flag = ListMisc.isEqual1(strings1, strings2);
         Assert.assertTrue(flag);
 
         flag = clientAction.isInTableEqualsInDetail(tableContent);
-        element = findElement(client.getJsonObject(client.getD30P()));
+        element = findElement(clientPopped.getJsonObject(clientPopped.getDCloseButtonSpan()));
         click(element);
         Assert.assertTrue(flag);
     }
@@ -492,7 +504,7 @@ public class ClientTest extends $ {
 
     @Test(dependsOnMethods = {"createNewClient"})
     public void editClient() {
-        WebElement element = findElement(client.get$10_actionSiblingJson(1));
+        WebElement element = findElement(client.get$TableTrs_actionSiblingJson(1));
         click(element);
         inputClientName();
         inputEmail();
@@ -512,7 +524,7 @@ public class ClientTest extends $ {
         inputFAX();
         inputMobile();
 
-        element = findElement(client.getJsonObject(client.getD34PCross()));
+        element = findElement(clientPopped.getJsonObject(clientPopped.getDBusinessLineInputCrossI()));
         click(element);
 
         clickBizLine();
@@ -548,15 +560,20 @@ public class ClientTest extends $ {
 
     @BeforeClass
     public void beforeClass01() {
+
+
+        custSelection = (CustSelection) custSelection.getObjAttr();
+        empSelection = (EmpSelection) empSelection.getObjAttr("国君服务联系人");
+        clientPopped = (Client) clientPopped.getObjAttr("POPPED");
         testCount++;
         OpenBrowserAction.open("chrome", this.getClass());
         loginAction.login();
         get(client.getClient());//登录后跳转客户维护分配页面
 
-        Client client = new Client();
+//        Client client = new Client();
 
         empSelection = (EmpSelection) empSelection.getObjAttr("国君服务联系人");
-        client.getObjAttr();
+        client = (Client) client.getObjAttr();
 
     }
 

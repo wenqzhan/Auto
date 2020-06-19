@@ -2,283 +2,285 @@ package com.pageObject.matrix.orgCust;
 
 import com.alibaba.fastjson.JSONObject;
 import com.driver.$;
-import com.pageObject.commonObject.CommonObject;
-import com.pageObject.commonObject.CommonObjectPopped;
-import com.pageObject.matrix.CustSelection;
+import com.pageObject.matrix.CommonObject;
+//import com.pageObject.matrix.commonObject.CommonObjectPopped;
 import com.utils.json.Attr;
 import com.utils.json.JsonObject;
 import lombok.Data;
 import org.openqa.selenium.WebElement;
+
 @Data
 public class Contract extends JsonObject {//证明材料
 
-    public Contract(){
-        CommonObject commonObject = new CommonObject();
-        CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
-        CustSelection custSelection = new CustSelection();
-//        YMDSelection ymdSelection = new YMDSelection("签署日期");
-//        commonObject.getObjAttr();
-//        commonObjectPopped.getObjAttr();
-        custSelection.getObjAttr();
-//        ymdSelection.getObjAttr();
+
+    public Contract() {
+        setDesPrefix("证明材料");
+        super.setPrefix("");
+        setConVal("");
+        commonObject = (CommonObject) commonObject.getObjAttr();
+
     }
 
-    private CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
+    public Contract(String label) {
+        commonObject = (CommonObject) commonObject.getObjAttr();
+        setDesPrefix("证明材料" + label);
+        setPrefix(label);
+        setConVal(label);
+    }
+
+    public void setPrefix(String label) {
+        if (label.toLowerCase().contains("popped")) {
+            super.setPrefix(getPoppedPrefix());
+        }
+    }
+
+    //    private CommonObjectPopped commonObjectPopped = new CommonObjectPopped();
     private CommonObject commonObject = new CommonObject();
-    
-    private  String contract =
+
+    private String contract =
             "http://10.187.144.60:8080/orgcust/contract";
 
-    private final  String d52 = "证明材料-上传证明材料-span";
-    private final  String x52 = commonObject.getX52();
+    private String dUploadSupportingMaterialsButtonSpan ;
+    private String xUploadSupportingMaterialsButtonSpan ;
     //span[1=1 and contains(text(),"上传证明材料")]
 
 
-    private final  String d3 = "证明材料-查询按钮-span";
-    private final  String x3 = commonObject.getX3();
+    private String dQueryButtonSpan ;
+    private String xQueryButtonSpan ;
     //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"查询")]
 
-    private final  String d4 = "证明材料-重置按钮-span";
-    private final  String x4 = commonObject.getX4();
+    private String dResetConditionsButtonSpan ;
+    private String xResetConditionsButtonSpan ;
     //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"重置")]
 
-    private final  String d5 = "证明材料-查询条件展开收起按钮-a";
-    private final  String x5 = commonObject.getX5();
+    private String dUnfoldFoldButtonSpan;
+    private String xUnfoldFoldButtonSpan ;
     //button[1=1 and contains(@type,'button') and contains(@class,'ant-btn ant-btn-primary')]//span[1=1 and contains(text(),"重置")]/../../a
 
 
-    private final  String d49 = "证明材料-材料名称框-input";
-    private final  String x49 = commonObject.getX49();
+    private String dMaterialNameInput ;
+    private String xMaterialNameInput ;
     //label[1=1 and contains(text(),"材料名称")]/../following-sibling::*[1]//input
 
-    private final  String d2 = "证明材料-客户名称框-input";
-    private final  String x2 = commonObject.getX2();
+    private String dCustNameInput;
+    private String xCustNameInput ;
     //label[1=1 and contains(text(),"客户名称")]/../following-sibling::*[1]//input
 
-    private final  String d50 = "证明材料-材料类型框-div";/////
-    private final  String x50 = commonObject.getX50();
+    private String dMaterialTypeDiv ;/////
+    private String xMaterialTypeDiv ;
     //label[1=1 and contains(text(),"材料类型")]/../following-sibling::div[1]
 
 
-    private final  String d51 = "证明材料-所属商机框-input";
-    private final  String x51 = commonObject.getX51();
+    private String dBusinessOpportunityBelongedInput ;
+    private String xBusinessOpportunityBelongedInput;
     //label[1=1 and contains(text(),"所属商机")]/../following-sibling::*[1]//input
 
     //////////////////////////////////
-    private final  String d9 = "证明材料-表格-table";
-    private final  String x9 = commonObject.getX9();
+    private String dTableTable ;
+    private String xTableTable ;
     //table[1=1 and contains(@class,'ant-table-fixed')]
 
-    private final  String d10 = "证明材料-表格表体rows-tr";
-    private final  String x10 = commonObject.getX10();
+    private String dTableTrs ;
+    private String xTableTrs ;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not (contains(@style,'height'))] //不包含编辑那列,比如客户联系人,具体取决于样式
 
-    private final  String d10Action = "证明材料-表格表体rows-tr-action(编辑,查看...)";
-    private final  String x10Action = commonObject.getX10Action();
+    private String dTableActionTrs;
+    private String xTableActionTrs;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style]
 
-    private final  String d10ActionEdit = "证明材料-表格表体rows-tr-action(编辑,查看...)-编辑-a";
-    private final  String x10ActionEdit = x10Action + "//a[text()='编辑']";
+    private String dTableActionEditsAs ;
+    private String xTableActionEditsAs ;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style]//a[text()='编辑']
 
 
-    private final  String d10ActionDelete = "证明材料-表格表体rows-tr-action(编辑,查看...)-删除-a";
-    private final  String x10ActionDelete = x10Action + "//a[text()='删除']";
+    private String dTableTrsActionDeleteAs ;
+    private String xTableTrsActionDeleteAs ;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style]//a[text()='删除']
 
-    private final  String d10Selected = "证明材料-表格表体rows-selected-tr";
-    private final  String x10Selected = commonObject.getX10Selected();
+    private String dTableTrsSelectedTrs ;
+    private String xTableTrsSelectedTrs ;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and contains(@class,'selected')]
 
-    private final  String d10NotSelected = "证明材料-表格表体rows-not selected-tr";
-    private final  String x10NotSelected = commonObject.getX10NotSelected();
+    private String dTableTrsNotSelectedTrs ;
+    private String xTableTrsNotSelectedTrs ;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(contains(@class,'selected'))]
 
-    private final  String d11Tr1 = "证明材料-表格表头row下的tr[1]/th col-th";
-    private final  String x11Tr1 = commonObject.getX11Tr1();
+    private String dTableHeaderTr1Ths;
+    private String xTableHeaderTr1Ths ;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[not(@key='selection-column')]
 
-    private final  String d31 = "证明材料-表格表头-多选框-th";
-    private final  String x31 = commonObject.getX31();
+    private String dTableHeaderMultiCheckboxTh ;
+    private String xTableHeaderMultiCheckboxTh;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']
 
 
-    private final  String d12 = "证明材料-表格下方翻页按钮-上一页-li";
-    private final  String x12 = commonObject.getX12();
+    private String dTableLastPageButtonLi ;
+    private String xTableLastPageButtonLi ;
     //li[1=1 and contains(@title,'上一页')]
 
-    private final  String d13 = "证明材料-表格下方翻页按钮-下一页-li";
-    private final  String x13 = commonObject.getX13();
+    private String dTableNextPageButtonLi ;
+    private String xTableNextPageButtonLi ;
     //li[1=1 and contains(@title,'下一页')]
 
-    private final  String d14 = "证明材料-表格下方翻页按钮-下一页前的按钮,可以看出共多少页-a";
-    private final  String x14 = commonObject.getX14();
+    private String dMaxPageButtonA;
+    private String xMaxPageButtonA ;
     //li[1=1 and contains(@title,'下一页')]/preceding-sibling::li[1]/a
 
-    private final  String d15 = "证明材料-表格下方跳页输入框-input";
-    private final  String x15 = commonObject.getX15();
+    private String dTableJumpToInput ;
+    private String xTableJumpToInput ;
     //div[1=1 and contains(text(),"跳至")]/input
 
-    private final  String d16 = "证明材料-表格下方跳页输入框左边的跳至两个字-div";
-    private final  String x16 = commonObject.getX16();
+    private String dTableJumpDiv ;
+    private String xTableJumpDiv ;
     //div[1=1 and contains(text(),"跳至")]
 
-    private final  String d17 = "证明材料-数据加载(转菊花)-span";
-    private final  String x17 = commonObject.getX17();
+    private String dTableLoadingSignSpan;
+    private String xTableLoadingSignSpan ;
     //span[1=1 and contains(@class,'ant-spin-dot')]
 
-    private final  String d18 = "证明材料-条/页-div";
-    private final  String x18 = commonObject.getX18();
+    private String dTableLinesPerPageDiv ;
+    private String xTableLinesPerPageDiv ;
     //div[1=1 and contains(@title,'条/页')]
 
-    private final  String d18L5 = "证明材料-条/页-5 条/页-li";
-    private final  String x18L5 = commonObject.getX18L5();
+    private String dTableFiveLinesPerPageLi ;
+    private String xTableFiveLinesPerPageLi ;
     //li[1=1 and text()='5 条/页' ]
 
-    private final  String d18L10 = "证明材料-条/页-10 条/页-li";
-    private final  String x18L10 = commonObject.getX18L10();
+    private String dTableTenLinesPerPageLi;
+    private String xTableTenLinesPerPageLi ;
     //li[1=1 and text()='10 条/页' ]
 
-    private final  String d18L20 = "证明材料-条/页-20 条/页-li";
-    private final  String x18L20 = commonObject.getX18L20();
+    private String dTableTwentyLinesPerPageLi ;
+    private String xTableTwentyLinesPerPageLi ;
     //li[1=1 and text()='20 条/页' ]
 
-    private final  String d18L30 = "证明材料-条/页-30 条/页-li";
-    private final  String x18L30 = commonObject.getX18L30();
+    private String dTableThirtyLinesPerPageLi ;
+    private String xTableThirtyLinesPerPageLi ;
     //li[1=1 and text()='30 条/页' ]
 
-    private final  String d28 = "证明材料-表头多选框-input";
-    private final  String x28 = commonObject.getX28();
+    private String dTableHeaderMultiCheckboxInput ;
+    private String xTableHeaderMultiCheckboxInput;
     //table[1=1 and contains(@class,'ant-table-fixed')]//tr[not(@data-row-key)]//th[@key='selection-column']//input
 
     /////////////////////////////////
 
-    private final  String d49P = commonObjectPopped.getD49P().replaceFirst("通用","证明材料");
-    private final  String x49P = commonObjectPopped.getX49P();
-    //div[@tabindex]//label[1=1 and contains(text(),"材料名称")]/../following-sibling::*[1]//input
 
-    private final  String d2P = commonObjectPopped.getD2P().replaceFirst("通用","证明材料");
-    private final  String x2P = commonObjectPopped.getX2P();
-    //div[@tabindex]//label[1=1 and contains(text(),"客户名称")]/../following-sibling::*[1]//input
 
-    private final  String d53P = commonObjectPopped.getD53P().replaceFirst("通用","证明材料");
-    private final  String x53P = commonObjectPopped.getX53P();
+    private String dContactsInput ;
+    private String xContactsInput ;
     //div[@tabindex]//label[1=1 and contains(text(),"联系人")]/../following-sibling::*[1]//input
 
-    private final  String d56P = commonObjectPopped.getD56P().replaceFirst("通用","证明材料");
-    private final  String x56P = commonObjectPopped.getX56P();
+    private String dAssociatedBusinessOpportunities;
+    private String xAssociatedBusinessOpportunities;
     //div[@tabindex]//label[1=1 and contains(text(),"关联商机")]/../following-sibling::*[1]//input
 
-    private final  String d56PDiv1 = "证明材料-first popped-关联商机框-div-用来获取下拉框的id";
-    private final  String x56PDiv1 = x56P.replaceFirst("input", "div[@aria-controls]");
+    private String dAssociatedBusinessOpportunitiesDiv1 ;
+    private String xAssociatedBusinessOpportunitiesDiv1 ;
     //div[@tabindex]//label[1=1 and contains(text(),"关联商机")]/../following-sibling::*[1]//div[@aria-controls]
 
-    private final  String d56PDiv1Cross = commonObjectPopped.getD56P().replaceFirst("通用","证明材料");
-    private final  String x56PDiv1Cross =commonObjectPopped.getX56P();
+    private String dAssociatedBusinessOpportunitiesDiv1Cross ;
+    private String xAssociatedBusinessOpportunitiesDiv1Cross ;
     //div[@tabindex]//label[1=1 and contains(text(),"关联商机")]/../following-sibling::*[1]//div[@aria-controls]//i[1=1 and contains(@class,'close-circle')]
 
 
-    private final  String d56PDiv3 = "证明材料-first popped-关联商机框-div-用来获取已选中商机的文本";
-    private final  String x56PDiv3 = x56PDiv1 +"//div[@title]";
+    private String dAssociatedBusinessOpportunitiesDiv3 ;
+    private String xAssociatedBusinessOpportunitiesDiv3 ;
     //div[@tabindex]//label[1=1 and contains(text(),"关联商机")]/../following-sibling::*[1]//div[@aria-controls]//div[@title]
 
 
-    private final  String d56PDiv2 = "证明材料-first popped-关联商机框-下的框div";
-    private  String i56PDiv2 = "";
+    private String dAssociatedBusinessOpportunitiesDiv2 = "证明材料-first popped-关联商机框-下的框div";
+    private String iAssociatedBusinessOpportunitiesDiv2 = "";
 
-    public  void setI56PDiv2(){
-        i56PDiv2 = getBizOpportunityID();
-        Attr.setAttr("i56PDiv2",i56PDiv2);
+    public void setIAssociatedBusinessOpportunitiesDiv2() {
+        iAssociatedBusinessOpportunitiesDiv2 = getBizOpportunityID();
+        Attr.setAttr("iAssociatedBusinessOpportunitiesDiv2", iAssociatedBusinessOpportunitiesDiv2);
     }
 
-    private final  String d50P = commonObjectPopped.getD50P().replaceFirst("通用","证明材料");
-    private final  String x50P = commonObjectPopped.getX50P();
-    //div[@tabindex]//label[1=1 and contains(text(),"材料类型")]/../following-sibling::div[1]
 
-    private final  String d50PSpan = "证明材料-first popped-材料类型框-div-span";/////
-    private final  String x50PSpan = x50P + "//div[contains(@class,\"selected\")]/span";
-    //div[@tabindex]//label[1=1 and contains(text(),"材料类型")]/../following-sibling::div[1]]//div[contains(@class,"selected")]/span
+    private String dMaterialTypeDivSpan ;/////
+    private String xMaterialTypeDivSpan ;
+    //div[@tabindex]//label[1=1 and contains(text(),"材料类型")]/../following-sibling::div[1]//div[contains(@class,"selected")]/span
 
 
-    private final  String d50PL1 = commonObjectPopped.getD50PL1().replaceFirst("通用","证明材料");
-    private final  String x50PL1 = commonObjectPopped.getX50PL1();
+    private String dMaterialTypeSpecialStrategicCooperationAgreementSpan ;
+    private String xMaterialTypeSpecialStrategicCooperationAgreementSpan ;
     //div[@tabindex]//li/span[1=1 and @title='专项战略合作协议' ]
 
-    private final  String d50PL2 = commonObjectPopped.getD50PL2().replaceFirst("通用","证明材料");
-    private final  String x50PL2 = commonObjectPopped.getX50PL2();
-    //div[@tabindex]//li/span[1=1 and @title='专项战略合作协议' ]
+    private String dMaterialTypeComprehensiveStrategicCooperationAgreement ;
+    private String xMaterialTypeComprehensiveStrategicCooperationAgreement ;
+    //div[@tabindex]//li/span[1=1 and @title='全面战略合作协议' ]
 
-    private final  String d50PL3 = commonObjectPopped.getD50PL3().replaceFirst("通用","证明材料");
-    private final  String x50PL3 = commonObjectPopped.getX50PL3();
+    private String dMaterialTypeBusinessAgreement ;
+    private String xMaterialTypeBusinessAgreement ;
     //div[@tabindex]//li/span[1=1 and @title='业务协议' ]
 
-    private final  String d54P = commonObjectPopped.getD54P().replaceFirst("通用","证明材料");
-    private final  String x54P = commonObjectPopped.getX54P();
+    private String dContractSignedDateInput;
+    private String xContractSignedDateInput;
     //div[@tabindex]//label[1=1 and contains(text(),"签署日期")]/../following-sibling::*[1]//input
 
-    private final  String d55P = commonObjectPopped.getD55P().replaceFirst("通用","证明材料");
-    private final  String x55P = commonObjectPopped.getX55P();
+    private String dContractAmountInTenThousandsInput;
+    private String xContractAmountInTenThousandsInput;
     //div[@tabindex]//label[1=1 and contains(text(),"合同金额(万元)")]/../following-sibling::*[1]//input
 
-    private final  String dUploadP = commonObjectPopped.getDUploadP().replaceFirst("通用","证明材料");
-    private final  String xUploadP = commonObjectPopped.getXUploadP();
+    private String dUpload ;
+    private String xUpload ;
     //div[@tabindex]//p[text()='点击或将文件拖拽到这里上传']
 
 
-    private final  String d29P = commonObjectPopped.getD29P().replaceFirst("通用","证明材料");
-    private final  String x29P = commonObjectPopped.getX29P();
+    private String dConfirmButtonSpan;
+    private String xConfirmButtonSpan;
     //div[@tabindex]//span[1=1 and contains(text(),"确 定")]
 
-    private final  String d30P = commonObjectPopped.getD30P().replaceFirst("通用","证明材料");
-    private final  String x30P = commonObjectPopped.getX30P();
+    private String dCloseButtonSpan;
+    private String xCloseButtonSpan;
     //div[@tabindex]//span[1=1 and contains(text(),"关 闭")]
 
 
-    private final  String dUploadPUploading = "证明材料-first popped-上传文件-上传中-span";
-    private final  String xUploadPUploading = "//div[contains(@class,\"item-uploading\")]";
+    private String dUploadPUploading = "证明材料-first popped-上传文件-上传中-span";
+    private String xUploadPUploading = "//div[contains(@class,\"item-uploading\")]";
 
 
-    private final  String dUploadPUploadingCorss = "证明材料-first popped-上传文件-上传中-删除-i";
-    private final  String xUploadPUploadingCorss =commonObjectPopped.getCross(xUploadPUploading);
+    private String dUploadPUploadingCorss = "证明材料-first popped-上传文件-上传中-删除-i";
+    private String xUploadPUploadingCorss = commonObject.getCross(xUploadPUploading);
     //div[contains(@class,"item-done")]//i[1=1 and contains(@class,'close-circle') or contains(@class,'anticon-close')]
 
 
-    private final  String dUploadPUploadDone = "证明材料-first popped-上传文件-上传成功-span";
-    private final  String xUploadPUploadDone = "//div[contains(@class,\"item-done\")]";
+    private String dUploadPUploadDone = "证明材料-first popped-上传文件-上传成功-span";
+    private String xUploadPUploadDone = "//div[contains(@class,\"item-done\")]";
 
 
-    private final  String dUploadPUploadDoneCorss = "证明材料-first popped-上传文件-上传成功-删除-i";
-    private final  String xUploadPUploadDoneCorss =commonObjectPopped.getCross(xUploadPUploadDone);
+    private String dUploadPUploadDoneCorss = "证明材料-first popped-上传文件-上传成功-删除-i";
+    private String xUploadPUploadDoneCorss = commonObject.getCross(xUploadPUploadDone);
     //div[contains(@class,"item-done")]//i[1=1 and contains(@class,'close-circle') or contains(@class,'anticon-close')]
 
-    private final  String dUploadPUploadDoneFile = "证明材料-first popped-上传文件-上传成功的文件-span";
-    private final  String xUploadPUploadDoneFile = "//div[contains(@class,\"item-done\")]";
+    private String dUploadPUploadDoneFile = "证明材料-first popped-上传文件-上传成功的文件-span";
+    private String xUploadPUploadDoneFile = "//div[contains(@class,\"item-done\")]";
 
 
-    private final  String dUploadPUploadError = "证明材料-first popped-上传文件-上传失败-span";
-    private final  String xUploadPUploadError = "//div[contains(@class,\"item-error\")]";
+    private String dUploadPUploadError = "证明材料-first popped-上传文件-上传失败-span";
+    private String xUploadPUploadError = "//div[contains(@class,\"item-error\")]";
 
 
-    private final  String d81Final = "证明材料-添加/修改-成功系统提示信息";
-    private final  String x81Final = commonObject.getX81Final();
+    private String dSuccessPromptWithGreenCheckDivFinal = "证明材料-添加/修改-成功系统提示信息";
+    private String xSuccessPromptWithGreenCheckDivFinal = commonObject.getXSuccessPromptWithGreenCheckDivFinal();
     //div[@class='ant-message-success']
 
 
-    private  String getBizOpportunityID() {
+    private String getBizOpportunityID() {
         String attributeValue;
         String id;
 
-        WebElement element =$.findElement(getJsonObject(d56PDiv1));
-        attributeValue= $.getAttribute(element,"aria-controls");
+        WebElement element = $.findElement(getJsonObject(dAssociatedBusinessOpportunitiesDiv1));
+        attributeValue = $.getAttribute(element, "aria-controls");
         id = attributeValue;
 
         return id;
     }
 
 
-    private  String get$X56Div2Li(int num) {
+    private String get$XAssociatedBusinessOpportunitiesDiv2Li(int num) {
         String xpath;
-        String id = i56PDiv2;
+        String id = iAssociatedBusinessOpportunitiesDiv2;
         String n;
         if (num > 0) {
             n = "" + num;
@@ -299,7 +301,7 @@ public class Contract extends JsonObject {//证明材料
     }
 
 
-    private  String get$d56Div2Li(int num) {
+    private String get$dAssociatedBusinessOpportunitiesDiv2Li(int num) {
         String description = "证明材料-关联商机-候选第";
         if (num > 0) {
             description = description + num;
@@ -317,102 +319,102 @@ public class Contract extends JsonObject {//证明材料
     }
 
 
-    private  String get$XPQueryInput(String label) {
+    private String get$XQueryInput(String label) {
         //div[@tabindex]//label[1=1 and contains(text(),"客户柜台代码")]/../following-sibling::*[1]//input
-        return commonObjectPopped.get$XPQueryInput(label);
+        return commonObject.get$XQueryInput(label);
     }
 
 
-    private  String get$DPQueryInput(String label) {
-        return commonObjectPopped.get$DPQueryInput(label).
+    private String get$DQueryInput(String label) {
+        return commonObject.get$DQueryInput(label).
                 replaceFirst("通用", "证明材料");
     }
 
-    private  String get$X10Sibling(int num) {
+    private String get$XTableTrsSibling(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and not(@style)][30]
-        String xpath = commonObject.get$X10Sibling(num);
+        String xpath = commonObject.get$XTableTrsSibling(num);
         return xpath;
     }
 
-    private  String get$D10Sibling(int num) {
+    private String get$DTableTrsSibling(int num) {
         //证明材料-表格表体-第1行
-        String description = commonObject.get$D10Sibling(num);
+        String description = commonObject.get$DTableTrsSibling(num);
         description = description.replaceFirst("通用", "证明材料");
         return description;
     }
 
 
-    private  String get$X10ActionSibling(int num) {
+    private String get$XTableTrsActionSibling(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style][30]
-        String xpath = commonObject.get$X10ActionSibling(num);
+        String xpath = commonObject.get$XTableTrsActionSibling(num);
         return xpath;
     }
 
-    private  String get$D10ActionSibling(int num) {
+    private String get$DTableTrsActionSibling(int num) {
         //证明材料-表格表体-第1行
-        String description = commonObject.get$D10ActionSibling(num);
+        String description = commonObject.get$DTableTrsActionSibling(num);
         description = description.replaceFirst("通用", "证明材料");
         return description;
     }
 
-    private  String get$X10ActionEditSibling(int num) {
+    private String get$XTableTrsActionEditSibling(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style][30]//a[text()='编辑']
-        String xpath = get$X10ActionSibling(num) + "[text()='编辑']";
+        String xpath = get$XTableTrsActionSibling(num) + "[text()='编辑']";
         return xpath;
     }
 
-    private  String get$D10ActionEditSibling(int num) {
+    private String get$DTableTrsActionEditSibling(int num) {
         //证明材料-表格表体-第1行
-        String description = commonObject.get$D10ActionSibling(num);
-        description = get$D10ActionSibling(num) + "编辑";
+        String description = commonObject.get$DTableTrsActionSibling(num);
+        description = get$DTableTrsActionSibling(num) + "编辑";
         return description;
     }
 
 
-    private  String get$X10ActionDeleteSibling(int num) {
+    private String get$XTableTrsActionDeleteSibling(int num) {
         //table[1=1 and contains(@class,'ant-table-fixed')]//tr[@data-row-key and @style][30]//a[text()='删除']
-        String xpath = get$D10ActionSibling(num) + "//a[text()='删除']";
+        String xpath = get$DTableTrsActionSibling(num) + "//a[text()='删除']";
         return xpath;
     }
 
-    private  String get$D10ActionDeleteSibling(int num) {
+    private String get$DTableTrsActionDeleteSibling(int num) {
         //证明材料-表格表体-第1行
-        String description = commonObject.get$D10ActionSibling(num);
-        description = get$D10ActionSibling(num) + "删除";
+        String description = commonObject.get$DTableTrsActionSibling(num);
+        description = get$DTableTrsActionSibling(num) + "删除";
         return description;
     }
 
 
-    public  JSONObject get$PQueryInputJson(String label) {
-        JsonObject.setJsonObject(get$DPQueryInput(label), get$XPQueryInput(label));
+    public JSONObject get$QueryInputJson(String label) {
+        JsonObject.setJsonObject(get$DQueryInput(label), get$XQueryInput(label));
         return JsonObject.getJsonObject();
     }
 
 
-    public  JSONObject get$10SiblingJson(int num) {
-        JsonObject.setJsonObject(get$D10Sibling(num), get$X10Sibling(num));
+    public JSONObject get$TableTrsSiblingJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrsSibling(num), get$XTableTrsSibling(num));
         return JsonObject.getJsonObject();
     }
 
 
-    public  JSONObject get$10ActionSiblingJson(int num) {
-        JsonObject.setJsonObject(get$D10ActionSibling(num), get$X10ActionSibling(num));
+    public JSONObject get$TableTrsActionSiblingJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrsActionSibling(num), get$XTableTrsActionSibling(num));
         return JsonObject.getJsonObject();
     }
 
 
-    public  JSONObject get$10ActionEditSiblingJson(int num) {
-        JsonObject.setJsonObject(get$D10ActionEditSibling(num), get$X10ActionEditSibling(num));
+    public JSONObject get$TableTrsActionEditSiblingJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrsActionEditSibling(num), get$XTableTrsActionEditSibling(num));
         return JsonObject.getJsonObject();
     }
 
-    public  JSONObject get$10ActionDeleteSiblingJson(int num) {
-        JsonObject.setJsonObject(get$D10ActionDeleteSibling(num), get$X10ActionDeleteSibling(num));
+    public JSONObject get$TableTrsActionDeleteSiblingJson(int num) {
+        JsonObject.setJsonObject(get$DTableTrsActionDeleteSibling(num), get$XTableTrsActionDeleteSibling(num));
         return JsonObject.getJsonObject();
     }
 
-    public  JSONObject get$56Div2LiJson(int num) {
-        JsonObject.setJsonObject(get$d56Div2Li(num), get$X56Div2Li(num));
+    public JSONObject get$AssociatedBusinessOpportunitiesDiv2LiJson(int num) {
+        JsonObject.setJsonObject(get$dAssociatedBusinessOpportunitiesDiv2Li(num), get$XAssociatedBusinessOpportunitiesDiv2Li(num));
         return JsonObject.getJsonObject();
     }
 
